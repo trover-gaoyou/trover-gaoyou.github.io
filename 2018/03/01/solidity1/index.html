@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65558107"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    <meta name="google-site-verification" content="ar7mIVYsjkAi2k9jIuWk34S9A2aVwBdQqFkfL4AKEBQ" >
+    
+    
+    
+    <title>智能合约语言 Solidity 教程系列1 - 类型介绍 | 梦想小筑 | 坚定的走吧，毕竟梦想在远方，未来在远方，终点也在远方。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Solidity手册">
+    <meta name="description" content="写在前面Solidity是以太坊智能合约编程语言，阅读本文前，你应该对以太坊、智能合约有所了解，如果你还不了解，建议你先看以太坊是什么Solidity教程会是一系列文章，本文是第一篇：介绍Solidity的变量类型。Solidity 系列完整的文章列表请查看分类-Solidity。 本文前半部分是参考Solidity官方文档（当前最新版本：0.4.20）进行翻译，后半部分是结合实际合约代码实例说">
+<meta name="keywords" content="Solidity手册">
+<meta property="og:type" content="article">
+<meta property="og:title" content="智能合约语言 Solidity 教程系列1 - 类型介绍">
+<meta property="og:url" content="http://blog.buerya.cn/2018/03/01/solidity1/index.html">
+<meta property="og:site_name" content="梦想小筑">
+<meta property="og:description" content="写在前面Solidity是以太坊智能合约编程语言，阅读本文前，你应该对以太坊、智能合约有所了解，如果你还不了解，建议你先看以太坊是什么Solidity教程会是一系列文章，本文是第一篇：介绍Solidity的变量类型。Solidity 系列完整的文章列表请查看分类-Solidity。 本文前半部分是参考Solidity官方文档（当前最新版本：0.4.20）进行翻译，后半部分是结合实际合约代码实例说">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-10-07T08:08:59.469Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="智能合约语言 Solidity 教程系列1 - 类型介绍">
+<meta name="twitter:description" content="写在前面Solidity是以太坊智能合约编程语言，阅读本文前，你应该对以太坊、智能合约有所了解，如果你还不了解，建议你先看以太坊是什么Solidity教程会是一系列文章，本文是第一篇：介绍Solidity的变量类型。Solidity 系列完整的文章列表请查看分类-Solidity。 本文前半部分是参考Solidity官方文档（当前最新版本：0.4.20）进行翻译，后半部分是结合实际合约代码实例说">
+    
+        <link rel="alternate" type="application/atom+xml" title="梦想小筑" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.0">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Juan</h5>
+          <a href="mailto:quewen08@gmail.com" title="quewen08@gmail.com" class="mail">quewen08@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/trover-gaoyou" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/shandingjurenww" target="_blank" >
+                <i class="icon icon-lg icon-twitter"></i>
+                Twitter
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.instagram.com/juan95_cn" target="_blank" >
+                <i class="icon icon-lg icon-instagram"></i>
+                Instagram
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/source"  >
+                <i class="icon icon-lg icon-link"></i>
+                友情链接
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+	<img id="aimg_H2R2r" class="zoom" src="https://apa.me/news/?s=5qKm5oOz5bCP562R" border="0" alt="" width="500" height="210" initialized="true">
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">智能合约语言 Solidity 教程系列1 - 类型介绍</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">智能合约语言 Solidity 教程系列1 - 类型介绍</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-02-28T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2018-03-01
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/">深入浅出区块链</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/以太坊/">以太坊</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/以太坊/Solidity/">Solidity</a></li></ul></li></ul></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#写在前面"><span class="post-toc-number">1.</span> <span class="post-toc-text">写在前面</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#类型"><span class="post-toc-number">2.</span> <span class="post-toc-text">类型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#值类型-Value-Type"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">值类型(Value Type)</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#布尔类型-Boolean"><span class="post-toc-number">3.</span> <span class="post-toc-text">布尔类型(Boolean)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#整型-Integers"><span class="post-toc-number">4.</span> <span class="post-toc-text">整型(Integers)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#定长浮点型（Fixed-Point-Numbers）"><span class="post-toc-number">5.</span> <span class="post-toc-text">定长浮点型（Fixed Point Numbers）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#定长字节数组-Fixed-size-byte-arrays"><span class="post-toc-number">6.</span> <span class="post-toc-text">定长字节数组(Fixed-size byte arrays)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#变长（动态分配大小）字节数组（Dynamically-sized-byte-array）"><span class="post-toc-number">7.</span> <span class="post-toc-text">变长（动态分配大小）字节数组（Dynamically-sized byte array）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#有理数和整型常量-Rational-and-Integer-Literals"><span class="post-toc-number">8.</span> <span class="post-toc-text">有理数和整型常量(Rational and Integer Literals)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#字符串常量"><span class="post-toc-number">9.</span> <span class="post-toc-text">字符串常量</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#十六进制常量（Hexadecimal-literals）"><span class="post-toc-number">10.</span> <span class="post-toc-text">十六进制常量（Hexadecimal literals）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#枚举（Enums）"><span class="post-toc-number">11.</span> <span class="post-toc-text">枚举（Enums）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#代码实例"><span class="post-toc-number">12.</span> <span class="post-toc-text">代码实例</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考文档"><span class="post-toc-number">13.</span> <span class="post-toc-text">参考文档</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-solidity1"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">智能合约语言 Solidity 教程系列1 - 类型介绍</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-03-01 00:00:00" datetime="2018-02-28T16:00:00.000Z"  itemprop="datePublished">2018-03-01</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/">深入浅出区块链</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/以太坊/">以太坊</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/以太坊/Solidity/">Solidity</a></li></ul></li></ul></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <script src="\assets\js\APlayer.min.js"> </script><h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>Solidity是以太坊智能合约编程语言，阅读本文前，你应该对以太坊、智能合约有所了解，<br>如果你还不了解，建议你先看<a href="/posts/深入浅出区块链/以太坊/2018-02-22-whatiseth.html">以太坊是什么</a><br>Solidity教程会是一系列文章，本文是第一篇：介绍Solidity的变量类型。<br>Solidity 系列完整的文章列表请查看<a href="/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/Solidity/">分类-Solidity</a>。</p>
+<p>本文前半部分是参考Solidity官方文档（当前最新版本：0.4.20）进行翻译，后半部分是结合实际合约代码实例说明类型的使用（仅针对专栏订阅用户）。</p>
+<h2 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h2><p>Solidity是一种静态类型语言，意味着每个变量（本地或状态变量）需要在编译时指定变量的类型（或至少可以推倒出类型）。Solidity提供了一些基本类型可以用来组合成复杂类型。</p>
+<p>Solidity类型分为两类：</p>
+<ul>
+<li>值类型(Value Type) - 变量在赋值或传参时，总是进行值拷贝。</li>
+<li>引用类型(Reference Types)</li>
+</ul>
+<h3 id="值类型-Value-Type"><a href="#值类型-Value-Type" class="headerlink" title="值类型(Value Type)"></a>值类型(Value Type)</h3><p>值类型包含:</p>
+<ul>
+<li>布尔类型(Booleans)</li>
+<li>整型(Integers)</li>
+<li>定长浮点型(Fixed Point Numbers)</li>
+<li>定长字节数组(Fixed-size byte arrays)</li>
+<li>有理数和整型常量(Rational and Integer Literals)</li>
+<li>字符串常量（String literals）</li>
+<li>十六进制常量（Hexadecimal literals）</li>
+<li>枚举(Enums)</li>
+<li><a href="">函数类型(Function Types)</a></li>
+<li><a href="">地址类型(Address)</a></li>
+<li>地址常量(Address Literals)<blockquote>
+<p><a href="">函数类型</a>及<a href="">地址类型(Address)</a>有单独的博文，请点击查看。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="布尔类型-Boolean"><a href="#布尔类型-Boolean" class="headerlink" title="布尔类型(Boolean)"></a>布尔类型(Boolean)</h2><p>布尔(bool):可能的取值为常量值true和false。</p>
+<p>布尔类型支持的运算符有：</p>
+<ul>
+<li>！逻辑非</li>
+<li>&amp;&amp; 逻辑与</li>
+<li>|| 逻辑或</li>
+<li>== 等于</li>
+<li>!= 不等于</li>
+</ul>
+<p>注意：运算符&amp;&amp;和||是短路运算符，如f(x)||g(y)，当f(x)为真时，则不会继续执行g(y)。</p>
+<h2 id="整型-Integers"><a href="#整型-Integers" class="headerlink" title="整型(Integers)"></a>整型(Integers)</h2><p>int/uint: 表示有符号和无符号不同位数整数。支持关键字uint8 到 uint256 (以8步进)，<br>uint 和 int 默认对应的是 uint256 和 int256。</p>
+<p>支持的运算符：</p>
+<ul>
+<li>比较运算符： &lt;=, &lt; , ==, !=, &gt;=, &gt; (返回布尔值：true 或 false)</li>
+<li>位操作符： &amp;，|，^(异或)，~（位取反）</li>
+<li>算术操作符：+，-，一元运算-，一元运算+，，/, %(取余数), **（幂）, &lt;&lt; (左移位), &gt;&gt; (右移位)</li>
+</ul>
+<p>说明：</p>
+<ol>
+<li>整数除法总是截断的，但如果运算符是字面量（字面量稍后讲)，则不会截断。</li>
+<li>整数除0会抛异常。</li>
+<li>移位运算的结果的正负取决于操作符左边的数。x &lt;&lt; y 和 x  2**y 是相等， x &gt;&gt; y 和 x / 2**y 是相等的。</li>
+<li>不能进行负移位，即操作符右边的数不可以为负数，否则会抛出运行时异常。</li>
+</ol>
+<p>注意：Solidity中，右移位是和除等价的，因此右移位一个负数，向下取整时会为0，而不像其他语言里为无限负小数。</p>
+<h2 id="定长浮点型（Fixed-Point-Numbers）"><a href="#定长浮点型（Fixed-Point-Numbers）" class="headerlink" title="定长浮点型（Fixed Point Numbers）"></a>定长浮点型（Fixed Point Numbers）</h2><p>fixed/ufixed: 表示有符号和无符号的固定位浮点数。关键字为ufixedMxN 和 ufixedMxN。<br>M表示这个类型要占用的位数，以8步进，可为8到256位。<br>N表示小数点的个数，可为0到80之前</p>
+<p>支持的运算符：</p>
+<ul>
+<li>比较运算符： &lt;=, &lt; , ==, !=, &gt;=, &gt; (返回布尔值：true 或 false)</li>
+<li>算术操作符：+，-，一元运算-，一元运算+，，/, %(取余数)<br>注意：它和大多数语言的float和double不一样，*M是表示整个数占用的固定位数，包含整数部分和小数部分。因此用一个小位数（M较小）来表示一个浮点数时，小数部分会几乎占用整个空间。</li>
+</ul>
+<h2 id="定长字节数组-Fixed-size-byte-arrays"><a href="#定长字节数组-Fixed-size-byte-arrays" class="headerlink" title="定长字节数组(Fixed-size byte arrays)"></a>定长字节数组(Fixed-size byte arrays)</h2><p>关键字有：bytes1, bytes2, bytes3, …, bytes32。（以步长1递增）<br>byte代表bytes1。</p>
+<p>支持的运算符：</p>
+<ul>
+<li>比较符: &lt;=, &lt;, ==, !=, &gt;=, &gt; (返回bool）</li>
+<li>位操作符: &amp;, |, ^ (按位异或)，~（按位取反）, &lt;&lt; (左移位), &gt;&gt; (右移位)</li>
+<li>索引（下标）访问: 如果x是bytesI，当0 &lt;= k &lt; I ，则x[k]返回第k个字节（只读）。</li>
+</ul>
+<p>移位运算和整数类似，移位运算的结果的正负取决于操作符左边的数，且不能进行负移位。<br>如可以-5&lt;&lt;1, 不可以5&lt;&lt;-1</p>
+<p>成员变量：<br>.length：表示这个字节数组的长度（只读）。</p>
+<h2 id="变长（动态分配大小）字节数组（Dynamically-sized-byte-array）"><a href="#变长（动态分配大小）字节数组（Dynamically-sized-byte-array）" class="headerlink" title="变长（动态分配大小）字节数组（Dynamically-sized byte array）"></a>变长（动态分配大小）字节数组（Dynamically-sized byte array）</h2><ul>
+<li>bytes:动态分配大小字节数组, 参见Arrays,不是值类型!</li>
+<li>string:动态分配大小UTF8编码的字符类型,参看Arrays。不是值类型!</li>
+</ul>
+<p>根据经验：<br>bytes用来存储任意长度的字节数据，string用来存储任意长度的(UTF-8编码)的字符串数据。<br>如果长度可以确定，尽量使用定长的如byte1到byte32中的一个，因为这样更省空间。</p>
+<h2 id="有理数和整型常量-Rational-and-Integer-Literals"><a href="#有理数和整型常量-Rational-and-Integer-Literals" class="headerlink" title="有理数和整型常量(Rational and Integer Literals)"></a>有理数和整型常量(Rational and Integer Literals)</h2><blockquote>
+<p>也有人把Literals翻译为字面量</p>
+</blockquote>
+<p>整型常量是有一系列0-9的数字组成，10进制表示，比如：8进制是不存在的，前置0在Solidity中是无效的。</p>
+<p>10进制小数常量（Decimal fraction literals）带了一个.， 在.的两边至少有一个数字，有效的表示如:1., .1 和 1.3.</p>
+<p>科学符号也支持，基数可以是小数，指数必须是整数， 有效的表示如: 2e10, -2e10, 2e-10, 2.5e1。</p>
+<p>数字常量表达式本身支持任意精度，也就是可以不会运算溢出，或除法截断。但当它被转换成对应的非常量类型，或者将他们与非常量进行运算，则不能保证精度了。<br>如：(2<em>800 + 1) - 2</em>800的结果为1（uint8整类) ，尽管中间结果已经超过计算机字长。另外：.5 * 8的结果是4，尽管有非整形参与了运算。</p>
+<p>只要操作数是整形，整型支持的运算符都适用于整型常量表达式。<br>如果两个操作数是小数，则不允许进行位运算，指数也不能是小数。</p>
+<p>注意：<br>Solidity对每一个有理数都有一个数值常量类型。整数常量和有理数常量从属于数字常量。所有的数字常表达式的结果都属于数字常量。所以1 + 2和2 + 1都属于同样的有理数的数字常量3</p>
+<p>警告：<br>整数常量除法，在早期的版本中是被截断的，但现在可以被转为有理数了，如5/2的值为 2.5</p>
+<p>注意：<br>数字常量表达式，一旦其中含有常量表达式，它就会被转为一个非常量类型。下面代码中表达式的结果将会被认为是一个有理数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">uint128 a = 1;</span><br><span class="line">uint128 b = 2.5 + a + 0.5;</span><br></pre></td></tr></table></figure>
+<p>上述代码编译不能通过，因为b会被编译器认为是小数型。</p>
+<h2 id="字符串常量"><a href="#字符串常量" class="headerlink" title="字符串常量"></a>字符串常量</h2><p>字符串常量是指由单引号，或双引号引起来的字符串 (“foo” or ‘bar’)。字符串并不像C语言，包含结束符，”foo”这个字符串大小仅为三个字节。和整数常量一样，字符串的长度类型可以是变长的。字符串可以隐式的转换为byte1,…byte32 如果适合，也会转为bytes或string。</p>
+<p>字符串常量支持转义字符，比如\n，\xNN，\uNNNN。其中\xNN表示16进制值，最终转换合适的字节。而\uNNNN表示Unicode编码值，最终会转换为UTF8的序列。</p>
+<h2 id="十六进制常量（Hexadecimal-literals）"><a href="#十六进制常量（Hexadecimal-literals）" class="headerlink" title="十六进制常量（Hexadecimal literals）"></a>十六进制常量（Hexadecimal literals）</h2><p>十六进制常量，以关键字hex打头，后面紧跟用单或双引号包裹的字符串，内容是十六进制字符串，如hex”001122ff”。<br>它的值会用二进制来表示。</p>
+<p>十六进制常量和字符串常量类似，也可以转换为字节数组。</p>
+<h2 id="枚举（Enums）"><a href="#枚举（Enums）" class="headerlink" title="枚举（Enums）"></a>枚举（Enums）</h2><p>在Solidity中，枚举可以用来自定义类型。它可以显示的转换与整数进行转换，但不能进行隐式转换。显示的转换会在运行时检查数值范围，如果不匹配，将会引起异常。枚举类型应至少有一名成员。下面是一个枚举的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.4.0;</span><br><span class="line"></span><br><span class="line">contract test &#123;</span><br><span class="line">    enum ActionChoices &#123; GoLeft, GoRight, GoStraight, SitStill &#125;</span><br><span class="line">    ActionChoices choice;</span><br><span class="line">    ActionChoices constant defaultChoice = ActionChoices.GoStraight;</span><br><span class="line"></span><br><span class="line">    function setGoStraight() &#123;</span><br><span class="line">        choice = ActionChoices.GoStraight;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Since enum types are not part of the ABI, the signature of &quot;getChoice&quot;</span><br><span class="line">    // will automatically be changed to &quot;getChoice() returns (uint8)&quot;</span><br><span class="line">    // for all matters external to Solidity. The integer type used is just</span><br><span class="line">    // large enough to hold all enum values, i.e. if you have more values,</span><br><span class="line">    // `uint16` will be used and so on.</span><br><span class="line">    function getChoice() returns (ActionChoices) &#123;</span><br><span class="line">        return choice;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getDefaultChoice() returns (uint) &#123;</span><br><span class="line">        return uint(defaultChoice);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="代码实例"><a href="#代码实例" class="headerlink" title="代码实例"></a>代码实例</h2><p>通过合约代码实例说明类型的使用，请订阅<a href="https://xiaozhuanlan.com/blockchaincore" target="_blank" rel="noopener">区块链技术</a>查看。</p>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p><a href="https://solidity.readthedocs.io/en/develop/types.html" target="_blank" rel="noopener">Solidity官方文档-类型</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-10-07T08:08:59.469Z" itemprop="dateUpdated">2020-10-07 16:08:59</time>
+</span><br>
+
+
+        
+        本文永久地址：<a href="/2018/03/01/solidity1/" target="_blank" rel="external">http://blog.buerya.cn/2018/03/01/solidity1/</a>
+        
+    </div>
+    <footer>
+        <a href="http://blog.buerya.cn">
+            <img src="/img/avatar.jpg" alt="Juan">
+            Juan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solidity手册/">Solidity手册</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.buerya.cn/2018/03/01/solidity1/&title=《智能合约语言 Solidity 教程系列1 - 类型介绍》 — 梦想小筑&pic=http://blog.buerya.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.buerya.cn/2018/03/01/solidity1/&title=《智能合约语言 Solidity 教程系列1 - 类型介绍》 — 梦想小筑&source=初级程序员,Juan`s blogs" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.buerya.cn/2018/03/01/solidity1/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《智能合约语言 Solidity 教程系列1 - 类型介绍》 — 梦想小筑&url=http://blog.buerya.cn/2018/03/01/solidity1/&via=http://blog.buerya.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.buerya.cn/2018/03/01/solidity1/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/03/03/bitcoin-sonsensus/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">比特币如何达成共识 - 最长链的选择</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/02/25/geth_cmd_short/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Geth 控制台使用及 Web3.js 使用实战</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comment comments vcomment" id="comments"></div>
+    <script src="//cdnjs.cat.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="//cdn1.lncld.net/static/js/3.5.0/av-min.js"></script>
+    <script src="/js/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var notify = 'false';
+        var verify = 'false';
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            av: AV,
+            el: '#comments',
+            notify: notify,
+            verify: verify,
+            appId: "LoojPRMy175IgqwnQtytrgOY-9Nh9j0Va",
+            appKey: "45VXhysB6in2v1IOL1kaC5tQ",
+            avatar: "mm",
+            placeholder: "ヾﾉ≧∀≦)o来啊，快活啊!",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢你给我买糖果吃O(∩_∩)O~~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Juan &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备17077370号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.buerya.cn/2018/03/01/solidity1/&title=《智能合约语言 Solidity 教程系列1 - 类型介绍》 — 梦想小筑&pic=http://blog.buerya.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.buerya.cn/2018/03/01/solidity1/&title=《智能合约语言 Solidity 教程系列1 - 类型介绍》 — 梦想小筑&source=初级程序员,Juan`s blogs" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.buerya.cn/2018/03/01/solidity1/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《智能合约语言 Solidity 教程系列1 - 类型介绍》 — 梦想小筑&url=http://blog.buerya.cn/2018/03/01/solidity1/&via=http://blog.buerya.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.buerya.cn/2018/03/01/solidity1/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKUlEQVR42u3aQU7EMAwFUO5/6WGLhKb6tjOIui8rBEya14XHdvz1Fa/Xj/XzN7//+m793i15yuGFgYFxW0by+GvG9SGSfXovCAMD42mMdxHs+tDJ4aph9Pq5b3+PgYGBEW99zctfAQYGBsapgFsNo8krwMDAwJgUsUmaOAmjf1SLY2Bg3JAxKSw//fNH7jcwMDBuxXgVVy+k5iHy1VoYGBi7GXmAy4cnkkMnBW25JMbAwHgAIw+pk0uC3v5RsoiBgbGU0Uv78uDYu6ost/kwMDAewMijVvXaYHJhWf7GwMDAWM3oDVL00sTeGGthzAIDA2M1oxdwk0A8KVOjV4CBgbGacSr5yx+WH7ecemJgYKxmJI37JFE7G16bySsGBsY6RrVNVh2bmKR6hdeKgYGxmtFre+VtuFONtuoZMDAwNjHy5v78EjRJ/qrDGW9nRjAwMJYy8q2ryWIecJvNOwwMjNWMXpPrOpgmBWfvWVFFjoGBsZoxGcL4XJusEL4xMDAewDh7oMmoWcKIUkMMDIyljGTln6peJPSuRTEwMJ7G6G1dvbacN/Ki1BADA2MFYx5q80bb2R0Of2NgYGD8Y8YkfczTvmqQTUrWY1kwBgbGTRiTQrT6qWqLDQMDA2Me+PIhjKSsnYR+DAwMjOrRk7Zd4XoymKnAwMDAmNTH+euojlwc+97AwMC4CaM6WpGkd/OrzXyyAgMDYzcjLx3n/1ltzM1HNDAwMG7O+AaIjCLgwGFKCwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261704531&web_id=1261704531')
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.0"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.0" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '(つェ⊂) 我藏好了哦~ ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(*´∇｀*) 被你发现啦~ ';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

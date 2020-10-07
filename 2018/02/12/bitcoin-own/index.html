@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65558107"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    <meta name="google-site-verification" content="ar7mIVYsjkAi2k9jIuWk34S9A2aVwBdQqFkfL4AKEBQ" >
+    
+    
+    
+    <title>比特币所有权及隐私问题-非对称加密应用 | 梦想小筑 | 坚定的走吧，毕竟梦想在远方，未来在远方，终点也在远方。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="比特币,Python,区块链,区块链技术">
+    <meta name="description" content="比特币系统是如何确定某个账户的比特币是属于谁的？谁可以支付这个账户比特币？如果你对这个问题还不是很明白，那就一起来看看吧。 银行系统我们先来回顾下现实的银行系统：  首先我们需要把我们的个人信息（如身份证）给银行，银行给我们开立相对应的账户，银行在开户的时候确立了对账户的所有权。 进行支付的时候，银行对交易双方完成转账（银行在开户的时候已经知道我们对应的账户）。同时银行会对账户信息进行保密（这点">
+<meta name="keywords" content="比特币,Python,区块链,区块链技术">
+<meta property="og:type" content="article">
+<meta property="og:title" content="比特币所有权及隐私问题-非对称加密应用">
+<meta property="og:url" content="http://blog.buerya.cn/2018/02/12/bitcoin-own/index.html">
+<meta property="og:site_name" content="梦想小筑">
+<meta property="og:description" content="比特币系统是如何确定某个账户的比特币是属于谁的？谁可以支付这个账户比特币？如果你对这个问题还不是很明白，那就一起来看看吧。 银行系统我们先来回顾下现实的银行系统：  首先我们需要把我们的个人信息（如身份证）给银行，银行给我们开立相对应的账户，银行在开户的时候确立了对账户的所有权。 进行支付的时候，银行对交易双方完成转账（银行在开户的时候已经知道我们对应的账户）。同时银行会对账户信息进行保密（这点">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-10-07T08:08:59.439Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="比特币所有权及隐私问题-非对称加密应用">
+<meta name="twitter:description" content="比特币系统是如何确定某个账户的比特币是属于谁的？谁可以支付这个账户比特币？如果你对这个问题还不是很明白，那就一起来看看吧。 银行系统我们先来回顾下现实的银行系统：  首先我们需要把我们的个人信息（如身份证）给银行，银行给我们开立相对应的账户，银行在开户的时候确立了对账户的所有权。 进行支付的时候，银行对交易双方完成转账（银行在开户的时候已经知道我们对应的账户）。同时银行会对账户信息进行保密（这点">
+    
+        <link rel="alternate" type="application/atom+xml" title="梦想小筑" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.0">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Juan</h5>
+          <a href="mailto:quewen08@gmail.com" title="quewen08@gmail.com" class="mail">quewen08@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/trover-gaoyou" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/shandingjurenww" target="_blank" >
+                <i class="icon icon-lg icon-twitter"></i>
+                Twitter
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.instagram.com/juan95_cn" target="_blank" >
+                <i class="icon icon-lg icon-instagram"></i>
+                Instagram
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/source"  >
+                <i class="icon icon-lg icon-link"></i>
+                友情链接
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+	<img id="aimg_H2R2r" class="zoom" src="https://apa.me/news/?s=5qKm5oOz5bCP562R" border="0" alt="" width="500" height="210" initialized="true">
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">比特币所有权及隐私问题-非对称加密应用</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">比特币所有权及隐私问题-非对称加密应用</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-02-12T03:55:43.000Z" itemprop="datePublished" class="page-time">
+  2018-02-12
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/">深入浅出区块链</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#银行系统"><span class="post-toc-number">1.</span> <span class="post-toc-text">银行系统</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#匿名账本"><span class="post-toc-number">2.</span> <span class="post-toc-text">匿名账本</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#地址与私钥"><span class="post-toc-number">3.</span> <span class="post-toc-text">地址与私钥</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#非对称加密技术"><span class="post-toc-number">4.</span> <span class="post-toc-text">非对称加密技术</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#对交易信息进行签名"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">对交易信息进行签名</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#广播"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">广播</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#验证"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">验证</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#补充说明"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">补充说明</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-bitcoin-own"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">比特币所有权及隐私问题-非对称加密应用</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-02-12 11:55:43" datetime="2018-02-12T03:55:43.000Z"  itemprop="datePublished">2018-02-12</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/">深入浅出区块链</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <script src="\assets\js\APlayer.min.js"> </script><p>比特币系统是如何确定某个账户的比特币是属于谁的？谁可以支付这个账户比特币？<br>如果你对这个问题还不是很明白，那就一起来看看吧。</p>
+<h2 id="银行系统"><a href="#银行系统" class="headerlink" title="银行系统"></a>银行系统</h2><p>我们先来回顾下现实的银行系统：</p>
+<ol>
+<li>首先我们需要把我们的个人信息（如身份证）给银行，银行给我们开立相对应的账户，银行在开户的时候确立了对账户的所有权。</li>
+<li>进行支付的时候，银行对交易双方完成转账（银行在开户的时候已经知道我们对应的账户）。<br>同时银行会对账户信息进行保密（这点其实不能保证）。</li>
+</ol>
+<h2 id="匿名账本"><a href="#匿名账本" class="headerlink" title="匿名账本"></a>匿名账本</h2><p>那么比特币如何在没有第三方银行的参与下，在确保隐私的同时如何确定账户所有权的呢？</p>
+<p>实际上比特币的账户是用地址来表示，账本上不显示个人信息，转账是把比特币从一个地址转移到另一个地址。<br>转账记录如这样：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"付款地址"</span>:<span class="string">"2A39CBa2390FDe"</span></span><br><span class="line">    <span class="string">"收款地址"</span>:<span class="string">"AAC9CBa239aFcc"</span></span><br><span class="line">    <span class="string">"金额"</span>:<span class="string">"0.2btc"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接下来问题就变为了 谁有权用某个地址进行付款。</p>
+<blockquote>
+<p>支付和所有权 实际是同一个问题，如果此比特币只有我可以用来支付，那么说明我拥有所有权</p>
+</blockquote>
+<h2 id="地址与私钥"><a href="#地址与私钥" class="headerlink" title="地址与私钥"></a>地址与私钥</h2><p>比特币的解决方案是，谁拥有某个地址的私钥(如果完全没有加密概念的人，可以简单的把私钥当作密码)，谁就能用这个地址进行支付。（所以私钥一定保管好，如果私钥泄漏，比特币就可能丢失）</p>
+<p>比特币地址和私钥是一个非对称的关系，私钥经过一系列运算（其中有两次Hash）之后，可以得到地址, 但是无法从地址反推得到私钥。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">地址： 2A39CBa2390FDe</span><br><span class="line">私钥： sdgHsdniNIhdsgaKIhkgnakgaihNKHIskdgal</span><br><span class="line"></span><br><span class="line">Hash(Hash(fun(sdgHsdniNIhdsgaKIhkgnakgaihNKHIskdgal)))  -&gt; 2A39CBa2390FDe</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>银行系统银行账号和密码是完全独立的，无法互相推导，转出时需要同时验证账号和密码</p>
+</blockquote>
+<p>还是上面交易的例子：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    "付款地址"："2A39CBa2390FDe",</span><br><span class="line">    "收款地址"："AAC9CBa239aFcc",</span><br><span class="line">    "金额"："0.2btc"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>只有拥有地址2A39CBa2390FDe的私钥才能进行支付。</p>
+<h2 id="非对称加密技术"><a href="#非对称加密技术" class="headerlink" title="非对称加密技术"></a>非对称加密技术</h2><p>这个时候问题就变为了，如何证明你拥有某个地址的私钥（在不泄漏私钥的情况下）。</p>
+<h3 id="对交易信息进行签名"><a href="#对交易信息进行签名" class="headerlink" title="对交易信息进行签名"></a>对交易信息进行签名</h3><p>实际在签名之前，会先对交易信息进行Hash运算得到摘要信息，然后对摘要信息进行签名。过程大概是这样：</p>
+<ol>
+<li><p>对交易进行hash， 得到一个摘要信息（Hash值）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hash(&apos;</span><br><span class="line">    &#123;&quot;付款地址&quot;：&quot;2A39CBa2390FDe&quot;,</span><br><span class="line">    &quot;收款地址&quot;：&quot;AAC9CBa239aFcc&quot;,</span><br><span class="line">    &quot;金额&quot;：&quot;0.2btc&quot;</span><br><span class="line">    &#125;&apos;) -&gt; 8aDB23CDEA6</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用私钥对交易摘要进行签名（付款方在安全的环境下进行，以避免私钥泄密）, 用代码表示大概是这样。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#参数1为交易摘要</span><br><span class="line">#参数2为私钥</span><br><span class="line">#返回签名信息</span><br><span class="line">sign(&quot;8aDB23CDEA6&quot;, &quot;J78sknJhidhLIqdngalket&quot;) -&gt; &quot;3cdferdadgadg&quot;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="广播"><a href="#广播" class="headerlink" title="广播"></a>广播</h3><p>在签名运算之后，付款节点就开始在全网进行广播：我支付了0.2btc到AAC9CBa239aFcc,签名信息是3cdferdadgadg，你们来确认一下吧。</p>
+<p>广播过程实际上是发信息到相连的其它节点，其它节点在验证通过后再转发到与之相连的节点，这样的扩散过程。</p>
+<p>广播的信息包含了交易原始信息和签名信息</p>
+<h3 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h3><p>其它节点在收到广播信息之后，会验证签名信息是不是付款方用私钥对交易原始信息签名产生的，如果验证通过说明确实是付款方本人发出的交易，说明交易有效，才会记录到账本中去。<br>（实际还会验证付款账号有没有足够的余额，我们暂时忽略这点）<br>验证过程实际是签名过程的逆运算，用代码表示大概过程是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#参数1为签名信息</span><br><span class="line">#参数2为付款方地址</span><br><span class="line">#返回交易摘要</span><br><span class="line">verify(&quot;3cdferdadgadg&quot;, &quot;2A39CBa2390FDe&quot;) -&gt; &quot;8aDB23CDEA6&quot;</span><br></pre></td></tr></table></figure>
+<p>如果验证输出的信息和原始交易信息的hash一致，则验证通过，记录账本，用代码表示大概是这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">if(verify(&quot;3cdferdadgadg&quot;, &quot;2A39CBa2390FDe&quot;)</span><br><span class="line">    == hash(&apos;&#123;&quot;付款地址&quot;：&quot;2A39CBa2390FDe&quot;,</span><br><span class="line">              &quot;收款地址&quot;：&quot;AAC9CBa239aFcc&quot;,</span><br><span class="line">              &quot;金额&quot;：&quot;0.2btc&quot;&#125;&apos;)) :</span><br><span class="line">    # 写入账本</span><br><span class="line">    # 广播</span><br><span class="line">else:</span><br><span class="line">   # donothing</span><br></pre></td></tr></table></figure>
+<p>大家可以理解为付款地址为公钥，签名过程即为用私钥对交易摘要的加密过程，验证过程为用公钥解密的过程(为方便大家理解，严格来讲是不准确的)。</p>
+<h3 id="补充说明"><a href="#补充说明" class="headerlink" title="补充说明"></a>补充说明</h3><p>上面为了更好的理解，我对一些信息进行了简化。</p>
+<p>比特币系统使用了椭圆曲线签名算法，算法的私钥由32个字节随机数组成，通过私钥可以计算出公钥，公钥经过一序列哈希算法和编码算法得到比特币地址，地址也可以理解为公钥的摘要。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-10-07T08:08:59.439Z" itemprop="dateUpdated">2020-10-07 16:08:59</time>
+</span><br>
+
+
+        
+        本文永久地址：<a href="/2018/02/12/bitcoin-own/" target="_blank" rel="external">http://blog.buerya.cn/2018/02/12/bitcoin-own/</a>
+        
+    </div>
+    <footer>
+        <a href="http://blog.buerya.cn">
+            <img src="/img/avatar.jpg" alt="Juan">
+            Juan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/区块链/">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/区块链技术/">区块链技术</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/比特币/">比特币</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.buerya.cn/2018/02/12/bitcoin-own/&title=《比特币所有权及隐私问题-非对称加密应用》 — 梦想小筑&pic=http://blog.buerya.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.buerya.cn/2018/02/12/bitcoin-own/&title=《比特币所有权及隐私问题-非对称加密应用》 — 梦想小筑&source=初级程序员,Juan`s blogs" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.buerya.cn/2018/02/12/bitcoin-own/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《比特币所有权及隐私问题-非对称加密应用》 — 梦想小筑&url=http://blog.buerya.cn/2018/02/12/bitcoin-own/&via=http://blog.buerya.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.buerya.cn/2018/02/12/bitcoin-own/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/02/13/bitcoin-pow/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">比特币如何挖矿（挖矿原理）-工作量证明</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/02/09/build_blockchain_by_python/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">用Python从零开始创建区块链</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comment comments vcomment" id="comments"></div>
+    <script src="//cdnjs.cat.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="//cdn1.lncld.net/static/js/3.5.0/av-min.js"></script>
+    <script src="/js/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var notify = 'false';
+        var verify = 'false';
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            av: AV,
+            el: '#comments',
+            notify: notify,
+            verify: verify,
+            appId: "LoojPRMy175IgqwnQtytrgOY-9Nh9j0Va",
+            appKey: "45VXhysB6in2v1IOL1kaC5tQ",
+            avatar: "mm",
+            placeholder: "ヾﾉ≧∀≦)o来啊，快活啊!",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢你给我买糖果吃O(∩_∩)O~~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Juan &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备17077370号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.buerya.cn/2018/02/12/bitcoin-own/&title=《比特币所有权及隐私问题-非对称加密应用》 — 梦想小筑&pic=http://blog.buerya.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.buerya.cn/2018/02/12/bitcoin-own/&title=《比特币所有权及隐私问题-非对称加密应用》 — 梦想小筑&source=初级程序员,Juan`s blogs" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.buerya.cn/2018/02/12/bitcoin-own/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《比特币所有权及隐私问题-非对称加密应用》 — 梦想小筑&url=http://blog.buerya.cn/2018/02/12/bitcoin-own/&via=http://blog.buerya.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.buerya.cn/2018/02/12/bitcoin-own/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKElEQVR42u3aS27DMAwFwNz/0u62QBHlkXQKWBqtijSxNF4I/L1e8bp+rd+f/P3vu7V+2vrz2xYGBsZjGcn2643X1DX43XPys2FgYJzDeHeD9R4dbby8OfOzYWBgYKy/k4SPvWsaAwMDY86YIydPxsDAOJORhHrVbfJf/WsujoGB8UDGJLH89t9f6W9gYGA8inEVV7UBUG1MXq2FgYGxN2NeSusdev2dZkqMgYGxKSMfg6imkWt2bzjjLRUDA+MARrXRmCecvVZluUiHgYFxJKN60EnbYJ76YmBgnMDIL8fJYMRkjLUwLYKBgbE1Y52y9sYg5i2E6BVgYGAcxqimpr1Qstq8/PAKMDAwjmHkD6ompXlq2tsRAwPjHEY+6JDXu3qFtjxsfeU/xsDAeDgjH7Copr53FdqawxYYGBhbMHpfzQO7eUGt3ODEwMDYjtEr09+buE6S2Ff1oBgYGA9kVNPUfPyreo3moWQv3MTAwNiD8Y3Arvr+8nT6QxKLgYGxHaO6waSpWT1cYXQDAwPjAEb1ykuCwupRei8LAwPjHEazgBUHedUoLm9wYmBg7M24iiu/QL/Xcoi2xMDA2IgxbwwkYeKkPVmeGcHAwNiUcdcl22tt5u3PD8U4DAyMAxiTi69XRMsbAFHLAQMDAyOILvMmQZ7olotuGBgYGK2ceJLo5ik0BgbGCYzkKsyvzvzJvSogBgbGaYzeiMO9Dc7qjs2mJgYGxvMYP/gC2xkZXnR/AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261704531&web_id=1261704531')
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.0"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.0" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '(つェ⊂) 我藏好了哦~ ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(*´∇｀*) 被你发现啦~ ';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

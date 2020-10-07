@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65558107"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    <meta name="google-site-verification" content="ar7mIVYsjkAi2k9jIuWk34S9A2aVwBdQqFkfL4AKEBQ" >
+    
+    
+    
+    <title>剖析非同质化代币ERC721-全面解析ERC721标准 | 梦想小筑 | 坚定的走吧，毕竟梦想在远方，未来在远方，终点也在远方。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="智能合约,Token,ERC721">
+    <meta name="description" content="什么是ERC-721？现在我们看到的各种加密猫猫狗狗都是基于ERC-721创造出来的，每只都是一个独一无二的ERC-721代币，不过ERC-721在区块链世界远不止猫猫狗狗，它更大的想象空间在于将物理世界的资产映射到区块链上。本文就来剖析下什么是ERC721. ERC721是什么在创建代币一篇，我们讲到过ERC20代币，和ERC20一样，ERC721同样是一个代币标准，ERC721官方简要解释是">
+<meta name="keywords" content="智能合约,Token,ERC721">
+<meta property="og:type" content="article">
+<meta property="og:title" content="剖析非同质化代币ERC721-全面解析ERC721标准">
+<meta property="og:url" content="http://blog.buerya.cn/2018/03/23/token-erc721/index.html">
+<meta property="og:site_name" content="梦想小筑">
+<meta property="og:description" content="什么是ERC-721？现在我们看到的各种加密猫猫狗狗都是基于ERC-721创造出来的，每只都是一个独一无二的ERC-721代币，不过ERC-721在区块链世界远不止猫猫狗狗，它更大的想象空间在于将物理世界的资产映射到区块链上。本文就来剖析下什么是ERC721. ERC721是什么在创建代币一篇，我们讲到过ERC20代币，和ERC20一样，ERC721同样是一个代币标准，ERC721官方简要解释是">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-10-07T08:08:59.469Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="剖析非同质化代币ERC721-全面解析ERC721标准">
+<meta name="twitter:description" content="什么是ERC-721？现在我们看到的各种加密猫猫狗狗都是基于ERC-721创造出来的，每只都是一个独一无二的ERC-721代币，不过ERC-721在区块链世界远不止猫猫狗狗，它更大的想象空间在于将物理世界的资产映射到区块链上。本文就来剖析下什么是ERC721. ERC721是什么在创建代币一篇，我们讲到过ERC20代币，和ERC20一样，ERC721同样是一个代币标准，ERC721官方简要解释是">
+    
+        <link rel="alternate" type="application/atom+xml" title="梦想小筑" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.0">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Juan</h5>
+          <a href="mailto:quewen08@gmail.com" title="quewen08@gmail.com" class="mail">quewen08@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/trover-gaoyou" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/shandingjurenww" target="_blank" >
+                <i class="icon icon-lg icon-twitter"></i>
+                Twitter
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.instagram.com/juan95_cn" target="_blank" >
+                <i class="icon icon-lg icon-instagram"></i>
+                Instagram
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/source"  >
+                <i class="icon icon-lg icon-link"></i>
+                友情链接
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+	<img id="aimg_H2R2r" class="zoom" src="https://apa.me/news/?s=5qKm5oOz5bCP562R" border="0" alt="" width="500" height="210" initialized="true">
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">剖析非同质化代币ERC721-全面解析ERC721标准</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">剖析非同质化代币ERC721-全面解析ERC721标准</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-03-23T04:02:22.000Z" itemprop="datePublished" class="page-time">
+  2018-03-23
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/">深入浅出区块链</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/以太坊/">以太坊</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/以太坊/智能合约/">智能合约</a></li></ul></li></ul></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ERC721是什么"><span class="post-toc-number">1.</span> <span class="post-toc-text">ERC721是什么</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ERC721标准"><span class="post-toc-number">2.</span> <span class="post-toc-text">ERC721标准</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ERC165标准"><span class="post-toc-number">3.</span> <span class="post-toc-text">ERC165标准</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#可选实现接口：ERC721Metadata"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">可选实现接口：ERC721Metadata</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#可选实现接口：ERC721Enumerable"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">可选实现接口：ERC721Enumerable</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#补充说明"><span class="post-toc-number">4.</span> <span class="post-toc-text">补充说明</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#NTF-IDs"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">NTF IDs</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#与ERC-20的兼容性"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">与ERC-20的兼容性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#交易、挖矿、销毁"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">交易、挖矿、销毁</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考文献"><span class="post-toc-number">5.</span> <span class="post-toc-text">参考文献</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-token-erc721"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">剖析非同质化代币ERC721-全面解析ERC721标准</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-03-23 12:02:22" datetime="2018-03-23T04:02:22.000Z"  itemprop="datePublished">2018-03-23</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/">深入浅出区块链</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/以太坊/">以太坊</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/以太坊/智能合约/">智能合约</a></li></ul></li></ul></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <script src="\assets\js\APlayer.min.js"> </script><p>什么是ERC-721？现在我们看到的各种加密猫猫狗狗都是基于ERC-721创造出来的，每只都是一个独一无二的ERC-721代币，不过ERC-721在区块链世界远不止猫猫狗狗，它更大的想象空间在于将物理世界的资产映射到区块链上。本文就来剖析下什么是ERC721.</p>
+<h2 id="ERC721是什么"><a href="#ERC721是什么" class="headerlink" title="ERC721是什么"></a>ERC721是什么</h2><p>在<a href="/posts/深入浅出区块链/以太坊/智能合约/2018-03-08-create_token.html">创建代币</a>一篇，我们讲到过ERC20代币，<br>和ERC20一样，ERC721同样是一个代币标准，ERC721官方简要解释是Non-Fungible Tokens，简写为NFTs，多翻译为非同质代币。</p>
+<blockquote>
+<p>ERC721 是由Dieter Shirley 在2017年9月提出。Dieter Shirley 正是谜恋猫CryptoKitties背后的公司Axiom Zen的技术总监。因此谜恋猫也是第一个实现了ERC721 标准的去中心化应用。ERC721号提议已经被以太坊作为标准接受，但该标准仍处于草稿阶段。本文介绍的ERC721标准基于最新(2018/03/23官方提议。</p>
+</blockquote>
+<p>那怎么理解<strong>非同质</strong> 代币呢?</p>
+<p>非同质代表独一无二，谜恋猫为例，每只猫都被赋予拥有基因，是独一无二的（一只猫就是一个NFTs），猫之间是不能置换的。这种独特性使得某些稀有猫具有收藏价值，也因此受到追捧。</p>
+<p>ERC20代币是可置换的，且可细分为N份（1 = 10 * 0.1）, 而ERC721的Token最小的单位为1，无法再分割。</p>
+<blockquote>
+<p>如果同一个集合的两个物品具有不同的特征，这两个物品是非同质的，而同质是某个部分或数量可以被另一个同等部分或数量所代替。</p>
+</blockquote>
+<p>非同质性其实广泛存在于我们的生活中，如图书馆的每一本，宠物商店的每一只宠物，歌手所演唱的歌曲，花店里不同的花等等，因此ERC721合约必定有广泛的应用场景。通过这样一个标准，也可建立跨功能的NFTs管理和销售平台（就像有支持ERC20的交易所和钱包一样），使生态更加强大。</p>
+<h2 id="ERC721标准"><a href="#ERC721标准" class="headerlink" title="ERC721标准"></a>ERC721标准</h2><p>ERC721最为一个合约标准，提供了在实现ERC721代币时必须要遵守的协议，要求每个ERC721标准合约需要实现ERC721及ERC165接口，接口定义如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.4.20;</span><br><span class="line"></span><br><span class="line">interface ERC721 /* is ERC165 */ &#123;</span><br><span class="line"></span><br><span class="line">    event Transfer(address indexed _from, address indexed _to, uint256 _tokenId);</span><br><span class="line">    event Approval(address indexed _owner, address indexed _approved, uint256 _tokenId);</span><br><span class="line">    event ApprovalForAll(address indexed _owner, address indexed _operator, bool _approved);</span><br><span class="line"></span><br><span class="line">    function balanceOf(address _owner) external view returns (uint256);</span><br><span class="line">    function ownerOf(uint256 _tokenId) external view returns (address);</span><br><span class="line"></span><br><span class="line">    function safeTransferFrom(address _from, address _to, uint256 _tokenId, bytes data) external payable;</span><br><span class="line">    function safeTransferFrom(address _from, address _to, uint256 _tokenId) external payable;</span><br><span class="line">    function transferFrom(address _from, address _to, uint256 _tokenId) external payable;</span><br><span class="line"></span><br><span class="line">    function approve(address _approved, uint256 _tokenId) external payable;</span><br><span class="line">    function setApprovalForAll(address _operator, bool _approved) external;</span><br><span class="line">    function getApproved(uint256 _tokenId) external view returns (address);</span><br><span class="line">    function isApprovedForAll(address _owner, address _operator) external view returns (bool);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接口说明：</p>
+<ul>
+<li>balanceOf(): 返回由_owner 持有的NFTs的数量。</li>
+<li>ownerOf(): 返回tokenId代币持有者的地址。</li>
+<li>approve(): 授予地址_to具有_tokenId的控制权，方法成功后需触发Approval 事件。</li>
+<li>setApprovalForAll(): 授予地址_operator具有所有NFTs的控制权，成功后需触发ApprovalForAll事件。</li>
+<li><p>getApproved()、isApprovedForAll(): 用来查询授权。</p>
+</li>
+<li><p>safeTransferFrom(): 转移NFT所有权，一次成功的转移操作必须发起 Transer 事件。函数的实现需要做一下几种检查：</p>
+<ol>
+<li>调用者msg.sender应该是当前tokenId的所有者或被授权的地址</li>
+<li>_from 必须是 _tokenId的所有者</li>
+<li>_tokenId 应该是当前合约正在监测的NFTs 中的任何一个</li>
+<li>_to 地址不应该为 0</li>
+<li><p>如果_to 是一个合约应该调用其onERC721Received方法, 并且检查其返回值，如果返回值不为<code>bytes4(keccak256(&quot;onERC721Received(address,uint256,bytes)&quot;))</code>抛出异常。</p>
+<p>一个可接收NFT的合约必须实现ERC721TokenReceiver接口：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">interface ERC721TokenReceiver &#123;</span><br><span class="line">/// @return `bytes4(keccak256(&quot;onERC721Received(address,uint256,bytes)&quot;))`</span><br><span class="line">  function onERC721Received(address _from, uint256 _tokenId, bytes data) external returns(bytes4);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li>transferFrom(): 用来转移NFTs, 方法成功后需触发Transfer事件。调用者自己确认_to地址能正常接收NFT，否则将丢失此NFT。此函数实现时需要检查上面条件的前4条。</li>
+</ul>
+</li>
+</ul>
+<h2 id="ERC165标准"><a href="#ERC165标准" class="headerlink" title="ERC165标准"></a>ERC165标准</h2><p>ERC721标准同时要求必须符合ERC165标准 ，其接口如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">interface ERC165 &#123;</span><br><span class="line">    function supportsInterface(bytes4 interfaceID) external view returns (bool);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-165.md" target="_blank" rel="noopener">ERC165</a>同样是一个合约标准，这个标准要求合约提供其实现了哪些接口，这样再与合约进行交互的时候可以先调用此接口进行查询。<br>interfaceID为函数选择器，计算方式有两种，如：<code>bytes4(keccak256(&#39;supportsInterface(bytes4)&#39;));</code>或<code>ERC165.supportsInterface.selector</code>，多个函数的接口ID为函数选择器的异或值。<br>关于ERC165，这里不深入介绍，有兴趣的同学可以阅读<a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-165.md" target="_blank" rel="noopener">官方提案</a>。</p>
+<h3 id="可选实现接口：ERC721Metadata"><a href="#可选实现接口：ERC721Metadata" class="headerlink" title="可选实现接口：ERC721Metadata"></a>可选实现接口：ERC721Metadata</h3><p>ERC721Metadata 接口用于提供合约的元数据：name , symbol 及 URI（NFT所对应的资源）。<br>其接口定义如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">interface ERC721Metadata /* is ERC721 */ &#123;</span><br><span class="line">    function name() external pure returns (string _name);</span><br><span class="line">    function symbol() external pure returns (string _symbol);</span><br><span class="line">    function tokenURI(uint256 _tokenId) external view returns (string);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>接口说明:</strong></p>
+<ul>
+<li>name(): 返回合约的名字，尽管是可选，但强烈建议实现，即便是返回空字符串。</li>
+<li>symbol(): 返回合约代币符号，尽管是可选，但强烈建议实现，即便是返回空字符串。</li>
+<li><p>tokenURI(): 返回_tokenId所对应的外部资源文件的URI(通常是IPFS或HTTP(S)路径)。外部资源文件需要包含名字、描述、图片，其格式的要求如下：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="attr">"title"</span>: <span class="string">"Asset Metadata"</span>,</span><br><span class="line"><span class="attr">"type"</span>: <span class="string">"object"</span>,</span><br><span class="line"><span class="attr">"properties"</span>: &#123;</span><br><span class="line">    <span class="attr">"name"</span>: &#123;</span><br><span class="line">        <span class="attr">"type"</span>: <span class="string">"string"</span>,</span><br><span class="line">        <span class="attr">"description"</span>: <span class="string">"Identifies the asset to which this NFT represents"</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"description"</span>: &#123;</span><br><span class="line">        <span class="attr">"type"</span>: <span class="string">"string"</span>,</span><br><span class="line">        <span class="attr">"description"</span>: <span class="string">"Describes the asset to which this NFT represents"</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"image"</span>: &#123;</span><br><span class="line">        <span class="attr">"type"</span>: <span class="string">"string"</span>,</span><br><span class="line">        <span class="attr">"description"</span>: <span class="string">"A URI pointing to a resource with mime type image/* representing the asset to which this NFT represents. Consider making any images at a width between 320 and 1080 pixels and aspect ratio between 1.91:1 and 4:5 inclusive."</span>,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>tokenURI通常是被web3调用，以便在应用层做相应的查询和展示。</p>
+</li>
+</ul>
+<h3 id="可选实现接口：ERC721Enumerable"><a href="#可选实现接口：ERC721Enumerable" class="headerlink" title="可选实现接口：ERC721Enumerable"></a>可选实现接口：ERC721Enumerable</h3><p>ERC721Enumerable的主要目的是提高合约中NTF的可访问性，其接口定义如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">interface ERC721Enumerable /* is ERC721 */ &#123;</span><br><span class="line">    function totalSupply() external view returns (uint256);</span><br><span class="line">    function tokenByIndex(uint256 _index) external view returns (uint256);</span><br><span class="line">    function tokenOfOwnerByIndex(address _owner, uint256 _index) external view returns (uint256);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>接口说明:</strong></p>
+<ul>
+<li>totalSupply(): 返回NFT总量</li>
+<li>tokenByIndex(): 通过索引返回对应的tokenId。</li>
+<li>tokenOfOwnerByIndex(): 所有者可以一次拥有多个的NFT, 此函数返回_owner拥有的NFT列表中对应索引的tokenId。</li>
+</ul>
+<h2 id="补充说明"><a href="#补充说明" class="headerlink" title="补充说明"></a>补充说明</h2><h3 id="NTF-IDs"><a href="#NTF-IDs" class="headerlink" title="NTF IDs"></a>NTF IDs</h3><p>NTF ID，即tokenId，在合约中用唯一的uint265进行标识，每个NFT的ID在智能合约的生命周期内不允许改变。推荐的实现方式有：</p>
+<ol>
+<li>从0开始，每新加一个NFT，NTF ID加1</li>
+<li>使用sha3后uuid转换为NTF ID</li>
+</ol>
+<h3 id="与ERC-20的兼容性"><a href="#与ERC-20的兼容性" class="headerlink" title="与ERC-20的兼容性"></a>与ERC-20的兼容性</h3><p>ERC721标准尽可能遵循 ERC-20 的语义，但由于同质代币与非同质代币之间的根本差异，并不能完全兼容ERC-20。</p>
+<h3 id="交易、挖矿、销毁"><a href="#交易、挖矿、销毁" class="headerlink" title="交易、挖矿、销毁"></a>交易、挖矿、销毁</h3><p>在实现transter相关接口时除了满足上面的的条件外，我们可以根据需要添加自己的逻辑，如加入黑名单等。<br>同时挖矿、销毁尽管不是标准的一部分，我们可以根据需要实现。</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-165.md" target="_blank" rel="noopener">EIPS-165</a></li>
+<li><a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md" target="_blank" rel="noopener">EIPS-721</a></li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-10-07T08:08:59.469Z" itemprop="dateUpdated">2020-10-07 16:08:59</time>
+</span><br>
+
+
+        
+        本文永久地址：<a href="/2018/03/23/token-erc721/" target="_blank" rel="external">http://blog.buerya.cn/2018/03/23/token-erc721/</a>
+        
+    </div>
+    <footer>
+        <a href="http://blog.buerya.cn">
+            <img src="/img/avatar.jpg" alt="Juan">
+            Juan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ERC721/">ERC721</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Token/">Token</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/智能合约/">智能合约</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.buerya.cn/2018/03/23/token-erc721/&title=《剖析非同质化代币ERC721-全面解析ERC721标准》 — 梦想小筑&pic=http://blog.buerya.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.buerya.cn/2018/03/23/token-erc721/&title=《剖析非同质化代币ERC721-全面解析ERC721标准》 — 梦想小筑&source=初级程序员,Juan`s blogs" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.buerya.cn/2018/03/23/token-erc721/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《剖析非同质化代币ERC721-全面解析ERC721标准》 — 梦想小筑&url=http://blog.buerya.cn/2018/03/23/token-erc721/&via=http://blog.buerya.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.buerya.cn/2018/03/23/token-erc721/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/04/08/solidity-errorhandler/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">智能合约语言 Solidity 教程系列9 - 错误处理</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/03/18/create_private_blockchain/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">如何搭建以太坊私有链</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comment comments vcomment" id="comments"></div>
+    <script src="//cdnjs.cat.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="//cdn1.lncld.net/static/js/3.5.0/av-min.js"></script>
+    <script src="/js/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var notify = 'false';
+        var verify = 'false';
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            av: AV,
+            el: '#comments',
+            notify: notify,
+            verify: verify,
+            appId: "LoojPRMy175IgqwnQtytrgOY-9Nh9j0Va",
+            appKey: "45VXhysB6in2v1IOL1kaC5tQ",
+            avatar: "mm",
+            placeholder: "ヾﾉ≧∀≦)o来啊，快活啊!",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢你给我买糖果吃O(∩_∩)O~~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Juan &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备17077370号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.buerya.cn/2018/03/23/token-erc721/&title=《剖析非同质化代币ERC721-全面解析ERC721标准》 — 梦想小筑&pic=http://blog.buerya.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.buerya.cn/2018/03/23/token-erc721/&title=《剖析非同质化代币ERC721-全面解析ERC721标准》 — 梦想小筑&source=初级程序员,Juan`s blogs" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.buerya.cn/2018/03/23/token-erc721/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《剖析非同质化代币ERC721-全面解析ERC721标准》 — 梦想小筑&url=http://blog.buerya.cn/2018/03/23/token-erc721/&via=http://blog.buerya.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.buerya.cn/2018/03/23/token-erc721/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKklEQVR42u3aQZKDMAxEUe5/aWY7VSlDd8teIH1WKUiCHwshS7ou+bj/Hb/nV9/8vbr61fNdth0wYMD4LON+PFyGfpfVP6+uvjwgGDBgDGA8h8XVZ+XGWeTU1wYDBgwY7tLdtFIJ9DBgwICRMSqh2X1AMGDAgOEGvizt0wtwx/fiMGDA+CCjsrE8/flIfwMGDBifYtzm4RbXsnBprwoGDBitGXqA08th7hKzgAsDBow5jEqxXj+jhGP9zKXU3mDAgNGU4ZaxlARRD6ylNioMGDAGMPaG3SyhLEVOGDBgtGZkrcQTSWRpzAIGDBgDGG5xPxvhUv4hK+HBgAFjAsMt6CsFNX0IzC3PvawZBgwYrRlZMueOjrmbaiWIw4ABYwJDD236cFgWvt2gfLnxGAYMGB9k6OUzt7hWGSCzk0IYMGC0Zrgh1S2l6dvUrIWwfHvAgAGjKSNramap4ZGFwoABoykjG4PIflvf1i5DPAwYMFozni8obciMp7cNjFXBgAFjJMOdvMpam/pQ2strAAYMGMMYShugkjIqSad7XxgwYMxhKGlfttFV0lC3PAcDBowJjL1DFbsGL2wqDBgwWjPcRmZ9JCJLLrf1aWHAgPFZhh5AK40BvainrMFOEGHAgNGCURkIy1LG7A3wMmwBAwYMGPJtshKb2zAoBVwYMGAMY2QjFPoOWynGwYABYwJjb0rnJn+VjS4MGDAmMNyEr74p1R+BPuoBAwaMpow/+b+yUPwBuFEAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261704531&web_id=1261704531')
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.0"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.0" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '(つェ⊂) 我藏好了哦~ ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(*´∇｀*) 被你发现啦~ ';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

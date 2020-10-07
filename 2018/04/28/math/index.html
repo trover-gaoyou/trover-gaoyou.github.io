@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65558107"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    <meta name="google-site-verification" content="ar7mIVYsjkAi2k9jIuWk34S9A2aVwBdQqFkfL4AKEBQ" >
+    
+    
+    
+    <title>中文 Linear Algebra （线性代数） 笔记 | 梦想小筑 | 坚定的走吧，毕竟梦想在远方，未来在远方，终点也在远方。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="线性代数">
+    <meta name="description" content="中文 Linear Algebra （线性代数） 笔记Overview （概述）Most of the content comes from the web.大部分内容来自网络。 I know my knowledge of linear algebra is not very thorough, so I re-learn linear algebra, record the corresp">
+<meta name="keywords" content="线性代数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="中文 Linear Algebra （线性代数） 笔记">
+<meta property="og:url" content="http://blog.buerya.cn/2018/04/28/math/index.html">
+<meta property="og:site_name" content="梦想小筑">
+<meta property="og:description" content="中文 Linear Algebra （线性代数） 笔记Overview （概述）Most of the content comes from the web.大部分内容来自网络。 I know my knowledge of linear algebra is not very thorough, so I re-learn linear algebra, record the corresp">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://badges.frapsoft.com/os/mit/mit.svg?v=103">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/math/LA_whole_1.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/math/LA_whole_2.png">
+<meta property="og:updated_time" content="2020-10-07T08:08:59.453Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="中文 Linear Algebra （线性代数） 笔记">
+<meta name="twitter:description" content="中文 Linear Algebra （线性代数） 笔记Overview （概述）Most of the content comes from the web.大部分内容来自网络。 I know my knowledge of linear algebra is not very thorough, so I re-learn linear algebra, record the corresp">
+<meta name="twitter:image" content="https://badges.frapsoft.com/os/mit/mit.svg?v=103">
+    
+        <link rel="alternate" type="application/atom+xml" title="梦想小筑" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.0">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Juan</h5>
+          <a href="mailto:quewen08@gmail.com" title="quewen08@gmail.com" class="mail">quewen08@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/trover-gaoyou" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/shandingjurenww" target="_blank" >
+                <i class="icon icon-lg icon-twitter"></i>
+                Twitter
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.instagram.com/juan95_cn" target="_blank" >
+                <i class="icon icon-lg icon-instagram"></i>
+                Instagram
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/source"  >
+                <i class="icon icon-lg icon-link"></i>
+                友情链接
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+	<img id="aimg_H2R2r" class="zoom" src="https://apa.me/news/?s=5qKm5oOz5bCP562R" border="0" alt="" width="500" height="210" initialized="true">
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">中文 Linear Algebra （线性代数） 笔记</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">中文 Linear Algebra （线性代数） 笔记</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-04-28T15:31:00.000Z" itemprop="datePublished" class="page-time">
+  2018-04-28
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/线性代数/">线性代数</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#中文-Linear-Algebra-（线性代数）-笔记"><span class="post-toc-number">1.</span> <span class="post-toc-text">中文 Linear Algebra （线性代数） 笔记</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Overview-（概述）"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">Overview （概述）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Contents-（目录）"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">Contents （目录）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#对应课程"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">对应课程</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-math"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">中文 Linear Algebra （线性代数） 笔记</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-04-28 23:31:00" datetime="2018-04-28T15:31:00.000Z"  itemprop="datePublished">2018-04-28</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/线性代数/">线性代数</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <script src="\assets\js\APlayer.min.js"> </script><p><a href="https://opensource.org/licenses/mit-license.php" target="_blank" rel="noopener"><img src="https://badges.frapsoft.com/os/mit/mit.svg?v=103" alt="MIT Licence"></a></p>
+<h1 id="中文-Linear-Algebra-（线性代数）-笔记"><a href="#中文-Linear-Algebra-（线性代数）-笔记" class="headerlink" title="中文 Linear Algebra （线性代数） 笔记"></a>中文 Linear Algebra （线性代数） 笔记</h1><h2 id="Overview-（概述）"><a href="#Overview-（概述）" class="headerlink" title="Overview （概述）"></a>Overview （概述）</h2><p>Most of the content comes from the web.<br><br>大部分内容来自网络。</p>
+<p>I know my knowledge of linear algebra is not very thorough, so I re-learn linear algebra, record the corresponding notes.<br><br>由于我们对线性代数的知识了解不深，特意重新学习一次线代，记录下相应笔记。</p>
+<p>课程顺序是按照麻省理工公开课的 <a href="http://open.163.com/special/opencourse/daishu.html" target="_blank" rel="noopener">Linear Algebra</a> 记录的学习笔记。</p>
+<hr>
+<h2 id="Contents-（目录）"><a href="#Contents-（目录）" class="headerlink" title="Contents （目录）"></a>Contents （目录）</h2><hr>
+<ul>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/01-%E6%96%B9%E7%A8%8B%E7%BB%84%E7%9A%84%E5%87%A0%E4%BD%95%E8%A7%A3%E9%87%8A/01-%E6%96%B9%E7%A8%8B%E7%BB%84%E7%9A%84%E5%87%A0%E4%BD%95%E8%A7%A3%E9%87%8A.md" target="_blank" rel="noopener">01. <strong>方程组的几何解释</strong></a><ul>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/01-%E6%96%B9%E7%A8%8B%E7%BB%84%E7%9A%84%E5%87%A0%E4%BD%95%E8%A7%A3%E9%87%8A/01-%E6%96%B9%E7%A8%8B%E7%BB%84%E7%9A%84%E5%87%A0%E4%BD%95%E8%A7%A3%E9%87%8A.md" target="_blank" rel="noopener">01.01 方程组的几何解释</a></li>
+</ul>
+</li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/02-%E7%9F%A9%E9%98%B5%E6%B6%88%E5%85%83/02-%E7%9F%A9%E9%98%B5%E6%B6%88%E5%85%83.md" target="_blank" rel="noopener">02. <strong>矩阵消元</strong></a><ul>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/02-%E7%9F%A9%E9%98%B5%E6%B6%88%E5%85%83/02-%E7%9F%A9%E9%98%B5%E6%B6%88%E5%85%83.md" target="_blank" rel="noopener">02.01 矩阵消元</a></li>
+</ul>
+</li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/03-%E4%B9%98%E6%B3%95%E5%92%8C%E9%80%86%E7%9F%A9%E9%98%B5/03-%E4%B9%98%E6%B3%95%E5%92%8C%E9%80%86%E7%9F%A9%E9%98%B5.md" target="_blank" rel="noopener">03. <strong>乘法和逆矩阵</strong></a><ul>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/03-%E4%B9%98%E6%B3%95%E5%92%8C%E9%80%86%E7%9F%A9%E9%98%B5/03-%E4%B9%98%E6%B3%95%E5%92%8C%E9%80%86%E7%9F%A9%E9%98%B5.md" target="_blank" rel="noopener">03.01 矩阵乘法和逆矩阵</a></li>
+</ul>
+</li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/04-A%E7%9A%84LU%E5%88%86%E8%A7%A3/04-A%E7%9A%84LU%E5%88%86%E8%A7%A3.md" target="_blank" rel="noopener">04. <strong>A的LU分解</strong></a><ul>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/04-A%E7%9A%84LU%E5%88%86%E8%A7%A3/04-A%E7%9A%84LU%E5%88%86%E8%A7%A3.md" target="_blank" rel="noopener">04.01 A的LU分解</a></li>
+</ul>
+</li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/05-%E8%BD%AC%E7%BD%AE-%E7%BD%AE%E6%8D%A2-%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4R/05-%E8%BD%AC%E7%BD%AE-%E7%BD%AE%E6%8D%A2-%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4R.md" target="_blank" rel="noopener">05. <strong>转置-置换-向量空间R</strong></a><ul>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/05-%E8%BD%AC%E7%BD%AE-%E7%BD%AE%E6%8D%A2-%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4R/05-%E8%BD%AC%E7%BD%AE-%E7%BD%AE%E6%8D%A2-%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4R.md" target="_blank" rel="noopener">05.01 矩阵转置</a></li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/05-%E8%BD%AC%E7%BD%AE-%E7%BD%AE%E6%8D%A2-%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4R/05-%E8%BD%AC%E7%BD%AE-%E7%BD%AE%E6%8D%A2-%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4R.md" target="_blank" rel="noopener">05.02 置换</a></li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/05-%E8%BD%AC%E7%BD%AE-%E7%BD%AE%E6%8D%A2-%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4R/05-%E8%BD%AC%E7%BD%AE-%E7%BD%AE%E6%8D%A2-%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4R.md" target="_blank" rel="noopener">05.03 向量空间 R</a></li>
+</ul>
+</li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/06-%E5%88%97%E7%A9%BA%E9%97%B4%E5%92%8C%E9%9B%B6%E7%A9%BA%E9%97%B4/06-%E5%88%97%E7%A9%BA%E9%97%B4%E5%92%8C%E9%9B%B6%E7%A9%BA%E9%97%B4.md" target="_blank" rel="noopener">06. <strong>列空间和零空间</strong></a><ul>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/06-%E5%88%97%E7%A9%BA%E9%97%B4%E5%92%8C%E9%9B%B6%E7%A9%BA%E9%97%B4/06-%E5%88%97%E7%A9%BA%E9%97%B4%E5%92%8C%E9%9B%B6%E7%A9%BA%E9%97%B4.md" target="_blank" rel="noopener">06.01 列空间</a></li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/06-%E5%88%97%E7%A9%BA%E9%97%B4%E5%92%8C%E9%9B%B6%E7%A9%BA%E9%97%B4/06-%E5%88%97%E7%A9%BA%E9%97%B4%E5%92%8C%E9%9B%B6%E7%A9%BA%E9%97%B4.md" target="_blank" rel="noopener">06.02 零空间</a></li>
+</ul>
+</li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/07-%E6%B1%82%E8%A7%A3Ax=0-%E4%B8%BB%E5%8F%98%E9%87%8F-%E7%89%B9%E8%A7%A3/07-%E6%B1%82%E8%A7%A3Ax=0-%E4%B8%BB%E5%8F%98%E9%87%8F-%E7%89%B9%E8%A7%A3.md" target="_blank" rel="noopener">07. <strong>求解Ax=0:主变量,特解</strong></a><ul>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/07-%E6%B1%82%E8%A7%A3Ax=0-%E4%B8%BB%E5%8F%98%E9%87%8F-%E7%89%B9%E8%A7%A3/07-%E6%B1%82%E8%A7%A3Ax=0-%E4%B8%BB%E5%8F%98%E9%87%8F-%E7%89%B9%E8%A7%A3.md" target="_blank" rel="noopener">07.01 主变量</a></li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/07-%E6%B1%82%E8%A7%A3Ax=0-%E4%B8%BB%E5%8F%98%E9%87%8F-%E7%89%B9%E8%A7%A3/07-%E6%B1%82%E8%A7%A3Ax=0-%E4%B8%BB%E5%8F%98%E9%87%8F-%E7%89%B9%E8%A7%A3.md" target="_blank" rel="noopener">07.02 特解</a></li>
+</ul>
+</li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/08-%E6%B1%82%E8%A7%A3Ax=b-%E5%8F%AF%E8%A7%A3%E6%80%A7%E5%92%8C%E8%A7%A3%E7%9A%84%E7%BB%93%E6%9E%84/08-%E6%B1%82%E8%A7%A3Ax=b-%E5%8F%AF%E8%A7%A3%E6%80%A7%E5%92%8C%E8%A7%A3%E7%9A%84%E7%BB%93%E6%9E%84.md" target="_blank" rel="noopener">08. <strong>求解Ax=b:可解性和解的结构</strong></a><ul>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/08-%E6%B1%82%E8%A7%A3Ax=b-%E5%8F%AF%E8%A7%A3%E6%80%A7%E5%92%8C%E8%A7%A3%E7%9A%84%E7%BB%93%E6%9E%84/08-%E6%B1%82%E8%A7%A3Ax=b-%E5%8F%AF%E8%A7%A3%E6%80%A7%E5%92%8C%E8%A7%A3%E7%9A%84%E7%BB%93%E6%9E%84.md" target="_blank" rel="noopener">08.01 可解性</a></li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/08-%E6%B1%82%E8%A7%A3Ax=b-%E5%8F%AF%E8%A7%A3%E6%80%A7%E5%92%8C%E8%A7%A3%E7%9A%84%E7%BB%93%E6%9E%84/08-%E6%B1%82%E8%A7%A3Ax=b-%E5%8F%AF%E8%A7%A3%E6%80%A7%E5%92%8C%E8%A7%A3%E7%9A%84%E7%BB%93%E6%9E%84.md" target="_blank" rel="noopener">08.02 解的结构</a></li>
+</ul>
+</li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/09-%E7%BA%BF%E6%80%A7%E7%9B%B8%E5%85%B3%E6%80%A7-%E5%9F%BA-%E7%BB%B4%E6%95%B0/09-%E7%BA%BF%E6%80%A7%E7%9B%B8%E5%85%B3%E6%80%A7-%E5%9F%BA-%E7%BB%B4%E6%95%B0.md" target="_blank" rel="noopener">09. <strong>线性相关性、基、维数</strong></a><ul>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/09-%E7%BA%BF%E6%80%A7%E7%9B%B8%E5%85%B3%E6%80%A7-%E5%9F%BA-%E7%BB%B4%E6%95%B0/09-%E7%BA%BF%E6%80%A7%E7%9B%B8%E5%85%B3%E6%80%A7-%E5%9F%BA-%E7%BB%B4%E6%95%B0.md" target="_blank" rel="noopener">09.01 线性相关性</a></li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/09-%E7%BA%BF%E6%80%A7%E7%9B%B8%E5%85%B3%E6%80%A7-%E5%9F%BA-%E7%BB%B4%E6%95%B0/09-%E7%BA%BF%E6%80%A7%E7%9B%B8%E5%85%B3%E6%80%A7-%E5%9F%BA-%E7%BB%B4%E6%95%B0.md" target="_blank" rel="noopener">09.02 基</a></li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/09-%E7%BA%BF%E6%80%A7%E7%9B%B8%E5%85%B3%E6%80%A7-%E5%9F%BA-%E7%BB%B4%E6%95%B0/09-%E7%BA%BF%E6%80%A7%E7%9B%B8%E5%85%B3%E6%80%A7-%E5%9F%BA-%E7%BB%B4%E6%95%B0.md" target="_blank" rel="noopener">09.03 维数</a></li>
+</ul>
+</li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/10-%E5%9B%9B%E4%B8%AA%E5%9F%BA%E6%9C%AC%E5%AD%90%E7%A9%BA%E9%97%B4/10-%E5%9B%9B%E4%B8%AA%E5%9F%BA%E6%9C%AC%E5%AD%90%E7%A9%BA%E9%97%B4.md" target="_blank" rel="noopener">10. <strong>四个基本子空间</strong></a><ul>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/10-%E5%9B%9B%E4%B8%AA%E5%9F%BA%E6%9C%AC%E5%AD%90%E7%A9%BA%E9%97%B4/10-%E5%9B%9B%E4%B8%AA%E5%9F%BA%E6%9C%AC%E5%AD%90%E7%A9%BA%E9%97%B4.md" target="_blank" rel="noopener">10.01 基本子空间</a></li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/10-%E5%9B%9B%E4%B8%AA%E5%9F%BA%E6%9C%AC%E5%AD%90%E7%A9%BA%E9%97%B4/10-%E5%9B%9B%E4%B8%AA%E5%9F%BA%E6%9C%AC%E5%AD%90%E7%A9%BA%E9%97%B4.md" target="_blank" rel="noopener">10.02 四个基本子空间</a></li>
+</ul>
+</li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/11-%E7%9F%A9%E9%98%B5%E7%A9%BA%E9%97%B4-%E7%A7%A91%E7%9F%A9%E9%98%B5%E5%92%8C%E5%B0%8F%E4%B8%96%E7%95%8C%E5%9B%BE/11-%E7%9F%A9%E9%98%B5%E7%A9%BA%E9%97%B4-%E7%A7%A91%E7%9F%A9%E9%98%B5%E5%92%8C%E5%B0%8F%E4%B8%96%E7%95%8C%E5%9B%BE.md" target="_blank" rel="noopener">11. <strong>矩阵空间、秩1矩阵和小世界图</strong></a><ul>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/11-%E7%9F%A9%E9%98%B5%E7%A9%BA%E9%97%B4-%E7%A7%A91%E7%9F%A9%E9%98%B5%E5%92%8C%E5%B0%8F%E4%B8%96%E7%95%8C%E5%9B%BE/11-%E7%9F%A9%E9%98%B5%E7%A9%BA%E9%97%B4-%E7%A7%A91%E7%9F%A9%E9%98%B5%E5%92%8C%E5%B0%8F%E4%B8%96%E7%95%8C%E5%9B%BE.md" target="_blank" rel="noopener">11.01 矩阵空间</a></li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/11-%E7%9F%A9%E9%98%B5%E7%A9%BA%E9%97%B4-%E7%A7%A91%E7%9F%A9%E9%98%B5%E5%92%8C%E5%B0%8F%E4%B8%96%E7%95%8C%E5%9B%BE/11-%E7%9F%A9%E9%98%B5%E7%A9%BA%E9%97%B4-%E7%A7%A91%E7%9F%A9%E9%98%B5%E5%92%8C%E5%B0%8F%E4%B8%96%E7%95%8C%E5%9B%BE.md" target="_blank" rel="noopener">11.02 秩1矩阵</a></li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/11-%E7%9F%A9%E9%98%B5%E7%A9%BA%E9%97%B4-%E7%A7%A91%E7%9F%A9%E9%98%B5%E5%92%8C%E5%B0%8F%E4%B8%96%E7%95%8C%E5%9B%BE/11-%E7%9F%A9%E9%98%B5%E7%A9%BA%E9%97%B4-%E7%A7%A91%E7%9F%A9%E9%98%B5%E5%92%8C%E5%B0%8F%E4%B8%96%E7%95%8C%E5%9B%BE.md" target="_blank" rel="noopener">11.03 小世界图</a></li>
+</ul>
+</li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/12-%E5%9B%BE%E5%92%8C%E7%BD%91%E7%BB%9C/12-%E5%9B%BE%E5%92%8C%E7%BD%91%E7%BB%9C.md" target="_blank" rel="noopener">12. <strong>图和网络</strong></a><ul>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/12-%E5%9B%BE%E5%92%8C%E7%BD%91%E7%BB%9C/12-%E5%9B%BE%E5%92%8C%E7%BD%91%E7%BB%9C.md" target="_blank" rel="noopener">12.01 图</a></li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/12-%E5%9B%BE%E5%92%8C%E7%BD%91%E7%BB%9C/12-%E5%9B%BE%E5%92%8C%E7%BD%91%E7%BB%9C.md" target="_blank" rel="noopener">12.02 网络</a></li>
+</ul>
+</li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/13-%E5%A4%8D%E4%B9%A0%E4%B8%80/13-%E5%A4%8D%E4%B9%A0%E4%B8%80.md" target="_blank" rel="noopener">13. <strong>复习一</strong></a><ul>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/13-%E5%A4%8D%E4%B9%A0%E4%B8%80/13-%E5%A4%8D%E4%B9%A0%E4%B8%80.md" target="_blank" rel="noopener">13.01 复习一</a></li>
+</ul>
+</li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/14-%E6%AD%A3%E4%BA%A4%E5%90%91%E9%87%8F%E4%B8%8E%E5%AD%90%E7%A9%BA%E9%97%B4/14-%E6%AD%A3%E4%BA%A4%E5%90%91%E9%87%8F%E4%B8%8E%E5%AD%90%E7%A9%BA%E9%97%B4.md" target="_blank" rel="noopener">14. <strong>正交向量与子空间</strong></a><ul>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/14-%E6%AD%A3%E4%BA%A4%E5%90%91%E9%87%8F%E4%B8%8E%E5%AD%90%E7%A9%BA%E9%97%B4/14-%E6%AD%A3%E4%BA%A4%E5%90%91%E9%87%8F%E4%B8%8E%E5%AD%90%E7%A9%BA%E9%97%B4.md" target="_blank" rel="noopener">14.01 正交向量</a></li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/14-%E6%AD%A3%E4%BA%A4%E5%90%91%E9%87%8F%E4%B8%8E%E5%AD%90%E7%A9%BA%E9%97%B4/14-%E6%AD%A3%E4%BA%A4%E5%90%91%E9%87%8F%E4%B8%8E%E5%AD%90%E7%A9%BA%E9%97%B4.md" target="_blank" rel="noopener">14.02 子空间</a></li>
+</ul>
+</li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/15-%E5%AD%90%E7%A9%BA%E9%97%B4%E6%8A%95%E5%BD%B1/15-%E5%AD%90%E7%A9%BA%E9%97%B4%E6%8A%95%E5%BD%B1.md" target="_blank" rel="noopener">15. <strong>子空间投影</strong></a><ul>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/15-%E5%AD%90%E7%A9%BA%E9%97%B4%E6%8A%95%E5%BD%B1/15-%E5%AD%90%E7%A9%BA%E9%97%B4%E6%8A%95%E5%BD%B1.md" target="_blank" rel="noopener">15.01 子空间投影</a></li>
+</ul>
+</li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/16-%E6%8A%95%E5%BD%B1%E7%9F%A9%E9%98%B5%E5%92%8C%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98/16-%E6%8A%95%E5%BD%B1%E7%9F%A9%E9%98%B5%E5%92%8C%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98.md" target="_blank" rel="noopener">16. <strong>投影矩阵和最小二乘</strong></a><ul>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/16-%E6%8A%95%E5%BD%B1%E7%9F%A9%E9%98%B5%E5%92%8C%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98/16-%E6%8A%95%E5%BD%B1%E7%9F%A9%E9%98%B5%E5%92%8C%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98.md" target="_blank" rel="noopener">16.01 投影矩阵</a></li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/16-%E6%8A%95%E5%BD%B1%E7%9F%A9%E9%98%B5%E5%92%8C%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98/16-%E6%8A%95%E5%BD%B1%E7%9F%A9%E9%98%B5%E5%92%8C%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98.md" target="_blank" rel="noopener">16.02 最小二乘</a></li>
+</ul>
+</li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/17-%E6%AD%A3%E4%BA%A4%E7%9F%A9%E9%98%B5%E5%92%8CGram-Schmidt%E6%AD%A3%E4%BA%A4%E5%8C%96/17-%E6%AD%A3%E4%BA%A4%E7%9F%A9%E9%98%B5%E5%92%8CGram-Schmidt%E6%AD%A3%E4%BA%A4%E5%8C%96.md6" target="_blank" rel="noopener">17. <strong>正交矩阵和Gram-Schmidt正交化</strong></a><ul>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/17-%E6%AD%A3%E4%BA%A4%E7%9F%A9%E9%98%B5%E5%92%8CGram-Schmidt%E6%AD%A3%E4%BA%A4%E5%8C%96/17-%E6%AD%A3%E4%BA%A4%E7%9F%A9%E9%98%B5%E5%92%8CGram-Schmidt%E6%AD%A3%E4%BA%A4%E5%8C%96.md" target="_blank" rel="noopener">17.01 正交矩阵</a></li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/17-%E6%AD%A3%E4%BA%A4%E7%9F%A9%E9%98%B5%E5%92%8CGram-Schmidt%E6%AD%A3%E4%BA%A4%E5%8C%96/17-%E6%AD%A3%E4%BA%A4%E7%9F%A9%E9%98%B5%E5%92%8CGram-Schmidt%E6%AD%A3%E4%BA%A4%E5%8C%96.md" target="_blank" rel="noopener">17.02 Gram-Schmidt正交化</a></li>
+</ul>
+</li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/18-%E8%A1%8C%E5%88%97%E5%BC%8F%E5%8F%8A%E5%85%B6%E6%80%A7%E8%B4%A8/18-%E8%A1%8C%E5%88%97%E5%BC%8F%E5%8F%8A%E5%85%B6%E6%80%A7%E8%B4%A8.md" target="_blank" rel="noopener">18. <strong>行列式及其性质</strong></a><ul>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/18-%E8%A1%8C%E5%88%97%E5%BC%8F%E5%8F%8A%E5%85%B6%E6%80%A7%E8%B4%A8/18-%E8%A1%8C%E5%88%97%E5%BC%8F%E5%8F%8A%E5%85%B6%E6%80%A7%E8%B4%A8.md" target="_blank" rel="noopener">18.01 行列式</a></li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/18-%E8%A1%8C%E5%88%97%E5%BC%8F%E5%8F%8A%E5%85%B6%E6%80%A7%E8%B4%A8/18-%E8%A1%8C%E5%88%97%E5%BC%8F%E5%8F%8A%E5%85%B6%E6%80%A7%E8%B4%A8.md" target="_blank" rel="noopener">18.02 行列式性质</a></li>
+</ul>
+</li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/19-%E8%A1%8C%E5%88%97%E5%BC%8F%E5%85%AC%E5%BC%8F%E5%92%8C%E4%BB%A3%E6%95%B0%E4%BD%99%E5%AD%90%E5%BC%8F/19-%E8%A1%8C%E5%88%97%E5%BC%8F%E5%85%AC%E5%BC%8F%E5%92%8C%E4%BB%A3%E6%95%B0%E4%BD%99%E5%AD%90%E5%BC%8F.md" target="_blank" rel="noopener">19. <strong>行列式公式和代数余子式</strong></a><ul>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/19-%E8%A1%8C%E5%88%97%E5%BC%8F%E5%85%AC%E5%BC%8F%E5%92%8C%E4%BB%A3%E6%95%B0%E4%BD%99%E5%AD%90%E5%BC%8F/19-%E8%A1%8C%E5%88%97%E5%BC%8F%E5%85%AC%E5%BC%8F%E5%92%8C%E4%BB%A3%E6%95%B0%E4%BD%99%E5%AD%90%E5%BC%8F.md" target="_blank" rel="noopener">19.01 行列式公式</a></li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/19-%E8%A1%8C%E5%88%97%E5%BC%8F%E5%85%AC%E5%BC%8F%E5%92%8C%E4%BB%A3%E6%95%B0%E4%BD%99%E5%AD%90%E5%BC%8F/19-%E8%A1%8C%E5%88%97%E5%BC%8F%E5%85%AC%E5%BC%8F%E5%92%8C%E4%BB%A3%E6%95%B0%E4%BD%99%E5%AD%90%E5%BC%8F.md" target="_blank" rel="noopener">19.02 代数余子式</a></li>
+</ul>
+</li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/20-%E5%85%8B%E6%8B%89%E9%BB%98%E6%B3%95%E5%88%99-%E9%80%86%E7%9F%A9%E9%98%B5-%E4%BD%93%E7%A7%AF/20-%E5%85%8B%E6%8B%89%E9%BB%98%E6%B3%95%E5%88%99-%E9%80%86%E7%9F%A9%E9%98%B5-%E4%BD%93%E7%A7%AF.md" target="_blank" rel="noopener">20. <strong>克拉默法则、逆矩阵、体积</strong></a><ul>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/20-%E5%85%8B%E6%8B%89%E9%BB%98%E6%B3%95%E5%88%99-%E9%80%86%E7%9F%A9%E9%98%B5-%E4%BD%93%E7%A7%AF/20-%E5%85%8B%E6%8B%89%E9%BB%98%E6%B3%95%E5%88%99-%E9%80%86%E7%9F%A9%E9%98%B5-%E4%BD%93%E7%A7%AF.md" target="_blank" rel="noopener">20.01 克拉默法则</a></li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/20-%E5%85%8B%E6%8B%89%E9%BB%98%E6%B3%95%E5%88%99-%E9%80%86%E7%9F%A9%E9%98%B5-%E4%BD%93%E7%A7%AF/20-%E5%85%8B%E6%8B%89%E9%BB%98%E6%B3%95%E5%88%99-%E9%80%86%E7%9F%A9%E9%98%B5-%E4%BD%93%E7%A7%AF.md" target="_blank" rel="noopener">20.02 逆矩阵</a></li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/20-%E5%85%8B%E6%8B%89%E9%BB%98%E6%B3%95%E5%88%99-%E9%80%86%E7%9F%A9%E9%98%B5-%E4%BD%93%E7%A7%AF/20-%E5%85%8B%E6%8B%89%E9%BB%98%E6%B3%95%E5%88%99-%E9%80%86%E7%9F%A9%E9%98%B5-%E4%BD%93%E7%A7%AF.md" target="_blank" rel="noopener">20.03 体积</a></li>
+</ul>
+</li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/21-%E7%89%B9%E5%BE%81%E5%80%BC%E5%92%8C%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F/21-%E7%89%B9%E5%BE%81%E5%80%BC%E5%92%8C%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F.md" target="_blank" rel="noopener">21. <strong>特征值和特征向量</strong></a><ul>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/21-%E7%89%B9%E5%BE%81%E5%80%BC%E5%92%8C%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F/21-%E7%89%B9%E5%BE%81%E5%80%BC%E5%92%8C%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F.md" target="_blank" rel="noopener">21.01 特征值和特征向量</a></li>
+</ul>
+</li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/22-%E5%AF%B9%E8%A7%92%E5%8C%96%E5%92%8CA%E7%9A%84%E5%B9%82/22-%E5%AF%B9%E8%A7%92%E5%8C%96%E5%92%8CA%E7%9A%84%E5%B9%82.md" target="_blank" rel="noopener">22. <strong>对角化和A的幂</strong></a><ul>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/22-%E5%AF%B9%E8%A7%92%E5%8C%96%E5%92%8CA%E7%9A%84%E5%B9%82/22-%E5%AF%B9%E8%A7%92%E5%8C%96%E5%92%8CA%E7%9A%84%E5%B9%82.md" target="_blank" rel="noopener">22.01 对角化</a></li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/22-%E5%AF%B9%E8%A7%92%E5%8C%96%E5%92%8CA%E7%9A%84%E5%B9%82/22-%E5%AF%B9%E8%A7%92%E5%8C%96%E5%92%8CA%E7%9A%84%E5%B9%82.md" target="_blank" rel="noopener">22.02 A的幂</a></li>
+</ul>
+</li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/23-微分方程和exp(At)/23-微分方程和exp(At).md" target="_blank" rel="noopener">23. <strong>微分方程和exp(At)</strong></a><ul>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/23-微分方程和exp(At)/23-微分方程和exp(At).md" target="_blank" rel="noopener">23.01 微分方程</a></li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/23-微分方程和exp(At)/23-微分方程和exp(At).md" target="_blank" rel="noopener">23.02 exp(AT)</a></li>
+</ul>
+</li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/24-%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E7%9F%A9%E9%98%B5-%E5%82%85%E7%AB%8B%E5%8F%B6%E7%BA%A7%E6%95%B0/24-%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E7%9F%A9%E9%98%B5-%E5%82%85%E7%AB%8B%E5%8F%B6%E7%BA%A7%E6%95%B0.md" target="_blank" rel="noopener">24. <strong>马尔可夫矩阵;傅立叶级数</strong></a><ul>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/24-%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E7%9F%A9%E9%98%B5-%E5%82%85%E7%AB%8B%E5%8F%B6%E7%BA%A7%E6%95%B0/24-%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E7%9F%A9%E9%98%B5-%E5%82%85%E7%AB%8B%E5%8F%B6%E7%BA%A7%E6%95%B0.md" target="_blank" rel="noopener">24.01 马尔可夫矩阵</a></li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/24-%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E7%9F%A9%E9%98%B5-%E5%82%85%E7%AB%8B%E5%8F%B6%E7%BA%A7%E6%95%B0/24-%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E7%9F%A9%E9%98%B5-%E5%82%85%E7%AB%8B%E5%8F%B6%E7%BA%A7%E6%95%B0.md" target="_blank" rel="noopener">24.02 傅立叶级数</a></li>
+</ul>
+</li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/25-%E5%A4%8D%E4%B9%A0%E4%BA%8C/25-%E5%A4%8D%E4%B9%A0%E4%BA%8C.md" target="_blank" rel="noopener">25. <strong>复习二</strong></a><ul>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/25-%E5%A4%8D%E4%B9%A0%E4%BA%8C/25-%E5%A4%8D%E4%B9%A0%E4%BA%8C.md" target="_blank" rel="noopener">25.01 复习二</a></li>
+</ul>
+</li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/26-%E5%AF%B9%E7%A7%B0%E7%9F%A9%E9%98%B5%E5%8F%8A%E6%AD%A3%E5%AE%9A%E6%80%A7/26-%E5%AF%B9%E7%A7%B0%E7%9F%A9%E9%98%B5%E5%8F%8A%E6%AD%A3%E5%AE%9A%E6%80%A7.md" target="_blank" rel="noopener">26. <strong>对称矩阵及正定性</strong></a><ul>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/26-%E5%AF%B9%E7%A7%B0%E7%9F%A9%E9%98%B5%E5%8F%8A%E6%AD%A3%E5%AE%9A%E6%80%A7/26-%E5%AF%B9%E7%A7%B0%E7%9F%A9%E9%98%B5%E5%8F%8A%E6%AD%A3%E5%AE%9A%E6%80%A7.md" target="_blank" rel="noopener">26.01 对称矩阵</a></li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/26-%E5%AF%B9%E7%A7%B0%E7%9F%A9%E9%98%B5%E5%8F%8A%E6%AD%A3%E5%AE%9A%E6%80%A7/26-%E5%AF%B9%E7%A7%B0%E7%9F%A9%E9%98%B5%E5%8F%8A%E6%AD%A3%E5%AE%9A%E6%80%A7.md" target="_blank" rel="noopener">26.02 正定性</a></li>
+</ul>
+</li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/27-%E5%A4%8D%E6%95%B0%E7%9F%A9%E9%98%B5%E5%92%8C%E5%BF%AB%E9%80%9F%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/27-%E5%A4%8D%E6%95%B0%E7%9F%A9%E9%98%B5%E5%92%8C%E5%BF%AB%E9%80%9F%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2.md" target="_blank" rel="noopener">27. <strong>复数矩阵和快速傅里叶变换</strong></a><ul>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/27-%E5%A4%8D%E6%95%B0%E7%9F%A9%E9%98%B5%E5%92%8C%E5%BF%AB%E9%80%9F%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/27-%E5%A4%8D%E6%95%B0%E7%9F%A9%E9%98%B5%E5%92%8C%E5%BF%AB%E9%80%9F%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2.md" target="_blank" rel="noopener">27.01 复数矩阵</a></li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/27-%E5%A4%8D%E6%95%B0%E7%9F%A9%E9%98%B5%E5%92%8C%E5%BF%AB%E9%80%9F%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/27-%E5%A4%8D%E6%95%B0%E7%9F%A9%E9%98%B5%E5%92%8C%E5%BF%AB%E9%80%9F%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2.md" target="_blank" rel="noopener">27.02 快速傅里叶变换</a></li>
+</ul>
+</li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/28-%E6%AD%A3%E5%AE%9A%E7%9F%A9%E9%98%B5%E5%92%8C%E6%9C%80%E5%B0%8F%E5%80%BC/28-%E6%AD%A3%E5%AE%9A%E7%9F%A9%E9%98%B5%E5%92%8C%E6%9C%80%E5%B0%8F%E5%80%BC.md" target="_blank" rel="noopener">28. <strong>正定矩阵和最小值</strong></a><ul>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/28-%E6%AD%A3%E5%AE%9A%E7%9F%A9%E9%98%B5%E5%92%8C%E6%9C%80%E5%B0%8F%E5%80%BC/28-%E6%AD%A3%E5%AE%9A%E7%9F%A9%E9%98%B5%E5%92%8C%E6%9C%80%E5%B0%8F%E5%80%BC.md" target="_blank" rel="noopener">28.01 正定矩阵</a></li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/28-%E6%AD%A3%E5%AE%9A%E7%9F%A9%E9%98%B5%E5%92%8C%E6%9C%80%E5%B0%8F%E5%80%BC/28-%E6%AD%A3%E5%AE%9A%E7%9F%A9%E9%98%B5%E5%92%8C%E6%9C%80%E5%B0%8F%E5%80%BC.md" target="_blank" rel="noopener">28.02 最小值</a></li>
+</ul>
+</li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/29-%E7%9B%B8%E4%BC%BC%E7%9F%A9%E9%98%B5%E5%92%8C%E8%8B%A5%E5%B0%94%E5%BD%93%E5%BD%A2/29-%E7%9B%B8%E4%BC%BC%E7%9F%A9%E9%98%B5%E5%92%8C%E8%8B%A5%E5%B0%94%E5%BD%93%E5%BD%A2.md" target="_blank" rel="noopener">29. <strong>相似矩阵和若尔当形</strong></a><ul>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/29-%E7%9B%B8%E4%BC%BC%E7%9F%A9%E9%98%B5%E5%92%8C%E8%8B%A5%E5%B0%94%E5%BD%93%E5%BD%A2/29-%E7%9B%B8%E4%BC%BC%E7%9F%A9%E9%98%B5%E5%92%8C%E8%8B%A5%E5%B0%94%E5%BD%93%E5%BD%A2.md" target="_blank" rel="noopener">29.01 相似矩阵</a></li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/29-%E7%9B%B8%E4%BC%BC%E7%9F%A9%E9%98%B5%E5%92%8C%E8%8B%A5%E5%B0%94%E5%BD%93%E5%BD%A2/29-%E7%9B%B8%E4%BC%BC%E7%9F%A9%E9%98%B5%E5%92%8C%E8%8B%A5%E5%B0%94%E5%BD%93%E5%BD%A2.md" target="_blank" rel="noopener">29.02 若尔当形</a></li>
+</ul>
+</li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/30-%E5%A5%87%E5%BC%82%E5%80%BC%E5%88%86%E8%A7%A3/30-%E5%A5%87%E5%BC%82%E5%80%BC%E5%88%86%E8%A7%A3.md" target="_blank" rel="noopener">30. <strong>奇异值分解</strong></a><ul>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/30-%E5%A5%87%E5%BC%82%E5%80%BC%E5%88%86%E8%A7%A3/30-%E5%A5%87%E5%BC%82%E5%80%BC%E5%88%86%E8%A7%A3.md" target="_blank" rel="noopener">30.01 奇异值分解</a></li>
+</ul>
+</li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/31-%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2%E5%8F%8A%E5%AF%B9%E5%BA%94%E7%9F%A9%E9%98%B5/31-%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2%E5%8F%8A%E5%AF%B9%E5%BA%94%E7%9F%A9%E9%98%B5.md" target="_blank" rel="noopener">31. <strong>线性变换及对应矩阵</strong></a><ul>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/31-%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2%E5%8F%8A%E5%AF%B9%E5%BA%94%E7%9F%A9%E9%98%B5/31-%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2%E5%8F%8A%E5%AF%B9%E5%BA%94%E7%9F%A9%E9%98%B5.md" target="_blank" rel="noopener">31.01 线性变换</a></li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/31-%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2%E5%8F%8A%E5%AF%B9%E5%BA%94%E7%9F%A9%E9%98%B5/31-%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2%E5%8F%8A%E5%AF%B9%E5%BA%94%E7%9F%A9%E9%98%B5.md" target="_blank" rel="noopener">31.02 对应矩阵</a></li>
+</ul>
+</li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/32-%E5%9F%BA%E5%8F%98%E6%8D%A2%E5%92%8C%E5%9B%BE%E5%83%8F%E5%8E%8B%E7%BC%A9/32-%E5%9F%BA%E5%8F%98%E6%8D%A2%E5%92%8C%E5%9B%BE%E5%83%8F%E5%8E%8B%E7%BC%A9.md" target="_blank" rel="noopener">32. <strong>基变换和图像压缩</strong></a><ul>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/32-%E5%9F%BA%E5%8F%98%E6%8D%A2%E5%92%8C%E5%9B%BE%E5%83%8F%E5%8E%8B%E7%BC%A9/32-%E5%9F%BA%E5%8F%98%E6%8D%A2%E5%92%8C%E5%9B%BE%E5%83%8F%E5%8E%8B%E7%BC%A9.md" target="_blank" rel="noopener">32.01 基变换</a></li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/32-%E5%9F%BA%E5%8F%98%E6%8D%A2%E5%92%8C%E5%9B%BE%E5%83%8F%E5%8E%8B%E7%BC%A9/32-%E5%9F%BA%E5%8F%98%E6%8D%A2%E5%92%8C%E5%9B%BE%E5%83%8F%E5%8E%8B%E7%BC%A9.md" target="_blank" rel="noopener">32.02 图像压缩</a></li>
+</ul>
+</li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/33-%E5%A4%8D%E4%B9%A0%E4%B8%89/33-%E5%A4%8D%E4%B9%A0%E4%B8%89.md" target="_blank" rel="noopener">33. <strong>复习三</strong></a><ul>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/33-%E5%A4%8D%E4%B9%A0%E4%B8%89/33-%E5%A4%8D%E4%B9%A0%E4%B8%89.md" target="_blank" rel="noopener">33.01 复习三</a></li>
+</ul>
+</li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/34-%E5%B7%A6%E5%8F%B3%E9%80%86%E5%92%8C%E4%BC%AA%E9%80%86/34-%E5%B7%A6%E5%8F%B3%E9%80%86%E5%92%8C%E4%BC%AA%E9%80%86.md" target="_blank" rel="noopener">34. <strong>左右逆和伪逆</strong></a><ul>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/34-%E5%B7%A6%E5%8F%B3%E9%80%86%E5%92%8C%E4%BC%AA%E9%80%86/34-%E5%B7%A6%E5%8F%B3%E9%80%86%E5%92%8C%E4%BC%AA%E9%80%86.md" target="_blank" rel="noopener">34.01 左右逆</a></li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/34-%E5%B7%A6%E5%8F%B3%E9%80%86%E5%92%8C%E4%BC%AA%E9%80%86/34-%E5%B7%A6%E5%8F%B3%E9%80%86%E5%92%8C%E4%BC%AA%E9%80%86.md" target="_blank" rel="noopener">34.02 伪逆</a></li>
+</ul>
+</li>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/35-%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/35-%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0.md" target="_blank" rel="noopener">35. <strong>期末复习</strong></a><ul>
+<li><a href="https://coding.net/u/Trover/p/math/git/blob/master/35-%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/35-%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0.md" target="_blank" rel="noopener">35.01 期末复习</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="对应课程"><a href="#对应课程" class="headerlink" title="对应课程"></a>对应课程</h2><p><img src="http://qiniu.buerya.cn/static/math/LA_whole_1.png" alt="MIT_Linear-Algebra_1"></p>
+<p><img src="http://qiniu.buerya.cn/static/math/LA_whole_2.png" alt="MIT_Linear-Algebra_2"></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-10-07T08:08:59.453Z" itemprop="dateUpdated">2020-10-07 16:08:59</time>
+</span><br>
+
+
+        
+        本文永久地址：<a href="/2018/04/28/math/" target="_blank" rel="external">http://blog.buerya.cn/2018/04/28/math/</a>
+        
+    </div>
+    <footer>
+        <a href="http://blog.buerya.cn">
+            <img src="/img/avatar.jpg" alt="Juan">
+            Juan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/线性代数/">线性代数</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.buerya.cn/2018/04/28/math/&title=《中文 Linear Algebra （线性代数） 笔记》 — 梦想小筑&pic=http://blog.buerya.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.buerya.cn/2018/04/28/math/&title=《中文 Linear Algebra （线性代数） 笔记》 — 梦想小筑&source=初级程序员,Juan`s blogs" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.buerya.cn/2018/04/28/math/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《中文 Linear Algebra （线性代数） 笔记》 — 梦想小筑&url=http://blog.buerya.cn/2018/04/28/math/&via=http://blog.buerya.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.buerya.cn/2018/04/28/math/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/04/09/solidity-modify/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">智能合约语言 Solidity 教程系列10 - 完全理解函数修改器</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comment comments vcomment" id="comments"></div>
+    <script src="//cdnjs.cat.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="//cdn1.lncld.net/static/js/3.5.0/av-min.js"></script>
+    <script src="/js/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var notify = 'false';
+        var verify = 'false';
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            av: AV,
+            el: '#comments',
+            notify: notify,
+            verify: verify,
+            appId: "LoojPRMy175IgqwnQtytrgOY-9Nh9j0Va",
+            appKey: "45VXhysB6in2v1IOL1kaC5tQ",
+            avatar: "mm",
+            placeholder: "ヾﾉ≧∀≦)o来啊，快活啊!",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢你给我买糖果吃O(∩_∩)O~~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Juan &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备17077370号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.buerya.cn/2018/04/28/math/&title=《中文 Linear Algebra （线性代数） 笔记》 — 梦想小筑&pic=http://blog.buerya.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.buerya.cn/2018/04/28/math/&title=《中文 Linear Algebra （线性代数） 笔记》 — 梦想小筑&source=初级程序员,Juan`s blogs" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.buerya.cn/2018/04/28/math/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《中文 Linear Algebra （线性代数） 笔记》 — 梦想小筑&url=http://blog.buerya.cn/2018/04/28/math/&via=http://blog.buerya.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.buerya.cn/2018/04/28/math/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABzElEQVR42u3aQYrDMAwF0N7/0pntwBDzJdlpBp5XpaTxcxfC/vLnE4/r16g+mXyzeeDi4o6513LkE9z96u8zd5/XBlxc3Oe5d9MnE6+X1Hv/7fe4uLgv5ubL6JU8XFzc/8XtbXSSb3Bxcd/GTQ4/ealaL3u9gG1nNVxc3AG3N+Xez0fyXVxc3Bb3Ko5q/LEuRuXZcXFxH+H2gozqwva2bHFxcU9zJ9BJLFKdccP/iouLW+RWm6NRrFls1jZ3ZLi4uAe41a1Mr570tj5RgIKLi3uAmzQz8o1OHp3kBev28IOLi3uMm1+0StquvQI3arfg4uIe41YjjGoM2iuXUb6Li4t7jDuJOye1M9/W4OLiPsmtRqXzA1L1CHSb7+Li4h7j9rLVXki6uUmDi4t7mJu/tJCvBMeq/K+J7ozg4uIe4PY2HL0QpNq+xcXF/Ra3WtQmFywm17xwcXFPc6/i6P2qd8ELFxf3W9x8TLYm1TZM4WIWLi7uMW5edJLjTV6k1s80Nzq4uLhbufNCk9TIecyKi4v7Tm6vkE2C1FEhw8XFfYRbPUXlFzui6x24uLgPcielp8daL7vZE8bFxd3EzQPTvL2aR6X523BxcR/h/gASMXGwi0fBAgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261704531&web_id=1261704531')
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.0"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.0" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '(つェ⊂) 我藏好了哦~ ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(*´∇｀*) 被你发现啦~ ';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

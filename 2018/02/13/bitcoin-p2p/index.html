@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65558107"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    <meta name="google-site-verification" content="ar7mIVYsjkAi2k9jIuWk34S9A2aVwBdQqFkfL4AKEBQ" >
+    
+    
+    
+    <title>分析比特币网络：一种去中心化、点对点的网络架构 | 梦想小筑 | 坚定的走吧，毕竟梦想在远方，未来在远方，终点也在远方。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="比特币,区块链,区块链技术">
+    <meta name="description" content="比特币采用了基于互联网的点对点（P2P：peer-to-peer）分布式网络架构。比特币网络可以认为是按照比特币P2P协议运行的一系列节点的集合。本文来分析下比特币网络，了解它跟传统中心化网络的区别，以及比特币网络是如何发现相邻节点的。 中心化网络为了更好的理解P2P网络，我们先来看看传统的中心化模型：  这是一种典型的星型（“中心化”）结构，我们常见B/S及C/S网络架构就是这种模型，C1 、">
+<meta name="keywords" content="比特币,区块链,区块链技术">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分析比特币网络：一种去中心化、点对点的网络架构">
+<meta property="og:url" content="http://blog.buerya.cn/2018/02/13/bitcoin-p2p/index.html">
+<meta property="og:site_name" content="梦想小筑">
+<meta property="og:description" content="比特币采用了基于互联网的点对点（P2P：peer-to-peer）分布式网络架构。比特币网络可以认为是按照比特币P2P协议运行的一系列节点的集合。本文来分析下比特币网络，了解它跟传统中心化网络的区别，以及比特币网络是如何发现相邻节点的。 中心化网络为了更好的理解P2P网络，我们先来看看传统的中心化模型：  这是一种典型的星型（“中心化”）结构，我们常见B/S及C/S网络架构就是这种模型，C1 、">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/cs_network.jpeg">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/p2p_network.jpeg">
+<meta property="og:updated_time" content="2020-10-07T08:08:59.440Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="分析比特币网络：一种去中心化、点对点的网络架构">
+<meta name="twitter:description" content="比特币采用了基于互联网的点对点（P2P：peer-to-peer）分布式网络架构。比特币网络可以认为是按照比特币P2P协议运行的一系列节点的集合。本文来分析下比特币网络，了解它跟传统中心化网络的区别，以及比特币网络是如何发现相邻节点的。 中心化网络为了更好的理解P2P网络，我们先来看看传统的中心化模型：  这是一种典型的星型（“中心化”）结构，我们常见B/S及C/S网络架构就是这种模型，C1 、">
+<meta name="twitter:image" content="http://qiniu.buerya.cn/static/cs_network.jpeg">
+    
+        <link rel="alternate" type="application/atom+xml" title="梦想小筑" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.0">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Juan</h5>
+          <a href="mailto:quewen08@gmail.com" title="quewen08@gmail.com" class="mail">quewen08@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/trover-gaoyou" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/shandingjurenww" target="_blank" >
+                <i class="icon icon-lg icon-twitter"></i>
+                Twitter
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.instagram.com/juan95_cn" target="_blank" >
+                <i class="icon icon-lg icon-instagram"></i>
+                Instagram
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/source"  >
+                <i class="icon icon-lg icon-link"></i>
+                友情链接
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+	<img id="aimg_H2R2r" class="zoom" src="https://apa.me/news/?s=5qKm5oOz5bCP562R" border="0" alt="" width="500" height="210" initialized="true">
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">分析比特币网络：一种去中心化、点对点的网络架构</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">分析比特币网络：一种去中心化、点对点的网络架构</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-02-13T07:22:43.000Z" itemprop="datePublished" class="page-time">
+  2018-02-13
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/">深入浅出区块链</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#中心化网络"><span class="post-toc-number">1.</span> <span class="post-toc-text">中心化网络</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#P2P网络"><span class="post-toc-number">2.</span> <span class="post-toc-text">P2P网络</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#如何发现节点"><span class="post-toc-number">3.</span> <span class="post-toc-text">如何发现节点</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#节点通信简述"><span class="post-toc-number">4.</span> <span class="post-toc-text">节点通信简述</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-bitcoin-p2p"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">分析比特币网络：一种去中心化、点对点的网络架构</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-02-13 15:22:43" datetime="2018-02-13T07:22:43.000Z"  itemprop="datePublished">2018-02-13</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/">深入浅出区块链</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <script src="\assets\js\APlayer.min.js"> </script><p>比特币采用了基于互联网的点对点（P2P：peer-to-peer）分布式网络架构。<br>比特币网络可以认为是按照比特币P2P协议运行的一系列节点的集合。<br>本文来分析下比特币网络，了解它跟传统中心化网络的区别，以及比特币网络是如何发现相邻节点的。</p>
+<h2 id="中心化网络"><a href="#中心化网络" class="headerlink" title="中心化网络"></a>中心化网络</h2><p>为了更好的理解P2P网络，我们先来看看传统的中心化模型：</p>
+<p><img src="http://qiniu.buerya.cn/static/cs_network.jpeg" alt=""></p>
+<p>这是一种典型的星型（“中心化”）结构，我们常见B/S及C/S网络架构就是这种模型，C1 、C2 、C3等之间没法直接的连接，C节点如果要连接必须要通过中心化S节点做为桥梁。<br>中心化节点充当服务者、中介作用，比如我们没有办法把资金直接从一个人转移给另一个人，必须通过银行这个中介。</p>
+<h2 id="P2P网络"><a href="#P2P网络" class="headerlink" title="P2P网络"></a>P2P网络</h2><p>P2P网络是指位于同一网络中的每台计算机都彼此对等，各个节点共同提供网络服务，不存在任何“特殊”节点，每个网络节点以扁平（flat）的拓扑结构相互连通。</p>
+<p><img src="http://qiniu.buerya.cn/static/p2p_network.jpeg" alt=""></p>
+<p>对比中心化网络，在P2P网络中不存在任何服务端（server）、中央化的服务。<br>P2P网络的节点之间交互连接、协同，每个节点在对外提供服务的同时也使用网络中其他节点所提供的服务，每个节点即是服务端又是客户端。<br>P2P网络模型除应用于比特币网络，使用广泛的BT下载就是基于P2P网络。</p>
+<p>P2P网络不仅仅去除了中心化带来的风险（中心化可能作恶），还可以提高传输的效率。（中心化网络当能也有优点）</p>
+<h2 id="如何发现节点"><a href="#如何发现节点" class="headerlink" title="如何发现节点"></a>如何发现节点</h2><p>既然每个网络节点都是平等的（是指在网络层面上节点是平等的，但各节点在功能上可以有不同的分工, 如钱包节点、挖矿节点等），不存在任何“特殊”中心节点，那么当新的网络节点启动后，它是如何跟其他的节点建立连接，从而加入到比特币网络呢？</p>
+<blockquote>
+<p>在中心化网络中，新加入的节点只要连接“特殊”的中心节点就可以加入网络。</p>
+</blockquote>
+<p>为了能够加入到比特币网络，比特币客户端会做一下几件事情：</p>
+<ol>
+<li>节点会记住它最近成功连接的网络节点，当重新启动后它可以迅速与先前的对等节点网络重新建立连接。</li>
+<li>节点会在失去已有连接时尝试发现新节点。</li>
+<li>当建立一个或多个连接后，节点将一条包含自身IP地址消息发送给其相邻节点。相邻节点再将此消息依次转发给它们各自的相邻节点，从而保证节点信息被多个节点所接收、保证连接更稳定。</li>
+<li>新接入的节点可以向它的相邻节点发送获取地址getaddr消息，要求它们返回其已知对等节点的IP地址列表。节点可以找到需连接到的对等节点。</li>
+<li>在节点启动时，可以给节点指定一个正活跃节点IP, 如果没有，客户端也维持一个列表，列出了那些长期稳定运行的节点。这样的节点也被称为种子节点（其实和BT下载的种子文件道理是一样的），就可以通过种子节点来快速发现网络中的其他节点。</li>
+</ol>
+<h2 id="节点通信简述"><a href="#节点通信简述" class="headerlink" title="节点通信简述"></a>节点通信简述</h2><p>比特币节点通常采用TCP协议、使用8333端口与相邻节点建立连接, 建立连接时也会有认证“握手”的通信过程，用来确定协议版本，软件版本，节点IP，区块高度等。</p>
+<p>当节点连接到相邻节点后，接着就开始跟相邻节点同步区块链数据（轻量级钱包应用其实不会同步所有区块数据），节点们会交换一个getblocks消息，它包含本地区块链最顶端的哈希值。如果某个节点识别出它接收到的哈希值并不属于顶端区块，而是属于一个非顶端区块的旧区块，就说其自身的本地区块链比其他节点的区块链更长，并告诉其他节点需要补充区块，其他节点发送getdata消息来请求区块，验证后更新到本地区块链中。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-10-07T08:08:59.440Z" itemprop="dateUpdated">2020-10-07 16:08:59</time>
+</span><br>
+
+
+        
+        本文永久地址：<a href="/2018/02/13/bitcoin-p2p/" target="_blank" rel="external">http://blog.buerya.cn/2018/02/13/bitcoin-p2p/</a>
+        
+    </div>
+    <footer>
+        <a href="http://blog.buerya.cn">
+            <img src="/img/avatar.jpg" alt="Juan">
+            Juan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/区块链/">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/区块链技术/">区块链技术</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/比特币/">比特币</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.buerya.cn/2018/02/13/bitcoin-p2p/&title=《分析比特币网络：一种去中心化、点对点的网络架构》 — 梦想小筑&pic=http://blog.buerya.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.buerya.cn/2018/02/13/bitcoin-p2p/&title=《分析比特币网络：一种去中心化、点对点的网络架构》 — 梦想小筑&source=初级程序员,Juan`s blogs" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.buerya.cn/2018/02/13/bitcoin-p2p/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《分析比特币网络：一种去中心化、点对点的网络架构》 — 梦想小筑&url=http://blog.buerya.cn/2018/02/13/bitcoin-p2p/&via=http://blog.buerya.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.buerya.cn/2018/02/13/bitcoin-p2p/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/02/14/bitcoin-script/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">比特币脚本及交易分析 - 智能合约雏形</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/02/13/bitcoin-pow/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">比特币如何挖矿（挖矿原理）-工作量证明</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comment comments vcomment" id="comments"></div>
+    <script src="//cdnjs.cat.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="//cdn1.lncld.net/static/js/3.5.0/av-min.js"></script>
+    <script src="/js/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var notify = 'false';
+        var verify = 'false';
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            av: AV,
+            el: '#comments',
+            notify: notify,
+            verify: verify,
+            appId: "LoojPRMy175IgqwnQtytrgOY-9Nh9j0Va",
+            appKey: "45VXhysB6in2v1IOL1kaC5tQ",
+            avatar: "mm",
+            placeholder: "ヾﾉ≧∀≦)o来啊，快活啊!",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢你给我买糖果吃O(∩_∩)O~~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Juan &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备17077370号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.buerya.cn/2018/02/13/bitcoin-p2p/&title=《分析比特币网络：一种去中心化、点对点的网络架构》 — 梦想小筑&pic=http://blog.buerya.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.buerya.cn/2018/02/13/bitcoin-p2p/&title=《分析比特币网络：一种去中心化、点对点的网络架构》 — 梦想小筑&source=初级程序员,Juan`s blogs" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.buerya.cn/2018/02/13/bitcoin-p2p/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《分析比特币网络：一种去中心化、点对点的网络架构》 — 梦想小筑&url=http://blog.buerya.cn/2018/02/13/bitcoin-p2p/&via=http://blog.buerya.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.buerya.cn/2018/02/13/bitcoin-p2p/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMUlEQVR42u3aSW4DIRAFUN//0s7WUdT0rwJHani9ijwAz4sKNbxe8fP+eD5f+fvu1TNebfz6sgcDA+OxjGT78cZj6hh8tU5+NgwMjHMYVxGst3S08TBy5mfDwMDAqAbWVWEaAwMDY4bRSzgTEgYGBsaYkVz1qtvk3/rXXBwDA+OBjJnE8tt/f6W/gYGB8SjGu/hUU9P8ElltiP5aEwMDY2tGHuB6Tcf51QopMQYGxtaMvLifp5Hjg/aGM5ISIQYGxgmMvEk5c+FbldzedDkwMDC2YCQH+sYlL28/RKU3DAyMwxjjq9jMYEQvQC8bs8DAwNiC0Ru/WPVKfiUt1N4wMDA2YqwNi/l3qye5/AkwMDCOYcxc5maC8swFEQMD40xGteiWtCqrhbak5XkzLYKBgbERo9qwzDeoNjsTQLnohoGBsQUjaQbkRbpky2pBLSrMYWBgbM2ofjQ/RG9sonrRfPXEGBgYD2fkyyVXyTyM5lfJckaOgYGxHaOZBxdHN6r/ACIkBgbGMYy15bDq2FnekLgsumFgYGzNGKeg1VGJXlOzugIGBsbJjPknT0SrQf/ykxgYGJsy3sWnGkCrLYd8BQwMjHMY8wG01zzIL3zzbVEMDIw9GL0gm29WLbT1zoCBgXECY238zkdUe0lsNDOCgYFxPKM63poE3GqqHP0SGBgYBzN6IxHVRDf/gTAwME5gJKGwd0FcNQR2U/7DwMDYmtEbcVjb4Kzu2GxqYmBgPI/xA9MYk2EQSNEyAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261704531&web_id=1261704531')
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.0"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.0" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '(つェ⊂) 我藏好了哦~ ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(*´∇｀*) 被你发现啦~ ';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

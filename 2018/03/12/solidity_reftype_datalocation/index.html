@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65558107"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    <meta name="google-site-verification" content="ar7mIVYsjkAi2k9jIuWk34S9A2aVwBdQqFkfL4AKEBQ" >
+    
+    
+    
+    <title>智能合约语言 Solidity 教程系列4 - 数据存储位置分析 | 梦想小筑 | 坚定的走吧，毕竟梦想在远方，未来在远方，终点也在远方。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Solidity手册">
+    <meta name="description" content="Solidity教程系列第4篇 - Solidity数据位置分析。Solidity 系列完整的文章列表请查看分类-Solidity。 写在前面Solidity是以太坊智能合约编程语言，阅读本文前，你应该对以太坊、智能合约有所了解，如果你还不了解，建议你先看以太坊是什么 本文前半部分是参考Solidity官方文档（当前最新版本：0.4.20）进行翻译，后半部分是结合实际合约代码实例说明类型的使用（">
+<meta name="keywords" content="Solidity手册">
+<meta property="og:type" content="article">
+<meta property="og:title" content="智能合约语言 Solidity 教程系列4 - 数据存储位置分析">
+<meta property="og:url" content="http://blog.buerya.cn/2018/03/12/solidity_reftype_datalocation/index.html">
+<meta property="og:site_name" content="梦想小筑">
+<meta property="og:description" content="Solidity教程系列第4篇 - Solidity数据位置分析。Solidity 系列完整的文章列表请查看分类-Solidity。 写在前面Solidity是以太坊智能合约编程语言，阅读本文前，你应该对以太坊、智能合约有所了解，如果你还不了解，建议你先看以太坊是什么 本文前半部分是参考Solidity官方文档（当前最新版本：0.4.20）进行翻译，后半部分是结合实际合约代码实例说明类型的使用（">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-10-07T08:08:59.469Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="智能合约语言 Solidity 教程系列4 - 数据存储位置分析">
+<meta name="twitter:description" content="Solidity教程系列第4篇 - Solidity数据位置分析。Solidity 系列完整的文章列表请查看分类-Solidity。 写在前面Solidity是以太坊智能合约编程语言，阅读本文前，你应该对以太坊、智能合约有所了解，如果你还不了解，建议你先看以太坊是什么 本文前半部分是参考Solidity官方文档（当前最新版本：0.4.20）进行翻译，后半部分是结合实际合约代码实例说明类型的使用（">
+    
+        <link rel="alternate" type="application/atom+xml" title="梦想小筑" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.0">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Juan</h5>
+          <a href="mailto:quewen08@gmail.com" title="quewen08@gmail.com" class="mail">quewen08@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/trover-gaoyou" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/shandingjurenww" target="_blank" >
+                <i class="icon icon-lg icon-twitter"></i>
+                Twitter
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.instagram.com/juan95_cn" target="_blank" >
+                <i class="icon icon-lg icon-instagram"></i>
+                Instagram
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/source"  >
+                <i class="icon icon-lg icon-link"></i>
+                友情链接
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+	<img id="aimg_H2R2r" class="zoom" src="https://apa.me/news/?s=5qKm5oOz5bCP562R" border="0" alt="" width="500" height="210" initialized="true">
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">智能合约语言 Solidity 教程系列4 - 数据存储位置分析</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">智能合约语言 Solidity 教程系列4 - 数据存储位置分析</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-03-11T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2018-03-12
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/">深入浅出区块链</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/以太坊/">以太坊</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/以太坊/Solidity/">Solidity</a></li></ul></li></ul></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#写在前面"><span class="post-toc-number">1.</span> <span class="post-toc-text">写在前面</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#数据位置-Data-location"><span class="post-toc-number">2.</span> <span class="post-toc-text">数据位置(Data location)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#总结"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">总结</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#强制的数据位置-Forced-data-location"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">强制的数据位置(Forced data location)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#默认数据位置（Default-data-location）"><span class="post-toc-number">2.1.2.</span> <span class="post-toc-text">默认数据位置（Default data location）</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#深入分析"><span class="post-toc-number">3.</span> <span class="post-toc-text">深入分析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关于栈"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">关于栈</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#不同存储的消耗（gas消耗）"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">不同存储的消耗（gas消耗）</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考资料"><span class="post-toc-number">4.</span> <span class="post-toc-text">参考资料</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-solidity_reftype_datalocation"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">智能合约语言 Solidity 教程系列4 - 数据存储位置分析</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-03-12 00:00:00" datetime="2018-03-11T16:00:00.000Z"  itemprop="datePublished">2018-03-12</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/">深入浅出区块链</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/以太坊/">以太坊</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/以太坊/Solidity/">Solidity</a></li></ul></li></ul></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <script src="\assets\js\APlayer.min.js"> </script><p>Solidity教程系列第4篇 - Solidity数据位置分析。<br>Solidity 系列完整的文章列表请查看<a href="/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/Solidity/">分类-Solidity</a>。</p>
+<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>Solidity是以太坊智能合约编程语言，阅读本文前，你应该对以太坊、智能合约有所了解，<br>如果你还不了解，建议你先看<a href="/posts/深入浅出区块链/以太坊/2018-02-22-whatiseth.html">以太坊是什么</a></p>
+<p>本文前半部分是参考Solidity官方文档（当前最新版本：0.4.20）进行翻译，后半部分是结合实际合约代码实例说明类型的使用（仅针对专栏订阅用户）。</p>
+<h2 id="数据位置-Data-location"><a href="#数据位置-Data-location" class="headerlink" title="数据位置(Data location)"></a>数据位置(Data location)</h2><p>在系列第一篇，我们提到 Solidity 类型分为两类：<br>值类型(Value Type) 及 引用类型(Reference Types)，<br>前面我们已经介绍完了值类型，接下来会介绍引用类型。</p>
+<p>引用类型是一个复杂类型，占用的空间通常超过256位， 拷贝时开销很大，因此我们需要考虑将它们存储在什么位置，是memory（内存中，数据不是永久存在）还是storage（永久存储在区块链中）<br>所有的复杂类型如数组(arrays)和结构体(struct)有一个额外的属性：数据的存储位置（data location）。可为memory和storage。</p>
+<p>根据上下文的不同，大多数时候数据位置有默认值，也通过指定关键字storage和memory修改它。</p>
+<p>函数参数（包含返回的参数）默认是memory。<br>局部复杂类型变量（local variables）和 状态变量（state variables） 默认是storage。</p>
+<blockquote>
+<p>局部变量：局部作用域（越过作用域即不可被访问，等待被回收）的变量，如函数内的变量。<br>状态变量：合约内声明的公有变量</p>
+</blockquote>
+<p>还有一个存储位置是：calldata，用来存储函数参数，是只读的，不会永久存储的一个数据位置。外部函数的参数（不包括返回参数）被强制指定为calldata。效果与memory差不多。</p>
+<p>数据位置指定非常重要，因为他们影响着赋值行为。<br>在memory和storage之间或与状态变量之间相互赋值，总是会创建一个完全独立的拷贝。<br>而将一个storage的状态变量，赋值给一个storage的局部变量，是通过引用传递。所以对于局部变量的修改，同时修改关联的状态变量。<br>另一方面，将一个memory的引用类型赋值给另一个memory的引用，不会创建拷贝（即：memory之间是引用传递）。</p>
+<blockquote>
+<ol>
+<li>注意：不能将memory赋值给局部变量。</li>
+<li>对于值类型，总是会进行拷贝。</li>
+</ol>
+</blockquote>
+<p>下面看一段代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.4.0;</span><br><span class="line"></span><br><span class="line">contract C &#123;</span><br><span class="line">    uint[] x; //  x的存储位置是storage</span><br><span class="line"></span><br><span class="line">    // memoryArray的存储位置是 memory</span><br><span class="line">    function f(uint[] memoryArray) public &#123;</span><br><span class="line">        x = memoryArray;    // 从 memory 复制到 storage</span><br><span class="line">        var y = x;          // storage 引用传递局部变量y（y 是一个 storage 引用）</span><br><span class="line">        y[7];               // 返回第8个元素</span><br><span class="line">        y.length = 2;       // x同样会被修改</span><br><span class="line">        delete x;           // y同样会被修改</span><br><span class="line"></span><br><span class="line">        // 错误， 不能将memory赋值给局部变量</span><br><span class="line">        // y = memoryArray;  </span><br><span class="line"></span><br><span class="line">        // 错误，不能通过引用销毁storage</span><br><span class="line">        // delete y;        </span><br><span class="line"></span><br><span class="line">        g(x);               // 引用传递， g可以改变x的内容</span><br><span class="line">        h(x);               // 拷贝到memory， h无法改变x的内容</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function g(uint[] storage storageArray) internal &#123;&#125;</span><br><span class="line">    function h(uint[] memoryArray) public &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><h4 id="强制的数据位置-Forced-data-location"><a href="#强制的数据位置-Forced-data-location" class="headerlink" title="强制的数据位置(Forced data location)"></a>强制的数据位置(Forced data location)</h4><ul>
+<li>外部函数(External function)的参数(不包括返回参数)强制为：calldata</li>
+<li>状态变量(State variables)强制为: storage</li>
+</ul>
+<h4 id="默认数据位置（Default-data-location）"><a href="#默认数据位置（Default-data-location）" class="headerlink" title="默认数据位置（Default data location）"></a>默认数据位置（Default data location）</h4><ul>
+<li>函数参数及返回参数：memory</li>
+<li>复杂类型的局部变量：storage</li>
+</ul>
+<h2 id="深入分析"><a href="#深入分析" class="headerlink" title="深入分析"></a>深入分析</h2><p>storage 存储结构是在合约创建的时候就确定好了的，它取决于合约所声明状态变量。但是内容可以被（交易）调用改变。</p>
+<blockquote>
+<p>Solidity 称这个为状态改变，这也是合约级变量称为状态变量的原因。也可以更好的理解为什么状态变量都是storage存储。</p>
+</blockquote>
+<p>memory 只能用于函数内部，memory 声明用来告知EVM在运行时创建一块（固定大小）内存区域给变量使用。</p>
+<blockquote>
+<p>storage 在区块链中是用key/value的形式存储，而memory则表现为字节数组</p>
+</blockquote>
+<h3 id="关于栈"><a href="#关于栈" class="headerlink" title="关于栈"></a>关于栈</h3><p>EVM是一个基于栈的语言，栈实际是在内存(memory)的一个数据结构，每个栈元素占为256位，栈最大长度为1024。<br>值类型的局部变量是存储在栈上。</p>
+<h3 id="不同存储的消耗（gas消耗）"><a href="#不同存储的消耗（gas消耗）" class="headerlink" title="不同存储的消耗（gas消耗）"></a>不同存储的消耗（gas消耗）</h3><ul>
+<li>storage 会永久保存合约状态变量，开销最大</li>
+<li>memory 仅保存临时变量，函数调用之后释放，开销很小</li>
+<li>stack 保存很小的局部变量，几乎免费使用，但有数量限制。</li>
+</ul>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://solidity.readthedocs.io/en/develop/types.html#data-location" target="_blank" rel="noopener">Solidity官方文档-类型</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-10-07T08:08:59.469Z" itemprop="dateUpdated">2020-10-07 16:08:59</time>
+</span><br>
+
+
+        
+        本文永久地址：<a href="/2018/03/12/solidity_reftype_datalocation/" target="_blank" rel="external">http://blog.buerya.cn/2018/03/12/solidity_reftype_datalocation/</a>
+        
+    </div>
+    <footer>
+        <a href="http://blog.buerya.cn">
+            <img src="/img/avatar.jpg" alt="Juan">
+            Juan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solidity手册/">Solidity手册</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.buerya.cn/2018/03/12/solidity_reftype_datalocation/&title=《智能合约语言 Solidity 教程系列4 - 数据存储位置分析》 — 梦想小筑&pic=http://blog.buerya.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.buerya.cn/2018/03/12/solidity_reftype_datalocation/&title=《智能合约语言 Solidity 教程系列4 - 数据存储位置分析》 — 梦想小筑&source=初级程序员,Juan`s blogs" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.buerya.cn/2018/03/12/solidity_reftype_datalocation/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《智能合约语言 Solidity 教程系列4 - 数据存储位置分析》 — 梦想小筑&url=http://blog.buerya.cn/2018/03/12/solidity_reftype_datalocation/&via=http://blog.buerya.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.buerya.cn/2018/03/12/solidity_reftype_datalocation/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/03/13/solidity-arrays/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">智能合约语言 Solidity 教程系列5 - 数组介绍</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/03/10/create-token2/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">实现一个可管理、增发、兑换、冻结等高级功能的代币</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comment comments vcomment" id="comments"></div>
+    <script src="//cdnjs.cat.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="//cdn1.lncld.net/static/js/3.5.0/av-min.js"></script>
+    <script src="/js/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var notify = 'false';
+        var verify = 'false';
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            av: AV,
+            el: '#comments',
+            notify: notify,
+            verify: verify,
+            appId: "LoojPRMy175IgqwnQtytrgOY-9Nh9j0Va",
+            appKey: "45VXhysB6in2v1IOL1kaC5tQ",
+            avatar: "mm",
+            placeholder: "ヾﾉ≧∀≦)o来啊，快活啊!",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢你给我买糖果吃O(∩_∩)O~~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Juan &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备17077370号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.buerya.cn/2018/03/12/solidity_reftype_datalocation/&title=《智能合约语言 Solidity 教程系列4 - 数据存储位置分析》 — 梦想小筑&pic=http://blog.buerya.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.buerya.cn/2018/03/12/solidity_reftype_datalocation/&title=《智能合约语言 Solidity 教程系列4 - 数据存储位置分析》 — 梦想小筑&source=初级程序员,Juan`s blogs" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.buerya.cn/2018/03/12/solidity_reftype_datalocation/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《智能合约语言 Solidity 教程系列4 - 数据存储位置分析》 — 梦想小筑&url=http://blog.buerya.cn/2018/03/12/solidity_reftype_datalocation/&via=http://blog.buerya.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.buerya.cn/2018/03/12/solidity_reftype_datalocation/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACu0lEQVR42u3aQW7DMAwEwPz/0ynQU4E2zq4opT6MT0FgyxoFkBiSj0d8Pb+vn59/Xtf3J6O9uid514YLDw8Pb2nq18MlQyeTuF6m6/e2z+Lh4eGd5rXbdzKV5PXX368dJ3h4eHj34SVTTKabL1Z7UOHh4eHdjZdPKE805EuJh4eHdzdeshHnL85fnxwh+Xzw8PDwPsNbK4D97+fj9T08PDy8pap6flTM0wprCZE388TDw8M7wMtL/nm7wK4E7uSNdUcDHh4eXnz/3oJ9ktLNR7iOjaM/AHh4eHgHeG0CIv9mEppPkMXxhoeHh7fEy9un2gasPJWwtvUX/xXw8PDwPsJrkwJ1arXEtz8GHh4e3jlessmuTastaOUzSQpvf4yAh4eHt4mXJwUm6d12tHwhNmRT8PDw8Faq/4/5FIvQNih6rYXXeHh4eJ/hrR0GCSBprlpbvuuZ/JFrwcPDwzvGy0tTay0FbTBdY34/i4eHh3eY16YtkjTBZCHahobo3MPDw8Mb8/KtvA2j2+aqeRnsTWUPDw8PbxNvV/CaPNUuYrusL1sH8PDw8A7w9pbwJ/fngOiNeHh4eAd4LSxPK6yV0NqUR7GUeHh4eJt4a6HzGiAZJ08rRz8MHh4e3mFeW4hK2gLWwu5dxwYeHh7eCd4aJk+qtkdI0ojQJovx8PDwTvAmAXS+cU9C5HaeG/LBeHh4eJf3z7fj5CCZj9Di8fDw8D7Dmxe9rp/Nw+j8TCvKYHh4eHhj3rO8ckCSmGh5eWkNDw8P7xxvQ3l+0EbQJhracBwPDw/vHC85DPIEwaS5asJ+icfDw8M7xpsUtPIwd9J80KYk8PDw8O7Ja8PfySHUHj94eHh4d+BNUqj5cdI+9SYcx8PDwzvGSzbrPFDOS/75ex9rFx4eHt4B3loBLElS7Aq7501geHh4eJt4X2GAsYaIsLmfAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261704531&web_id=1261704531')
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.0"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.0" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '(つェ⊂) 我藏好了哦~ ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(*´∇｀*) 被你发现啦~ ';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

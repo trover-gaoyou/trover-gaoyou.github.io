@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65558107"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    <meta name="google-site-verification" content="ar7mIVYsjkAi2k9jIuWk34S9A2aVwBdQqFkfL4AKEBQ" >
+    
+    
+    
+    <title>《机器学习有意思！ 01》- 世界上最简单的机器学习入门 | 梦想小筑 | 坚定的走吧，毕竟梦想在远方，未来在远方，终点也在远方。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="技术知识,人工智能,机器学习">
+    <meta name="description" content="《机器学习有意思！ 01》- 世界上最简单的机器学习入门  原文：Machine Learning is Fun! Part 1 —— The world’s easiest introduction to Machine Learning 作者：Adam Geitgey   你是否也曾听人们谈起机器学习但是只有一个朦胧的概念？你是否厌倦了在同事的高谈阔论中颓然欲睡？此诚求变之机。  本教程适合">
+<meta name="keywords" content="技术知识,人工智能,机器学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《机器学习有意思！ 01》- 世界上最简单的机器学习入门">
+<meta property="og:url" content="http://blog.buerya.cn/2018/01/09/funny_machine_learning_1/index.html">
+<meta property="og:site_name" content="梦想小筑">
+<meta property="og:description" content="《机器学习有意思！ 01》- 世界上最简单的机器学习入门  原文：Machine Learning is Fun! Part 1 —— The world’s easiest introduction to Machine Learning 作者：Adam Geitgey   你是否也曾听人们谈起机器学习但是只有一个朦胧的概念？你是否厌倦了在同事的高谈阔论中颓然欲睡？此诚求变之机。  本教程适合">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10000.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10001.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10002.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10003.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10004.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10005.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10006.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10007.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10008.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10008.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/100010.png">
+<meta property="og:updated_time" content="2020-10-07T08:08:59.451Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《机器学习有意思！ 01》- 世界上最简单的机器学习入门">
+<meta name="twitter:description" content="《机器学习有意思！ 01》- 世界上最简单的机器学习入门  原文：Machine Learning is Fun! Part 1 —— The world’s easiest introduction to Machine Learning 作者：Adam Geitgey   你是否也曾听人们谈起机器学习但是只有一个朦胧的概念？你是否厌倦了在同事的高谈阔论中颓然欲睡？此诚求变之机。  本教程适合">
+<meta name="twitter:image" content="http://qiniu.buerya.cn/static/funny_machine/10000.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="梦想小筑" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.0">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Juan</h5>
+          <a href="mailto:quewen08@gmail.com" title="quewen08@gmail.com" class="mail">quewen08@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/trover-gaoyou" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/shandingjurenww" target="_blank" >
+                <i class="icon icon-lg icon-twitter"></i>
+                Twitter
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.instagram.com/juan95_cn" target="_blank" >
+                <i class="icon icon-lg icon-instagram"></i>
+                Instagram
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/source"  >
+                <i class="icon icon-lg icon-link"></i>
+                友情链接
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+	<img id="aimg_H2R2r" class="zoom" src="https://apa.me/news/?s=5qKm5oOz5bCP562R" border="0" alt="" width="500" height="210" initialized="true">
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">《机器学习有意思！ 01》- 世界上最简单的机器学习入门</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">《机器学习有意思！ 01》- 世界上最简单的机器学习入门</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-01-09T00:31:00.000Z" itemprop="datePublished" class="page-time">
+  2018-01-09
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/人工智能/">人工智能</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/人工智能/机器学习/">机器学习</a></li></ul></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#《机器学习有意思！-01》-世界上最简单的机器学习入门"><span class="post-toc-number">1.</span> <span class="post-toc-text">《机器学习有意思！ 01》- 世界上最简单的机器学习入门</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是机器学习？"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">什么是机器学习？</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#两种机器学习算法"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">两种机器学习算法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#有监督学习"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">有监督学习</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#无监督学习"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">无监督学习</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#哎哟不错，但是真的有可能“学习”到真实的房价吗？"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">哎哟不错，但是真的有可能“学习”到真实的房价吗？</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#放码过来！"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">放码过来！</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#脑洞时间"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">脑洞时间</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第3步的“尝试每个数字”"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">第3步的“尝试每个数字”</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#还略过了什么？"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">还略过了什么？</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#机器学习是魔法吗？"><span class="post-toc-number">1.8.</span> <span class="post-toc-text">机器学习是魔法吗？</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#如何学习更多机器学习"><span class="post-toc-number">1.9.</span> <span class="post-toc-text">如何学习更多机器学习</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-funny_machine_learning_1"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">《机器学习有意思！ 01》- 世界上最简单的机器学习入门</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-01-09 08:31:00" datetime="2018-01-09T00:31:00.000Z"  itemprop="datePublished">2018-01-09</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/人工智能/">人工智能</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/人工智能/机器学习/">机器学习</a></li></ul></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <script src="\assets\js\APlayer.min.js"> </script><h1 id="《机器学习有意思！-01》-世界上最简单的机器学习入门"><a href="#《机器学习有意思！-01》-世界上最简单的机器学习入门" class="headerlink" title="《机器学习有意思！ 01》- 世界上最简单的机器学习入门"></a>《机器学习有意思！ 01》- 世界上最简单的机器学习入门</h1><blockquote>
+<p> <em>原文：<a href="https://medium.com/@ageitgey/machine-learning-is-fun-80ea3ec3c471#.gk1w0ndz3" target="_blank" rel="noopener">Machine Learning is Fun! Part 1 —— The world’s easiest introduction to Machine Learning</a></em><br> <em>作者：Adam Geitgey</em></p>
+</blockquote>
+<hr>
+<p><em>你是否也曾听人们谈起机器学习但是只有一个朦胧的概念？你是否厌倦了在同事的高谈阔论中颓然欲睡？此诚求变之机。</em></p>
+<hr>
+<p>本教程适合所有对机器学习感到好奇，却不知从何下手的读者。我想应该有很多人试着读了维基百科页面，然后愈发迷惘、沉沦，盼望着有人能够提供一个high-level的解释，那你找对地方了。</p>
+<p>我们的目标是让所有人都能读懂——这就难免有些泛泛而谈。但是无妨，但凡本文能让一个人真正对机器学习感兴趣，那么目的就算达到了。</p>
+<h2 id="什么是机器学习？"><a href="#什么是机器学习？" class="headerlink" title="什么是机器学习？"></a>什么是机器学习？</h2><p>机器学习的核心思想是创造一种普适的算法，它能从数据中挖掘出有趣的东西，而不需要针对某个问题去写代码。你需要做的只是把数据“投喂”给普适算法，然后它会在数据上建立自己的逻辑。</p>
+<p>比如说有一种算法，叫分类算法，它可以把数据分到不同的组别当中。一个识别手写数字的分类算法，也可以用作判断垃圾邮件，而无需修改一行代码。算法是同一个算法，只是输入了不同的训练数据，便有了不同的分类逻辑。</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10000.png" alt=""></p>
+<blockquote>
+<p>机器学习算法是个黑盒，且可以在不同分类问题中重复利用。</p>
+</blockquote>
+<p>“机器学习”是个筐，什么普适算法都往里装。</p>
+<hr>
+<h2 id="两种机器学习算法"><a href="#两种机器学习算法" class="headerlink" title="两种机器学习算法"></a>两种机器学习算法</h2><p>机器学习主要分为两类——有监督学习和无监督学习，区别很简单，却很关键。</p>
+<ul>
+<li><h3 id="有监督学习"><a href="#有监督学习" class="headerlink" title="有监督学习"></a>有监督学习</h3><p>想想你是一家房产中介。你的业务正在增长，所以雇了一帮实习销售来助拳。那么问题来了——身经百战的你，一眼就看穿一栋房子价值几何，但是实习生可没有这样丰富的人生经验，所以摸不准行情。</p>
+<p>为了辅助实习生（以便解放自己度个假），你决定做个小程序，基于面积、周边环境、相似房产成交价等等，来预估本地的房价。</p>
+<p>所以你把3个月来本市的每一笔交易都拿小本本记了下来。对每处房产都整理了一大堆细节——房间数、面积、周边环境等等，当然最重要的是，最终成交价：</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10001.png" alt=""></p>
+<blockquote>
+<p>这就是我们的“训练数据”</p>
+</blockquote>
+<p>有了训练数据，我们就想搞个程序去预估其他的房价：</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10002.png" alt=""></p>
+<blockquote>
+<p>用训练数据去预测别的房屋价格</p>
+</blockquote>
+<p>这就是<strong>有监督学习</strong>。你是知道每处房产到底卖多少的，换言之，问题的答案是已知的，逻辑是可以反推的。</p>
+<p>为了开发小程序，把每处房产的训练数据导进机器学习算法里，算法试图摸索出其中的数学规律。</p>
+<p>这有点像是去掉了符号的算术题答案：</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10003.png" alt="">无监督学习</p>
+<blockquote>
+<p>Oh no!一个熊孩子把参考答案里的运算符号给涂没了！</p>
+</blockquote>
+<p>根据上图，你能否推算出这些题目的原貌呢？显然，我们需要对这些数字“动点手脚”，以使等式成立。</p>
+<p>在<strong>有监督学习</strong>中，我们做的实际上就是让电脑代替人来让等式成立。一旦你学会了解决某一类问题，那么这类问题里的任何子问题都就迎刃而解了！</p>
+</li>
+<li><h3 id="无监督学习"><a href="#无监督学习" class="headerlink" title="无监督学习"></a>无监督学习</h3><p>回到最开始那个卖房地产的例子。如果我们不知道具体每处房产的价格可咋整？即使仅知道面积、位置等信息，你也依然可以搞点动静出来，这就叫<strong>无监督学习</strong>。</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10004.png" alt=""></p>
+<blockquote>
+<p>即使不预测未知数（比如房价），机器学习也能带来有趣的结论</p>
+</blockquote>
+<p>这就好比有人给你一张纸，上面写着一串数字，然后说“我也不知道啥意思，你可以猜猜这是什么套路——好运！”</p>
+<p>这些数据我们能做什么呢？对于新手来讲，可以得到一个算法—，从数据中自动辨识出细分的市场定位。可能你会发现，当地大学附近的购房者偏好多卧室的小房子，而郊区的购房者则倾向于大套三。了解到不同类型消费者的存在可以指导市场行为。</p>
+<p>另一个可以做的就是自动识别出那些少有相似点的特异房产。可能这些特异房产是豪华公馆，那么就可以调配最好的销售人员专门负责这些大买卖。</p>
+<p>后文主要专注于有监督学习，但并非因为无监督学习的作用小或者趣味少。实际上无监督学习的重要性与日俱增且发展迅速，因为不需要事先对正确答案对应的数据加标签。</p>
+<hr>
+<blockquote>
+<p>注：还有很多其他种类的机器学习算法，不过建议从这些基础算法入手。</p>
+</blockquote>
+<hr>
+</li>
+</ul>
+<h2 id="哎哟不错，但是真的有可能“学习”到真实的房价吗？"><a href="#哎哟不错，但是真的有可能“学习”到真实的房价吗？" class="headerlink" title="哎哟不错，但是真的有可能“学习”到真实的房价吗？"></a>哎哟不错，但是真的有可能“学习”到真实的房价吗？</h2><p>作为一个人类，你的大脑可以面对各种形势，并且在无明确指导的情况下自主学习如何应对。如果你卖了很久的房子，就会慢慢地对房价、对销售策略、对观察客户等问题产生一种“感觉”。强人工智能研究的目的就在于让计算机掌握这种能力。</p>
+<p>但是当前的机器学习算法还没那么厉害——它们只能对很具体、有限的问题生效。或许这里的“学习”更应该定义为“基于样本数据得出解决具体问题的等式”。</p>
+<p>不幸的是，“让机器基于样本数据得出解决具体问题的等式”不是个好名字，所以我们还是回到了“机器学习”。</p>
+<p>当然如果你在50年后，强人工智能都普及了时候看到本文，会觉得全文都很“古典”。别看了，让你的机器人给你拿个包子吃，未来人类。</p>
+<h2 id="放码过来！"><a href="#放码过来！" class="headerlink" title="放码过来！"></a>放码过来！</h2><p>然，上面例子里的预测房价程序应该怎么写呢？思考一秒，然后接着看。</p>
+<p>如果你对机器学习一无所知，可能会尝试依照预测房价的基本规律，写出如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">def estimate_house_sales_price(num_of_bedrooms, sqft, neighborhood):</span><br><span class="line">    price = 0</span><br><span class="line"></span><br><span class="line">    # 这一片的均价是200美元一平米</span><br><span class="line">    price_per_sqft = 200</span><br><span class="line"></span><br><span class="line">    if neighborhood == &quot;hipsterton&quot;:</span><br><span class="line">        # 有的区更贵</span><br><span class="line">        price_per_sqft = 400</span><br><span class="line"></span><br><span class="line">    elif neighborhood == &quot;skid row&quot;:</span><br><span class="line">        # 有的区便宜</span><br><span class="line">        price_per_sqft = 100</span><br><span class="line"></span><br><span class="line">    # 根据基准价和面积预测实际价格</span><br><span class="line">    price = price_per_sqft * sqft</span><br><span class="line"></span><br><span class="line">    # 根据房间数调整预测</span><br><span class="line">    if num_of_bedrooms == 0:</span><br><span class="line"></span><br><span class="line">        # 公寓稍微便宜点</span><br><span class="line">        price = price — 20000</span><br><span class="line"></span><br><span class="line">    else:</span><br><span class="line">        # 卧室多的房子贵</span><br><span class="line">        price = price + (num_of_bedrooms * 1000)</span><br><span class="line"></span><br><span class="line">    return price</span><br></pre></td></tr></table></figure>
+<p>如果顺着写上几个小时，或许也能得到一个能跑的程序。但势必存在隐患，而且无法应对价格变化。</p>
+<p>如果计算机能自己发现如何应用这些方程，那岂不是好得多？只要能得到正确的数字，谁管具体方程是什么呢？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def estimate_house_sales_price(num_of_bedrooms, sqft, neighborhood):</span><br><span class="line">    price = 贾维斯，帮我算一下</span><br><span class="line"></span><br><span class="line">    return price</span><br></pre></td></tr></table></figure>
+<p>这个问题可以想象成：<strong>价格</strong>是道炖菜，配方是<strong>卧室数量</strong>，<strong>面积</strong>和<strong>周边环境</strong>。如果你能算出每种成分对最终价格的影响是多少，或许那就是配方“搅合”最终价格的确切权重。</p>
+<p>这可以使原程序（满是if/else）变得简单如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">def estimate_house_sales_price(num_of_bedrooms, sqft, neighborhood):</span><br><span class="line">    price = 0</span><br><span class="line"></span><br><span class="line">    # 加少许配方1</span><br><span class="line">    price += num_of_bedrooms * .841231951398213</span><br><span class="line"></span><br><span class="line">    # 加大把配方2</span><br><span class="line">    price += sqft * 1231.1231231</span><br><span class="line"></span><br><span class="line">    # 适量的配方3</span><br><span class="line">    price += neighborhood * 2.3242341421</span><br><span class="line"></span><br><span class="line">    # 最后来点盐</span><br><span class="line">    price += 201.23432095</span><br><span class="line"></span><br><span class="line">    return price</span><br></pre></td></tr></table></figure>
+<p>注意这些奇妙深刻的加粗数字——<strong>.841231951398213</strong>、 <strong>1231.1231231</strong>、<strong>2.3242341421</strong>和<strong>201.23432095</strong>，这就是我们的<strong>权重</strong>。只要我们能找到准确的权重，那就可以预测房价了。</p>
+<p>一个比较粗暴的权重计算方法大致如下：</p>
+<p><strong>第一步</strong></p>
+<p>把所有权重都设为<strong>1.0</strong>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">def estimate_house_sales_price(num_of_bedrooms, sqft, neighborhood):</span><br><span class="line">    price = 0</span><br><span class="line"></span><br><span class="line">    # 加少许配方1</span><br><span class="line">    price += num_of_bedrooms * 1.0</span><br><span class="line"></span><br><span class="line">    # 加大把配方2</span><br><span class="line">    price += sqft * 1.0</span><br><span class="line"></span><br><span class="line">    # 适量的配方3</span><br><span class="line">    price += neighborhood * 1.0</span><br><span class="line"></span><br><span class="line">    # 最后来点盐</span><br><span class="line">    price += 1.0</span><br><span class="line"></span><br><span class="line">    return price</span><br></pre></td></tr></table></figure>
+<p><strong>第二步</strong></p>
+<p>把每个房产的参数代入公式，计算预测结果和实际价格的误差：</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10005.png" alt=""></p>
+<blockquote>
+<p>用你的方程来猜房价</p>
+</blockquote>
+<p>比如第一个房子实际卖了250,000，但是你的方程却预测的是178,000，但这一个房子就少了72,000。</p>
+<p>现在把每个房子对应误差的平方加起来，比方你有500单交易，那么误差的平方和就有$86,123,373，可谓谬以千里。再把平方和除以500得到平均每个房子的误差，这一平均误差值就是方程的代价（即最小二乘法，平方是为了防止误差正负相抵）。</p>
+<p>如果我们能通过调整权重将代价降为零，那方程就完美了。这表示在所有例子中，方程都准确无误地基于输入数据猜中了房价。这就是我们的目标——尝试不同的权重，让代价尽量低。</p>
+<p><strong>第3步：</strong></p>
+<p>不断地重复第2步，尝试每一种可能的权重值组合。哪个组合能让代价最接近于0就选哪一组。找到那一组权重，就解决了问题！</p>
+<hr>
+<h2 id="脑洞时间"><a href="#脑洞时间" class="headerlink" title="脑洞时间"></a>脑洞时间</h2><p>挺简单的对吧？回想一下刚才的所做，拿到一些数据，填进三个普适的、简单的步骤里，然后得到一个能猜房价的方程。Zillow（美国房价预测网站）面临着严重的威胁！</p>
+<p>但是有这么几个激动人心的事实：</p>
+<ol>
+<li><p>过去40年里，很多领域（如语言学/翻译学）的研究已经表明，“搅合数字炖菜”（作者自己打的比方）的普适性学习算法已经超越了那些，由真人尝试自己发现显式规律的人方法。机器学习的“暴力”方法最终击败了人类专家。</p>
+</li>
+<li><p>刚才得出的方程其实是很笨的。它并不知道“平方米”和“卧室”到底是什么，它只知道“搅拌”多少数字可以得到正确答案。</p>
+</li>
+<li><p>你大概并不知道为什么某一组权重就是好的，而只是写了一个自己都不明白的方程，但却证明是好用的。</p>
+</li>
+<li><p>假设我们不用“平方米”和”卧室数“这些参数，而是读入一个数列。比方说每个数字代表的是”从车顶上拍的照片的某一像素的亮度”，然后我们预测的结果也不是“房价”了，而是“方向盘转过的角度”。<strong>这就是一个人自动驾驶的风方程了？</strong></p>
+</li>
+</ol>
+<p>疯了，对吧？</p>
+<h2 id="第3步的“尝试每个数字”"><a href="#第3步的“尝试每个数字”" class="headerlink" title="第3步的“尝试每个数字”"></a>第3步的“尝试每个数字”</h2><p>当然你不可能真的尝试每一种可能权重组合来寻找最优解，实际情况是永远尝试不完。</p>
+<p>为了避免这一情况，数学家们发现了很多机智办法来尽快找到一个不错的结果。以下就是其中一种：</p>
+<p>第一，写一个能够代表上面“第2步”的方程：</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10006.png" alt=""></p>
+<blockquote>
+<p>这就是代价函数</p>
+</blockquote>
+<p>然后用机器学习界的黑话（暂时可以忽略）重新写一遍：</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10007.png" alt=""></p>
+<blockquote>
+<p>θ代表当前权重。J(θ)是当前权重的代价值。</p>
+</blockquote>
+<p>这个等式代表了在当前的权重组合下，我们的价格预测有多么离谱。</p>
+<p>如果把房间数和平方米所有可能权重值可视化，可以得到类似下图的图像：</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10008.png" alt=""></p>
+<blockquote>
+<p>代价函数的图像像个碗。竖直轴表示代价。</p>
+</blockquote>
+<p>这个图里的蓝色最低点就是代价的最低点——方程误差最小处，最高点即是最离谱的情况。所以如果我们找到一组权重值，使得方程对应最低点，那就是答案！</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10008.png" alt=""></p>
+<p>所以我们只需要以“下山”的方式来调整权重，逼近最低点。如果每一次微小的调整都向着最低点进发，那迟早能够到达。</p>
+<p>函数的导数就是切线的斜率，换句话说，这告诉我们哪条路可以“下山”。</p>
+<p>因此如果计算代价函数对每个权重的偏微分，然后再从权重里减去这个值，这可以让我们离谷底更近。重复执行，最终我们会到达谷底并获得权重的最优解（如果没看懂，不要担心，继续看）。</p>
+<p>这是一种寻找方程最佳权重方式的高度概括，叫作批梯度下降(batch gradient descent)。如果你对此感兴趣，不要害怕，<a href="http://hbfs.wordpress.com/2012/04/24/introduction-to-gradient-descent/" target="_blank" rel="noopener">了解更多细节</a>。</p>
+<p>当你使用机器学习库来解决实际问题的时候，这些都会自动完成，但是了解究竟发生了什么还是很有用的。</p>
+<hr>
+<h2 id="还略过了什么？"><a href="#还略过了什么？" class="headerlink" title="还略过了什么？"></a>还略过了什么？</h2><p>上述的三步算法即是<strong>多变量线性回归</strong>，针对一条穿过房产数据的直线来进行预测目标等式，并用这一等式去猜测此前未曾见过的房屋价格，解决实际问题的时候这非常行之有效。</p>
+<p>但是以上方法或许只对特别简单的例子好使，并非万金油。其中一个原因就是房价不总是简单到能用一条连续直线来代表。</p>
+<p>好在另有很多方法解决，很多机器学习算法可以处理非线性数据（如神经网络 或 有核 的支持向量机)。同样也有算法是以更加聪明的方式使用线性回归以拟合更复杂的直线。但不论哪一方法，最根本的思想都是找到最佳的权重。</p>
+<p>并且我忽略了过拟合问题。对于已有的原始数据，找到一组很棒的权重值不难，但是却有可能对训练集以外新的房子不适用。有很多方法可以避免这一现象（如正则化和使用交叉验证数据集），这是成功应用机器学习算法的关键命题。</p>
+<p>尽管基本概念很简单，但是要用机器学习取得有用的结果，还是需要技巧和经验的。不过这些技巧是每一个开发者，都能够学会的！</p>
+<hr>
+<h2 id="机器学习是魔法吗？"><a href="#机器学习是魔法吗？" class="headerlink" title="机器学习是魔法吗？"></a>机器学习是魔法吗？</h2><p>看到机器学习技术如此轻易就解决了看起来非常困难的问题（如手写识别），你可能会感觉只要有足够多的数据，什么问题都不是问题了。导入数据，然后等着计算机变出一个适合数据的式子！</p>
+<p>但需要记住的事，机器学习要想生效，必须满足一个条件，就是目标问题对已有数据确实是可解的。</p>
+<p>比如建立一个模型，根据房子里种的植物种类预测房价，这肯定不管用。因为房里的植物和售价本来就没有关系，不管再怎么试，计算机还是无法找出这种关系。</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/100010.png" alt=""></p>
+<blockquote>
+<p>只有实际存在的关系才能建模</p>
+</blockquote>
+<p>所以如果一位人类专家不能用数据解决某个问题，计算机也不行。相反，计算机的优势在于，对于人类能解决的问题，计算机可以更快地完成。</p>
+<hr>
+<h2 id="如何学习更多机器学习"><a href="#如何学习更多机器学习" class="headerlink" title="如何学习更多机器学习"></a>如何学习更多机器学习</h2><p>在我看来，机器学习目前最大的问题在于其主要还是存在于学术界，对于广大只是想稍微了解、而并非想成为专家的人们，通俗易懂的材料还是不够丰富，当然这一情况已经在好转。</p>
+<p>吴恩达的<a href="https://www.coursera.org/course/ml" target="_blank" rel="noopener">Machine Learning class on Coursera</a>相当惊艳，我强烈推荐从这里开始。对于CS专业的人，只要还记得一丁点数学，就可以学。</p>
+<p>你也可以通过下载安装<a href="http://scikit-learn.org/stable/" target="_blank" rel="noopener">Scikit-learn</a>，来自己尝试海量的机器学习算法，这是一个提供“黑盒”版标准算法的Python框架。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-10-07T08:08:59.451Z" itemprop="dateUpdated">2020-10-07 16:08:59</time>
+</span><br>
+
+
+        
+        本文永久地址：<a href="/2018/01/09/funny_machine_learning_1/" target="_blank" rel="external">http://blog.buerya.cn/2018/01/09/funny_machine_learning_1/</a>
+        
+    </div>
+    <footer>
+        <a href="http://blog.buerya.cn">
+            <img src="/img/avatar.jpg" alt="Juan">
+            Juan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/人工智能/">人工智能</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术知识/">技术知识</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/机器学习/">机器学习</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.buerya.cn/2018/01/09/funny_machine_learning_1/&title=《《机器学习有意思！ 01》- 世界上最简单的机器学习入门》 — 梦想小筑&pic=http://blog.buerya.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.buerya.cn/2018/01/09/funny_machine_learning_1/&title=《《机器学习有意思！ 01》- 世界上最简单的机器学习入门》 — 梦想小筑&source=初级程序员,Juan`s blogs" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.buerya.cn/2018/01/09/funny_machine_learning_1/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《《机器学习有意思！ 01》- 世界上最简单的机器学习入门》 — 梦想小筑&url=http://blog.buerya.cn/2018/01/09/funny_machine_learning_1/&via=http://blog.buerya.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.buerya.cn/2018/01/09/funny_machine_learning_1/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/01/11/android_constraintlayout/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">ConstraintLayout 完全解析</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/01/01/blockchain_guide/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">区块链技术学习指引</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comment comments vcomment" id="comments"></div>
+    <script src="//cdnjs.cat.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="//cdn1.lncld.net/static/js/3.5.0/av-min.js"></script>
+    <script src="/js/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var notify = 'false';
+        var verify = 'false';
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            av: AV,
+            el: '#comments',
+            notify: notify,
+            verify: verify,
+            appId: "LoojPRMy175IgqwnQtytrgOY-9Nh9j0Va",
+            appKey: "45VXhysB6in2v1IOL1kaC5tQ",
+            avatar: "mm",
+            placeholder: "ヾﾉ≧∀≦)o来啊，快活啊!",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢你给我买糖果吃O(∩_∩)O~~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Juan &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备17077370号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.buerya.cn/2018/01/09/funny_machine_learning_1/&title=《《机器学习有意思！ 01》- 世界上最简单的机器学习入门》 — 梦想小筑&pic=http://blog.buerya.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.buerya.cn/2018/01/09/funny_machine_learning_1/&title=《《机器学习有意思！ 01》- 世界上最简单的机器学习入门》 — 梦想小筑&source=初级程序员,Juan`s blogs" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.buerya.cn/2018/01/09/funny_machine_learning_1/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《《机器学习有意思！ 01》- 世界上最简单的机器学习入门》 — 梦想小筑&url=http://blog.buerya.cn/2018/01/09/funny_machine_learning_1/&via=http://blog.buerya.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.buerya.cn/2018/01/09/funny_machine_learning_1/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKUlEQVR42u3aQW7DMAwF0dz/0u4BUsvzSbWAqfEqcGLJLwuCFPn54Ov6ur7vr395txq5v+2SIUPGaxnX8upvTJDrz+t3kyFDxjkMsv16G/7S693vVnt4ZxkyZMgIgyYPu/wvkyFDhgzO6DzV4cmQIUMGKWI7R2PrNJEUz9tqcRkyZLyQwV/i/z//SX9DhgwZr2Jc4ZWmazxE8iD7y5oyZMgYzUhLzXViV1sNFahkBRkyZAxl8OP+TvGZHs/xIY94mkOGDBkvZ+xqQ/KxjG3NCRkyZIxmpIVo57g/fenWCaIMGTLGMXjo5CSeeqZl80OQlSFDxjhGZ2yrn/bV/tBPbQMZMmS8lsFTQJK6keEt3looNlNlyJAxjlEbg+gnc5uboDJkyDiAkZaj6fgFfypdIf6pDBkyRjBIKkbu8zSx1h6QIUPGOYxtww2lZmc6/hUcw8mQIWMog5SgPKWrHe7X9pIhQ8ZsRn8zElLTYEpC8G2GK0OGjHGMdLQiHadIn62ljDJkyDiBwcdM+8jaCij0y5Ah4wBGGuz4U/zbWpiWIUPGOQwS2tL0jr9i+g4yZMg4h3GFV6cZUPsWUWXIkDGakZaLacG5q5HZWU2GDBkzGCTI8tkNcqBWK2JlyJAhoxb40qDcT/seSlkZMmTI2FoGk5DKBztkyJAhgzcyyYhGWuiivWTIkHEAozZCwe+QJminFSFDhozZDF46piMa8dwH2LHV1JQhQ8b7GD87OnRyeR/fYwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261704531&web_id=1261704531')
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.0"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.0" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '(つェ⊂) 我藏好了哦~ ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(*´∇｀*) 被你发现啦~ ';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65558107"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    <meta name="google-site-verification" content="ar7mIVYsjkAi2k9jIuWk34S9A2aVwBdQqFkfL4AKEBQ" >
+    
+    
+    
+    <title>比特币脚本及交易分析 - 智能合约雏形 | 梦想小筑 | 坚定的走吧，毕竟梦想在远方，未来在远方，终点也在远方。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="比特币,区块链,区块链技术,比特币脚本,交易结构">
+    <meta name="description" content="大家都有转过账，每笔交易是这样的：张三账上减￥200，李四账上加￥200。在比特币区块链中，交易不是这么简单，交易实际是通过脚本来完成，以承载更多的功能个，这也是为什么比特币被称为是一种“可编程的货币”。本文就来分析一下交易是如何实现可编程的。 未花费的交易输出(UTXO)先引入一个概念：未花费的交易输出——UTXO（Unspent Transaction Output） 其实比特币的交易都">
+<meta name="keywords" content="比特币,区块链,区块链技术,比特币脚本,交易结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="比特币脚本及交易分析 - 智能合约雏形">
+<meta property="og:url" content="http://blog.buerya.cn/2018/02/14/bitcoin-script/index.html">
+<meta property="og:site_name" content="梦想小筑">
+<meta property="og:description" content="大家都有转过账，每笔交易是这样的：张三账上减￥200，李四账上加￥200。在比特币区块链中，交易不是这么简单，交易实际是通过脚本来完成，以承载更多的功能个，这也是为什么比特币被称为是一种“可编程的货币”。本文就来分析一下交易是如何实现可编程的。 未花费的交易输出(UTXO)先引入一个概念：未花费的交易输出——UTXO（Unspent Transaction Output） 其实比特币的交易都">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/own_chain.jpeg">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/script.jpeg">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/script_run1.jpeg">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/script_run2.jpeg">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/tx_struce.jpeg">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/tx_input_struce.jpeg">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/tx_input_overview.jpeg">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/tx_output_struce.jpeg">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/tx_output_overview.jpeg">
+<meta property="og:updated_time" content="2020-10-07T08:08:59.442Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="比特币脚本及交易分析 - 智能合约雏形">
+<meta name="twitter:description" content="大家都有转过账，每笔交易是这样的：张三账上减￥200，李四账上加￥200。在比特币区块链中，交易不是这么简单，交易实际是通过脚本来完成，以承载更多的功能个，这也是为什么比特币被称为是一种“可编程的货币”。本文就来分析一下交易是如何实现可编程的。 未花费的交易输出(UTXO)先引入一个概念：未花费的交易输出——UTXO（Unspent Transaction Output） 其实比特币的交易都">
+<meta name="twitter:image" content="http://qiniu.buerya.cn/static/own_chain.jpeg">
+    
+        <link rel="alternate" type="application/atom+xml" title="梦想小筑" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.0">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Juan</h5>
+          <a href="mailto:quewen08@gmail.com" title="quewen08@gmail.com" class="mail">quewen08@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/trover-gaoyou" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/shandingjurenww" target="_blank" >
+                <i class="icon icon-lg icon-twitter"></i>
+                Twitter
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.instagram.com/juan95_cn" target="_blank" >
+                <i class="icon icon-lg icon-instagram"></i>
+                Instagram
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/source"  >
+                <i class="icon icon-lg icon-link"></i>
+                友情链接
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+	<img id="aimg_H2R2r" class="zoom" src="https://apa.me/news/?s=5qKm5oOz5bCP562R" border="0" alt="" width="500" height="210" initialized="true">
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">比特币脚本及交易分析 - 智能合约雏形</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">比特币脚本及交易分析 - 智能合约雏形</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-02-13T22:22:43.000Z" itemprop="datePublished" class="page-time">
+  2018-02-14
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/">深入浅出区块链</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#未花费的交易输出-UTXO"><span class="post-toc-number">1.</span> <span class="post-toc-text">未花费的交易输出(UTXO)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#比特币脚本"><span class="post-toc-number">2.</span> <span class="post-toc-text">比特币脚本</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#常见交易脚本验证过程"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">常见交易脚本验证过程</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#交易分析"><span class="post-toc-number">3.</span> <span class="post-toc-text">交易分析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#交易结构"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">交易结构</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#交易输入结构"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">交易输入结构</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#交易输出结构"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">交易输出结构</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#交易哈希计算"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">交易哈希计算</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#智能合约雏形-应用场景说明"><span class="post-toc-number">4.</span> <span class="post-toc-text">智能合约雏形 - 应用场景说明</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考文献-amp-补充阅读"><span class="post-toc-number">5.</span> <span class="post-toc-text">参考文献 &amp; 补充阅读</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-bitcoin-script"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">比特币脚本及交易分析 - 智能合约雏形</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-02-14 06:22:43" datetime="2018-02-13T22:22:43.000Z"  itemprop="datePublished">2018-02-14</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/">深入浅出区块链</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <script src="\assets\js\APlayer.min.js"> </script><p>大家都有转过账，每笔交易是这样的：张三账上减￥200，李四账上加￥200。<br>在比特币区块链中，交易不是这么简单，交易实际是通过脚本来完成，以承载更多的功能个，这也是为什么比特币被称为是一种“可编程的货币”。<br>本文就来分析一下交易是如何实现可编程的。</p>
+<h2 id="未花费的交易输出-UTXO"><a href="#未花费的交易输出-UTXO" class="headerlink" title="未花费的交易输出(UTXO)"></a>未花费的交易输出(UTXO)</h2><p>先引入一个概念：未花费的交易输出——UTXO（Unspent Transaction Output）</p>
+<p>其实比特币的交易都是基于UTXO上的，即交易的输入是之前交易未花费的输出，这笔交易的输出可以被当做下一笔新交易的输入。</p>
+<blockquote>
+<p>挖矿奖励属于一个特殊的交易（称为coinbase交易），可以没有输入。<br>UTXO是交易的基本单元，不能再分割。<br>在比特币没有余额概念，只有分散到区块链里的UTXO</p>
+</blockquote>
+<p>随着钱从一个地址被移动到另一个地址的同时形成了一条所有权链，像这样：</p>
+<p><img src="http://qiniu.buerya.cn/static/own_chain.jpeg" alt=""></p>
+<h2 id="比特币脚本"><a href="#比特币脚本" class="headerlink" title="比特币脚本"></a>比特币脚本</h2><p>比特币交易是首先要提供一个用于解锁UTXO（用私钥去匹配锁定脚本）的脚本（常称为解锁脚本：Signature script)，这也叫交易输入，<br>交易的输出则是指向一个脚本（称为锁定脚本：PubKey script），这个脚本表达了：谁的签名（签名是常见形式，并不一定必须是签名）能匹配这个输出地址，钱就支付给谁。</p>
+<p>每一个比特币节点会通过同时执行这解锁和锁定脚本（不是当前的锁定脚本，是指上一个交易的锁定脚本）来验证一笔交易，脚本组合结果为真，则为有效交易。</p>
+<blockquote>
+<p>当解锁版脚本与锁定版脚本的设定条件相匹配时，执行组合有效脚本时才会显示结果为真</p>
+</blockquote>
+<p>如最为常见类型的比特币交易脚本（支付到公钥哈希：P2PKH（Pay-to-Public-Key-Hash））组合是这样：<br><img src="http://qiniu.buerya.cn/static/script.jpeg" alt=""></p>
+<h3 id="常见交易脚本验证过程"><a href="#常见交易脚本验证过程" class="headerlink" title="常见交易脚本验证过程"></a>常见交易脚本验证过程</h3><p>比特币交易脚本语言是一种基于逆波兰表示法的基于栈的执行语言（不知道逆波兰和栈的同学去翻大学数据结构课本，你也可跳过这个部分）。</p>
+<blockquote>
+<p>比特币脚本语言包含基本算数计算、基本逻辑(比如if…then)、报错以及返回结果和一些加密指令，不支持循环。想了解更多语言细节可参考:<a href="http://www.8btc.com/bitcoin_scripts" target="_blank" rel="noopener">比特币脚本</a></p>
+</blockquote>
+<p>脚本语言通过从左至右地处理每个项目的方式执行脚本。</p>
+<p>下面用两个图说明下常见类型的比特币交易脚本验证执行过程：</p>
+<p><img src="http://qiniu.buerya.cn/static/script_run1.jpeg" alt=""></p>
+<p>上图为解锁脚本运行过程（主要是入栈）</p>
+<p><img src="http://qiniu.buerya.cn/static/script_run2.jpeg" alt=""></p>
+<p>上图为锁定脚本运行过程（主要是出栈），最后的结果为真，说明交易有效。</p>
+<h2 id="交易分析"><a href="#交易分析" class="headerlink" title="交易分析"></a>交易分析</h2><p>实际上比特币的交易被设计为可以纳入多个输入和输出。</p>
+<h3 id="交易结构"><a href="#交易结构" class="headerlink" title="交易结构"></a>交易结构</h3><p>我们来看看完整的交易结构<br><img src="http://qiniu.buerya.cn/static/tx_struce.jpeg" alt=""></p>
+<blockquote>
+<p>交易的锁定时间定义了能被加到区块链里的最早的交易时间。在大多数交易里，它被设置成0，用来表示立即执行。<br>如果锁定时间不是0并且小于5亿，就被视为区块高度，意指在这个指定的区块高度之前，该交易不会被包含在区块链里。<br>如果锁定时间大于5亿，则它被当作是一个Unix纪元时间戳（从1970年1月1日以来的秒数），并且在这个指定时间之前，该交易不会被包含在区块链里。</p>
+</blockquote>
+<p>交易的数据结构没有交易费的字段，交易费通过所有输入的总和，以及所有输出的总和之间的差来表示，即：</p>
+<blockquote>
+<p>交易费 = 求和（所有输入） - 求和（所有输出）</p>
+</blockquote>
+<h3 id="交易输入结构"><a href="#交易输入结构" class="headerlink" title="交易输入结构"></a>交易输入结构</h3><p>刚刚我们提过输入需要提供一个解锁脚本，现在来看看一个交易的输入结构：</p>
+<p><img src="http://qiniu.buerya.cn/static/tx_input_struce.jpeg" alt=""></p>
+<p>我们结合整个交易的结构里看输入结构就是这样子：</p>
+<p><img src="http://qiniu.buerya.cn/static/tx_input_overview.jpeg" alt=""></p>
+<h3 id="交易输出结构"><a href="#交易输出结构" class="headerlink" title="交易输出结构"></a>交易输出结构</h3><p>刚刚我们提过输出是指向一个解锁脚本，具体交易的输出结构为：<br><img src="http://qiniu.buerya.cn/static/tx_output_struce.jpeg" alt=""></p>
+<p>我们结合整个交易的结构里看输出结构就是这样子：</p>
+<p><img src="http://qiniu.buerya.cn/static/tx_output_overview.jpeg" alt=""></p>
+<h3 id="交易哈希计算"><a href="#交易哈希计算" class="headerlink" title="交易哈希计算"></a>交易哈希计算</h3><p>在<a href="/posts/深入浅出区块链/2018-02-14-merkle.html">比特币区块结构Merkle 树及简单支付验证分析</a>讲到区块结构，区块结构包含多个交易的哈希。<br>那么交易哈希是怎么计算的呢？</p>
+<ol>
+<li>交易结构各字段序列化为字节数组</li>
+<li>把字节数组拼接为支付串</li>
+<li>对支付串计算两次SHA256 得到交易hash<br>了解详情可进一步参考<a href="https://bitcoin.stackexchange.com/questions/2859/how-are-transaction-hashes-calculated" target="_blank" rel="noopener">如何计算交易Hash?</a>及<a href="https://bitcointalk.org/index.php?topic=54451.msg649253#msg649253" target="_blank" rel="noopener">如何创建Hash?</a></li>
+</ol>
+<p>现在是不是对完整的交易到区块有了更清晰的认识。</p>
+<h2 id="智能合约雏形-应用场景说明"><a href="#智能合约雏形-应用场景说明" class="headerlink" title="智能合约雏形 - 应用场景说明"></a>智能合约雏形 - 应用场景说明</h2><p>由于交易是通过脚本来实现，脚本语言可以表达出无数的条件变种。</p>
+<p>比特币的脚本目前常用的主要分为两种，一种是常见的P2PKH（支付给公钥哈希），另一种是P2SH（Pay-to-Script-Hash支付脚本哈希）。<br>P2SH支付中，锁定脚本被密码学哈希所取代，当一笔交易试图支付UTXO时，要解锁支付脚本，它必须含有与哈希相匹配的脚本。</p>
+<p>这里不展开技术细节，下面说明一些应用场景，以便大家有更直观的认识。</p>
+<ul>
+<li><p>多重签名应用<br>合伙经营中，如只有一半以上的的股东同意签名就可以进行支付，可为公司治理提供管控便利，同时也能有效防范盗窃、挪用和遗失。</p>
+<p>用于担保和争端调解，一个买家想和他不认识或不信任的某人交易，在一般情况交易正常进行时，买家不想任何第三方参与。那交易双方可以发起支付，但如果交易出现问题时，那第三方就可以根据裁定，使用自己的签名和裁定认可的一方共同签名来兑现这笔交易。</p>
+</li>
+<li><p>保证合同<br>保证合同是建造公众商品时的集资办法，公众商品是指一旦建成，任何人都可以免费享受到好处。标准的例子是灯塔，所有人都认同应该建造一个，但是对于个人航海者来说灯塔太贵了，灯塔同时也会方便其他航海者。</p>
+<p>一个解决方案是向所有人集资，只有当筹集的资金超过所需的建造成本时，每个人才真正付钱，如果集资款不足，则谁都不用付钱。</p>
+</li>
+<li><p>依靠预言<br>假如老人想让他孙子继承遗产，继承时间是在他死后或者在孙子年满18岁时（也是一个带锁定时间交易），无论哪个条件先满足，他的孙子都可以得到遗产。</p>
+<p>因为比特币节点可依靠预言对死亡条件进行判断，预言是指具有密钥对的服务器，当用户自定义的表达式被证明是真的，它能按照要求对交易签名。</p>
+</li>
+</ul>
+<p>相信随着区块链的普及，会对未来的交易模式和商业结构带来巨大的影响。不过由于比特币的脚本语言不是图灵完备的，交易模式依旧有限，以太坊就是为解决这一问题而出现，后面会有大量介绍以太坊的文章。</p>
+<h2 id="参考文献-amp-补充阅读"><a href="#参考文献-amp-补充阅读" class="headerlink" title="参考文献 &amp; 补充阅读"></a>参考文献 &amp; 补充阅读</h2><ol>
+<li><a href="http://book.8btc.com/master_bitcoin" target="_blank" rel="noopener">精通比特币</a></li>
+<li>廖雪峰的<a href="http://www.infoq.com/cn/articles/deep-understanding-of-bitcoin-transaction-script" target="_blank" rel="noopener">深入理解比特币交易的脚本</a></li>
+<li><a href="http://www.8btc.com/bitcoin_contracts" target="_blank" rel="noopener">比特币合同</a></li>
+</ol>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-10-07T08:08:59.442Z" itemprop="dateUpdated">2020-10-07 16:08:59</time>
+</span><br>
+
+
+        
+        本文永久地址：<a href="/2018/02/14/bitcoin-script/" target="_blank" rel="external">http://blog.buerya.cn/2018/02/14/bitcoin-script/</a>
+        
+    </div>
+    <footer>
+        <a href="http://blog.buerya.cn">
+            <img src="/img/avatar.jpg" alt="Juan">
+            Juan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/交易结构/">交易结构</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/区块链/">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/区块链技术/">区块链技术</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/比特币/">比特币</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/比特币脚本/">比特币脚本</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.buerya.cn/2018/02/14/bitcoin-script/&title=《比特币脚本及交易分析 - 智能合约雏形》 — 梦想小筑&pic=http://blog.buerya.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.buerya.cn/2018/02/14/bitcoin-script/&title=《比特币脚本及交易分析 - 智能合约雏形》 — 梦想小筑&source=初级程序员,Juan`s blogs" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.buerya.cn/2018/02/14/bitcoin-script/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《比特币脚本及交易分析 - 智能合约雏形》 — 梦想小筑&url=http://blog.buerya.cn/2018/02/14/bitcoin-script/&via=http://blog.buerya.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.buerya.cn/2018/02/14/bitcoin-script/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/02/14/merkle/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">比特币区块结构Merkle树及简单支付验证分析</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/02/13/bitcoin-p2p/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">分析比特币网络：一种去中心化、点对点的网络架构</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comment comments vcomment" id="comments"></div>
+    <script src="//cdnjs.cat.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="//cdn1.lncld.net/static/js/3.5.0/av-min.js"></script>
+    <script src="/js/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var notify = 'false';
+        var verify = 'false';
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            av: AV,
+            el: '#comments',
+            notify: notify,
+            verify: verify,
+            appId: "LoojPRMy175IgqwnQtytrgOY-9Nh9j0Va",
+            appKey: "45VXhysB6in2v1IOL1kaC5tQ",
+            avatar: "mm",
+            placeholder: "ヾﾉ≧∀≦)o来啊，快活啊!",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢你给我买糖果吃O(∩_∩)O~~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Juan &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备17077370号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.buerya.cn/2018/02/14/bitcoin-script/&title=《比特币脚本及交易分析 - 智能合约雏形》 — 梦想小筑&pic=http://blog.buerya.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.buerya.cn/2018/02/14/bitcoin-script/&title=《比特币脚本及交易分析 - 智能合约雏形》 — 梦想小筑&source=初级程序员,Juan`s blogs" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.buerya.cn/2018/02/14/bitcoin-script/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《比特币脚本及交易分析 - 智能合约雏形》 — 梦想小筑&url=http://blog.buerya.cn/2018/02/14/bitcoin-script/&via=http://blog.buerya.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.buerya.cn/2018/02/14/bitcoin-script/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMElEQVR42u3awW6EMAxF0fn/n6ZSV61U4D47Uw3OzQohCDmz8NhxXi88ju/x85rcIddn4/WOIUOGjMcyyHRk6nQG8mRAlSFDxgYMEmTJ89dB8wxDvnuzZhkyZMg4WdwRDp5oypAhQ0Yn4JJ3yRLTNFGGDBkySIgkG221OUmgX1aLy5Ah44GMWmPgf67f3t+QIUPGxzOO0kiTPBJYW4WxDBkyRjOuU7S0NO1TawWwDBkyZjPSw1spjx8j403QP2aQIUPGBox0C4wUutd3asfFiv8AMmTI2IBRSwT5dj8/cnGTGsqQIWMoI31hWSuxtDGHtttkyJAxlNEvQTshm++boZ9bhgwZ4xidLf40NawlmnEnVoYMGeMYnc+kxyb4hhr/ERd0WWXIkPEoRu01cj99Ny19ZciQMZvBi8l0dMJuei1DhozZjM5RCR5qO8/H7QcZMmSMZnTOLfAjEddLRCFVhgwZmzF4Y7L2bmfRpJ35q4iVIUPGUEYar9J2Y1qI1g6HyZAhYzcGL2LT4rYGDpJFGTJkbMDobM3zDbIUwJEyZMiYzegcnugc4Uo3/YPnZciQMYhRO0KRtg1WNT5PvytDhozRjE5Tk4TUWsCtNQ9kyJAxm5EGWd625PfTQjfYyZMhQ8YgRlq4dloItdh/k2LKkCFDRphL8vDKw/figCtDhoyhjDTt6xS0rTpbhgwZQxmkiE0Xx+cvBlkZMmRsw+g0BsiC0oXyNHFZf0OGDBmfy/gCiH0ZBuDsntgAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261704531&web_id=1261704531')
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.0"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.0" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '(つェ⊂) 我藏好了哦~ ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(*´∇｀*) 被你发现啦~ ';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

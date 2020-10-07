@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65558107"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    <meta name="google-site-verification" content="ar7mIVYsjkAi2k9jIuWk34S9A2aVwBdQqFkfL4AKEBQ" >
+    
+    
+    
+    <title>比特币如何达成共识 - 最长链的选择 | 梦想小筑 | 坚定的走吧，毕竟梦想在远方，未来在远方，终点也在远方。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="比特币,共识协议">
+    <meta name="description" content="比特币没有中心机构，几乎所有的完整节点都有一份公共总帐本，那么大家如何达成共识：确认哪一份才是公认权威的总账本呢？ 为什么要遵守协议这其实是一个经济问题，在经济活动中的每个人都是自私自利的，追求的是利益的最大化，一个节点工作量只有在其他的节点认同其是有效的（打包的新区块，其他的节点只有验证通过才会加入到区块链中，并在网络上传播），才能够过得收益，而只有遵守规则才会得到其他的节点认同。因此，基于逐">
+<meta name="keywords" content="比特币,共识协议">
+<meta property="og:type" content="article">
+<meta property="og:title" content="比特币如何达成共识 - 最长链的选择">
+<meta property="og:url" content="http://blog.buerya.cn/2018/03/03/bitcoin-sonsensus/index.html">
+<meta property="og:site_name" content="梦想小筑">
+<meta property="og:description" content="比特币没有中心机构，几乎所有的完整节点都有一份公共总帐本，那么大家如何达成共识：确认哪一份才是公认权威的总账本呢？ 为什么要遵守协议这其实是一个经济问题，在经济活动中的每个人都是自私自利的，追求的是利益的最大化，一个节点工作量只有在其他的节点认同其是有效的（打包的新区块，其他的节点只有验证通过才会加入到区块链中，并在网络上传播），才能够过得收益，而只有遵守规则才会得到其他的节点认同。因此，基于逐">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/block_branch.jpg">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/block_branch2.jpg">
+<meta property="og:updated_time" content="2020-10-07T08:08:59.443Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="比特币如何达成共识 - 最长链的选择">
+<meta name="twitter:description" content="比特币没有中心机构，几乎所有的完整节点都有一份公共总帐本，那么大家如何达成共识：确认哪一份才是公认权威的总账本呢？ 为什么要遵守协议这其实是一个经济问题，在经济活动中的每个人都是自私自利的，追求的是利益的最大化，一个节点工作量只有在其他的节点认同其是有效的（打包的新区块，其他的节点只有验证通过才会加入到区块链中，并在网络上传播），才能够过得收益，而只有遵守规则才会得到其他的节点认同。因此，基于逐">
+<meta name="twitter:image" content="http://qiniu.buerya.cn/static/block_branch.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="梦想小筑" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.0">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Juan</h5>
+          <a href="mailto:quewen08@gmail.com" title="quewen08@gmail.com" class="mail">quewen08@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/trover-gaoyou" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/shandingjurenww" target="_blank" >
+                <i class="icon icon-lg icon-twitter"></i>
+                Twitter
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.instagram.com/juan95_cn" target="_blank" >
+                <i class="icon icon-lg icon-instagram"></i>
+                Instagram
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/source"  >
+                <i class="icon icon-lg icon-link"></i>
+                友情链接
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+	<img id="aimg_H2R2r" class="zoom" src="https://apa.me/news/?s=5qKm5oOz5bCP562R" border="0" alt="" width="500" height="210" initialized="true">
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">比特币如何达成共识 - 最长链的选择</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">比特币如何达成共识 - 最长链的选择</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-03-02T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2018-03-03
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/">深入浅出区块链</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/比特币/">比特币</a></li></ul></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#为什么要遵守协议"><span class="post-toc-number">1.</span> <span class="post-toc-text">为什么要遵守协议</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#去中心化共识"><span class="post-toc-number">2.</span> <span class="post-toc-text">去中心化共识</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#最长链的选择"><span class="post-toc-number">3.</span> <span class="post-toc-text">最长链的选择</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分叉"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">分叉</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分叉解决"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">分叉解决</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-bitcoin-sonsensus"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">比特币如何达成共识 - 最长链的选择</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-03-03 00:00:00" datetime="2018-03-02T16:00:00.000Z"  itemprop="datePublished">2018-03-03</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/">深入浅出区块链</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/比特币/">比特币</a></li></ul></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <script src="\assets\js\APlayer.min.js"> </script><p>比特币没有中心机构，几乎所有的完整节点都有一份公共总帐本，那么大家如何达成共识：确认哪一份才是公认权威的总账本呢？</p>
+<h2 id="为什么要遵守协议"><a href="#为什么要遵守协议" class="headerlink" title="为什么要遵守协议"></a>为什么要遵守协议</h2><p>这其实是一个经济问题，在经济活动中的每个人都是自私自利的，追求的是利益的最大化，一个节点工作量只有在其他的节点认同其是有效的（打包的新区块，其他的节点只有验证通过才会加入到区块链中，并在网络上传播），才能够过得收益，<br>而只有遵守规则才会得到其他的节点认同。<br>因此，基于逐利，节点就会自发的遵守协议。共识就是数以万计的独立节点遵守了简单的规则（通过异步交互）自发形成的。</p>
+<blockquote>
+<p>共识：共同遵守的协议规范</p>
+</blockquote>
+<h2 id="去中心化共识"><a href="#去中心化共识" class="headerlink" title="去中心化共识"></a>去中心化共识</h2><p>在<a href="/posts/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/2018-02-24-init-env.html">工作量证明</a>一篇，我们了解通过工作量证明来竞争记账，权威的总帐本是怎么达到共识的，没有完全说清楚，今天补上，<br>实际上，比特币的共识由所有节点的4个<strong>独立过程</strong> 相互作用而产生：</p>
+<ol>
+<li>每个节点（挖矿节点）依据标准对每个交易进行独立验证</li>
+<li>挖矿节点通过完成工作量证明，将交易记录独立打包进新区块</li>
+<li>每个节点独立的对新区块进行校验并组装进区块链</li>
+<li>每个节点对区块链进行独立选择，在工作量证明机制下选择累计工作量最大的区块链</li>
+</ol>
+<p>共识最终目的是保证比特币不停的在工作量最大的区块链上运转，工作量最大的区块链就是权威的公共总帐本。</p>
+<p>第1 2 3步在<a href="">比特币如何挖矿-工作量证明</a>一篇有提到过，下面着重讲第4步。</p>
+<h2 id="最长链的选择"><a href="#最长链的选择" class="headerlink" title="最长链的选择"></a>最长链的选择</h2><p>先来一个定义，把累计了最多难度的区块链。在一般情况下，也是包含最多区块的那个链称为主链<br>每一个（挖矿）节点总是选择并尝试延长主链。</p>
+<h3 id="分叉"><a href="#分叉" class="headerlink" title="分叉"></a>分叉</h3><p>当有两名矿工在几乎在相同的时间内，各自都算得了工作量证明解，便立即传播自己的“获胜”区块到网络中，先是传播给邻近的节点而后传播到整个网络。每个收到有效区块的节点都会将其并入并延长区块链。<br>当这个两个区块传播时，一些节点首先收到#3458A, 一些节点首先收到#3458B，这两个候选区块（通常这两个候选区块会包含几乎相同的交易）都是主链的延伸，分叉就会产生，这时分叉出有竞争关系的两条链，如图：</p>
+<p><img src="http://qiniu.buerya.cn/static/block_branch.jpg" alt=""></p>
+<p>两个块都收到的节点，会把其中有更多工作量的一条会继续作为主链，另一条作为<strong>备用链</strong> 保存（保存是因为备用链将来可能会超过主链难度称为新主链）。</p>
+<h3 id="分叉解决"><a href="#分叉解决" class="headerlink" title="分叉解决"></a>分叉解决</h3><p>收到#3458A的（挖矿）节点，会立刻以这个区块为父区块来产生新的候选区块，并尝试寻找这个候选区块的工作量证明解。同样地，接受#3458B区块的节点会以这个区块为链的顶点开始生成新块，延长这个链（下面称为B链）。<br>这时总会有一方抢先发现工作量证明解并将其传播出去，假设以#3458B为父区块的工作量证明首先解出，如图：</p>
+<p><img src="http://qiniu.buerya.cn/static/block_branch2.jpg" alt=""></p>
+<p>当原本以#3458A为父区块求解的节点在收到#3458B, #3459B之后，会立刻将B链作为主链（因为#3458A为顶点的链已经不是最长链了）继续挖矿。</p>
+<blockquote>
+<p>节点也有可能先收到#3459B，再收到#3458B，收到#3459B时，会被认为是“孤块“（因为还找不到#3459B的父块#3458B）保存在孤块池中，一旦收到父块#3458B时，节点就会将孤块从孤块池中取出，并且连接到它的父区块，让它作为区块链的一部分。</p>
+</blockquote>
+<p>比特币将区块间隔设计为10分钟，是在更快速的交易确认和更低的分叉概率间作出的妥协。更短的区块产生间隔会让交易确认更快地完成，也会导致更加频繁地区块链分叉。与之相对地，长的间隔会减少分叉数量，却会导致更长的确认时间。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-10-07T08:08:59.443Z" itemprop="dateUpdated">2020-10-07 16:08:59</time>
+</span><br>
+
+
+        
+        本文永久地址：<a href="/2018/03/03/bitcoin-sonsensus/" target="_blank" rel="external">http://blog.buerya.cn/2018/03/03/bitcoin-sonsensus/</a>
+        
+    </div>
+    <footer>
+        <a href="http://blog.buerya.cn">
+            <img src="/img/avatar.jpg" alt="Juan">
+            Juan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/共识协议/">共识协议</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/比特币/">比特币</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.buerya.cn/2018/03/03/bitcoin-sonsensus/&title=《比特币如何达成共识 - 最长链的选择》 — 梦想小筑&pic=http://blog.buerya.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.buerya.cn/2018/03/03/bitcoin-sonsensus/&title=《比特币如何达成共识 - 最长链的选择》 — 梦想小筑&source=初级程序员,Juan`s blogs" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.buerya.cn/2018/03/03/bitcoin-sonsensus/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《比特币如何达成共识 - 最长链的选择》 — 梦想小筑&url=http://blog.buerya.cn/2018/03/03/bitcoin-sonsensus/&via=http://blog.buerya.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.buerya.cn/2018/03/03/bitcoin-sonsensus/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/03/05/solidity2/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">智能合约语言 Solidity 教程系列2 - 类型介绍</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/03/01/solidity1/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">智能合约语言 Solidity 教程系列1 - 类型介绍</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comment comments vcomment" id="comments"></div>
+    <script src="//cdnjs.cat.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="//cdn1.lncld.net/static/js/3.5.0/av-min.js"></script>
+    <script src="/js/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var notify = 'false';
+        var verify = 'false';
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            av: AV,
+            el: '#comments',
+            notify: notify,
+            verify: verify,
+            appId: "LoojPRMy175IgqwnQtytrgOY-9Nh9j0Va",
+            appKey: "45VXhysB6in2v1IOL1kaC5tQ",
+            avatar: "mm",
+            placeholder: "ヾﾉ≧∀≦)o来啊，快活啊!",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢你给我买糖果吃O(∩_∩)O~~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Juan &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备17077370号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.buerya.cn/2018/03/03/bitcoin-sonsensus/&title=《比特币如何达成共识 - 最长链的选择》 — 梦想小筑&pic=http://blog.buerya.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.buerya.cn/2018/03/03/bitcoin-sonsensus/&title=《比特币如何达成共识 - 最长链的选择》 — 梦想小筑&source=初级程序员,Juan`s blogs" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.buerya.cn/2018/03/03/bitcoin-sonsensus/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《比特币如何达成共识 - 最长链的选择》 — 梦想小筑&url=http://blog.buerya.cn/2018/03/03/bitcoin-sonsensus/&via=http://blog.buerya.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.buerya.cn/2018/03/03/bitcoin-sonsensus/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACL0lEQVR42u3au47DMAxEUf//T3ubLQIEVmY4dCHqugoCw9JRQYiP65Kf++P5/Ofpne/n+01lleYHBgwY2zKU5V3G06b1tdyjgQEDxgmMpwiW/P6x8DJy6nuDAQMGjGS76xC8/g4MGDBgJIz1wnoavD4UGDBgwKglscplTtmQgnkxF4cBA8aGjCSxfPv3K/0NGDBgbMW4zScvvfXu5/+bMGDAGM3QA1xSSnOHKoopMQwYMEYz9GBXK8a5RT39sIoxGwYMGJsz9IZBvsUkSTa6HDBgwNicUQuatbS21jSVSm8wYMA4huFexWoBWm9DRtMiMGDAGMdI2gBd/7ghHgYMGOcw3DZAV0sgOVBjLAMGDBgjGEmwU0KhGyjdQh4MGDDOYbjFMjcBrvGMg4MBA8ZohrKMexGsjWt0lfZgwIAxj5EEXD0U6k1Qffis7WoIAwaMTRjusIUOUy6CUV0wmRmBAQPGVgy3vJUPVdQaD487gQEDxmhGUqx3B8jscr95NDBgwJjN0IOpnujqQ2a1ktyPohsMGDAOY9Qak0p63Jw8w4AB42BGL16n2uvCgAFjKOM2Hz0Eu81Rvc1pzIbAgAFjBCMvuiWNzNqAhXthhQEDxgyGHmTdVkEtJa7tAQYMGCcw9GZA3gDQv2/n4jBgwIAhXwSV8Oo2DC53eRgwYBzP0JesFdqUFLoh4MKAAWMrht4MUBLa9ZfdmKmU/2DAgDGbkdy73I8mpIamJgwYMPZj/AGokZ07jP+f5wAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261704531&web_id=1261704531')
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.0"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.0" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '(つェ⊂) 我藏好了哦~ ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(*´∇｀*) 被你发现啦~ ';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

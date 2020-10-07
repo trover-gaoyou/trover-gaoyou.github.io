@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65558107"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    <meta name="google-site-verification" content="ar7mIVYsjkAi2k9jIuWk34S9A2aVwBdQqFkfL4AKEBQ" >
+    
+    
+    
+    <title>ConstraintLayout 完全解析 | 梦想小筑 | 坚定的走吧，毕竟梦想在远方，未来在远方，终点也在远方。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="技术知识,Android,ConstraintLayout,约束布局">
+    <meta name="description" content="ConstraintLayout 完全解析 原文链接：ConstraintLayout 完全解析 快来优化你的布局吧 作者：张鸿洋  一、概述ConstraintLayout出现有一段时间了，不过一直没有特别去关注，也多多少少看了一些文字介绍，多数都是对使用可视化布局拖拽，个人对拖拽一直不看好，直到前段时间看到该文：  解析ConstraintLayout的性能优势  非常详尽的介绍了Const">
+<meta name="keywords" content="技术知识,Android,ConstraintLayout,约束布局">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ConstraintLayout 完全解析">
+<meta property="og:url" content="http://blog.buerya.cn/2018/01/11/android_constraintlayout/index.html">
+<meta property="og:site_name" content="梦想小筑">
+<meta property="og:description" content="ConstraintLayout 完全解析 原文链接：ConstraintLayout 完全解析 快来优化你的布局吧 作者：张鸿洋  一、概述ConstraintLayout出现有一段时间了，不过一直没有特别去关注，也多多少少看了一些文字介绍，多数都是对使用可视化布局拖拽，个人对拖拽一直不看好，直到前段时间看到该文：  解析ConstraintLayout的性能优势  非常详尽的介绍了Const">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/constraint/10001.jpeg">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/constraint/10002.jpeg">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/constraint/10003.jpeg">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/constraint/10004.jpeg">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/constraint/10005.jpeg">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/constraint/10006.jpeg">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/constraint/10007.jpeg">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/constraint/10008.jpeg">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/constraint/10009.jpeg">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/constraint/10010.jpeg">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/constraint/10011.jpeg">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/constraint/10012.jpeg">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/constraint/10013.jpeg">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/constraint/10014.jpeg">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/constraint/10015.jpeg">
+<meta property="og:updated_time" content="2020-10-07T08:08:59.437Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ConstraintLayout 完全解析">
+<meta name="twitter:description" content="ConstraintLayout 完全解析 原文链接：ConstraintLayout 完全解析 快来优化你的布局吧 作者：张鸿洋  一、概述ConstraintLayout出现有一段时间了，不过一直没有特别去关注，也多多少少看了一些文字介绍，多数都是对使用可视化布局拖拽，个人对拖拽一直不看好，直到前段时间看到该文：  解析ConstraintLayout的性能优势  非常详尽的介绍了Const">
+<meta name="twitter:image" content="http://qiniu.buerya.cn/static/constraint/10001.jpeg">
+    
+        <link rel="alternate" type="application/atom+xml" title="梦想小筑" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.0">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Juan</h5>
+          <a href="mailto:quewen08@gmail.com" title="quewen08@gmail.com" class="mail">quewen08@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/trover-gaoyou" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/shandingjurenww" target="_blank" >
+                <i class="icon icon-lg icon-twitter"></i>
+                Twitter
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.instagram.com/juan95_cn" target="_blank" >
+                <i class="icon icon-lg icon-instagram"></i>
+                Instagram
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/source"  >
+                <i class="icon icon-lg icon-link"></i>
+                友情链接
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+	<img id="aimg_H2R2r" class="zoom" src="https://apa.me/news/?s=5qKm5oOz5bCP562R" border="0" alt="" width="500" height="210" initialized="true">
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">ConstraintLayout 完全解析</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">ConstraintLayout 完全解析</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-01-11T03:21:00.000Z" itemprop="datePublished" class="page-time">
+  2018-01-11
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android/">Android</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android/ConstraintLayout/">ConstraintLayout</a></li></ul></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#ConstraintLayout-完全解析"><span class="post-toc-number">1.</span> <span class="post-toc-text">ConstraintLayout 完全解析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一、概述"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">一、概述</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#二、来编写一个Feed-Item"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">二、来编写一个Feed Item</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#和RL的差异"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">和RL的差异</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#三、增加一个banner"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">三、增加一个banner</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#四、增加几个Tab"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">四、增加几个Tab</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#五、增加浮动按钮"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">五、增加浮动按钮</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#六、尝试使用Guideline"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">六、尝试使用Guideline</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#六、总结"><span class="post-toc-number">1.8.</span> <span class="post-toc-text">六、总结</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-android_constraintlayout"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">ConstraintLayout 完全解析</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-01-11 11:21:00" datetime="2018-01-11T03:21:00.000Z"  itemprop="datePublished">2018-01-11</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android/">Android</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android/ConstraintLayout/">ConstraintLayout</a></li></ul></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <script src="\assets\js\APlayer.min.js"> </script><h1 id="ConstraintLayout-完全解析"><a href="#ConstraintLayout-完全解析" class="headerlink" title="ConstraintLayout 完全解析"></a>ConstraintLayout 完全解析</h1><blockquote>
+<p>原文链接：<a href="http://blog.csdn.net/lmj623565791/article/details/78011599" target="_blank" rel="noopener">ConstraintLayout 完全解析 快来优化你的布局吧</a></p>
+<p>作者：张鸿洋</p>
+</blockquote>
+<h2 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h2><p>ConstraintLayout出现有一段时间了，不过一直没有特别去关注，也多多少少看了一些文字介绍，多数都是对使用可视化布局拖拽，个人对拖拽一直不看好，直到前段时间看到该文：</p>
+<ul>
+<li><a href="https://mp.weixin.qq.com/s/gGR2itbY7hh9fo61SxaMQQ" target="_blank" rel="noopener">解析ConstraintLayout的性能优势</a></li>
+</ul>
+<p>非常详尽的介绍了ConstraintLayout的性能优势，于是乎开始学习了一下ConstraintLayout。</p>
+<p>本文的重点不在与可视化界面的学习，而在于如何手写各类约束布局属性。对于可视化界面学习推荐：</p>
+<ul>
+<li><a href="http://blog.csdn.net/guolin_blog/article/details/53122387" target="_blank" rel="noopener">Android新特性介绍，ConstraintLayout完全解析</a></li>
+</ul>
+<p>下面开始进入正题，大家都知道，当布局嵌套深入比较深的时候，往往会伴随着一些性能问题。所以很多时候我们建议使用RelativeLayout或者GridLayout来简化掉布局的深度。</p>
+<p>而对于简化布局深度，ConstraintLayout几乎可以做到极致，接下来我们通过实例来尽可能将所有常见的属性一步步的介绍清楚。</p>
+<p>首先需要引入我们的ConstraintLayout，在build.gradle中加入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compile &apos;com.android.support.constraint:constraint-layout:1.0.2&apos;</span><br></pre></td></tr></table></figure>
+<h2 id="二、来编写一个Feed-Item"><a href="#二、来编写一个Feed-Item" class="headerlink" title="二、来编写一个Feed Item"></a>二、来编写一个Feed Item</h2><p>我们先看一个简单的新闻列表中常见的feed item。<br><img src="http://qiniu.buerya.cn/static/constraint/10001.jpeg" alt=""></p>
+<p>看到这样的布局，大家条件反射应该就是使用RelativeLayout来做，当然了，本案例我们使用ConstraintLayout来写：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">android.support.constraint.ConstraintLayout</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:app</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:id</span>=<span class="string">"@+id/activity_main"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:background</span>=<span class="string">"#11ff0000"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">tools:context</span>=<span class="string">"com.zhy.constrantlayout_learn.MainActivity"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/tv1"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"140dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"86dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_marginLeft</span>=<span class="string">"12dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_marginTop</span>=<span class="string">"12dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:background</span>=<span class="string">"#fd3"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:layout_constraintLeft_toLeftOf</span>=<span class="string">"parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:layout_constraintTop_toTopOf</span>=<span class="string">"parent"</span></span></span><br><span class="line"><span class="tag">        /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/tv2"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"0dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_marginLeft</span>=<span class="string">"8dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_marginRight</span>=<span class="string">"12dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">"马云:一年交税170多亿马云:一年交税170多亿马云:一年交税170多亿"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textColor</span>=<span class="string">"#000000"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textSize</span>=<span class="string">"16dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:layout_constraintLeft_toRightOf</span>=<span class="string">"@id/tv1"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:layout_constraintRight_toRightOf</span>=<span class="string">"parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:layout_constraintTop_toTopOf</span>=<span class="string">"@id/tv1"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_marginLeft</span>=<span class="string">"8dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_marginTop</span>=<span class="string">"12dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">"8分钟前"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textColor</span>=<span class="string">"#333"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textSize</span>=<span class="string">"12dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:layout_constraintLeft_toRightOf</span>=<span class="string">"@id/tv1"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:layout_constraintBottom_toBottomOf</span>=<span class="string">"@id/tv1"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">android.support.constraint.ConstraintLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>看上面的布局，我们好像看到了几个模式的属性：</p>
+<p>首先是tv1，有两个没见过的属性：</p>
+<ul>
+<li>app:layout_constraintLeft_toLeftOf=”parent”</li>
+</ul>
+<p>从字面上看，指的是让该控件的左侧与父布局对齐，当我们希望控件A与控件B左侧对齐时，就可以使用该属性。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app:layout_constraintLeft_toLeftOf="@id/viewB"</span><br></pre></td></tr></table></figure>
+<p>类似的还有个相似的属性为：</p>
+<ul>
+<li>app:layout_constraintLeft_toRightOf</li>
+</ul>
+<p>很好理解，即当前属性的左侧在谁的右侧，当我们希望控件A在控件B的右侧时，可以设置：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app:layout_constraintLeft_toRightOf="@id/viewB"</span><br></pre></td></tr></table></figure>
+<p>与之类似的还有几个属性：</p>
+<ul>
+<li>layout_constraintRight_toLeftOf</li>
+<li>layout_constraintRight_toRightOf</li>
+<li>layout_constraintTop_toTopOf</li>
+<li>layout_constraintTop_toBottomOf</li>
+<li>layout_constraintBottom_toTopOf</li>
+<li>layout_constraintBottom_toBottomOf</li>
+<li>layout_constraintBaseline_toBaselineOf</li>
+</ul>
+<p>类推就可以了。</p>
+<p>现在在头看刚才的布局：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">tv1设置了：</span><br><span class="line"></span><br><span class="line">app:layout_constraintLeft_toLeftOf="parent"</span><br><span class="line">app:layout_constraintTop_toTopOf="parent"</span><br><span class="line"></span><br><span class="line">tv2设置了：</span><br><span class="line"></span><br><span class="line">app:layout_constraintLeft_toRightOf="@id/tv1"</span><br><span class="line">app:layout_constraintRight_toRightOf="parent"</span><br><span class="line">app:layout_constraintTop_toTopOf="@id/tv1"</span><br><span class="line"></span><br><span class="line">tv3设置了：</span><br><span class="line"></span><br><span class="line">app:layout_constraintLeft_toRightOf="@id/tv1"</span><br><span class="line">app:layout_constraintBottom_toBottomOf="@id/tv1"</span><br></pre></td></tr></table></figure>
+<p>按照我们刚才的理解，再次的解读下：</p>
+<p>tv1应该是在父布局的左上角；</p>
+<p>tv2在tv1的右侧，tv2的右侧和父布局对其，tv2和tv1顶部对齐；</p>
+<p>tv3在tv1的右侧，tv3和tv1底部对其。</p>
+<p>到这里，大家可以看到，目前我们已经可以控制任何一个控件与其他控件间的相对位置了，以及与parent间的相对位置。</p>
+<h2 id="和RL的差异"><a href="#和RL的差异" class="headerlink" title="和RL的差异"></a>和RL的差异</h2><p>大家是不是觉得目前来看和RelativeLayout特别像？</p>
+<p>其实还是有很明显的区别的，我们通过一个例子来看一下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">RelativeLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span> <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/id_btn01"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"100dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">"Btn01"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_toRightOf</span>=<span class="string">"@id/id_btn01"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">"Btn02"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_alignParentRight</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">        /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">RelativeLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://qiniu.buerya.cn/static/constraint/10002.jpeg" alt=""></p>
+<p>那么经过我们刚才的学习，把：</p>
+<blockquote>
+<p>layout_toRightOf=”@id/id_btn01”<br>layout_alignParentRight=”true”</p>
+</blockquote>
+<p>分别替换为：</p>
+<blockquote>
+<p>app:layout_constraintLeft_toRightOf=”@id/id_btn01”<br>app:layout_constraintRight_toRightOf=”parent”</p>
+</blockquote>
+<p>是不是觉得so easy ，但是我们看一下效果图：</p>
+<p><img src="http://qiniu.buerya.cn/static/constraint/10003.jpeg" alt=""></p>
+<p>是不是和预期有一定的区别，假设你将Btn02的宽度设置的非常大，你会发现更加诡异的事情：</p>
+<p><img src="http://qiniu.buerya.cn/static/constraint/10004.jpeg" alt=""></p>
+<p>你会发现Btn02，好像疯了一样，我们设置的在btn01右侧，和与parent右侧对齐完全失效了！！！</p>
+<p>别怕，接下来就让你认识到为什么这个控件叫做“Constraint”Layout。</p>
+<p>在当控件有自己设置的宽度，例如warp_content、固定值时，我们为控件添加的都是约束“Constraint”，这个约束有点像橡皮筋一样会拉这个控件，但是并不会改变控件的尺寸（RL很明显不是这样的）。</p>
+<p>例如上例，当btn02的宽度较小时，我们为其左侧设置了一个约束（btn01右侧），右侧设置了一个约束（parent右侧对其），当两个约束同时生效的时候（你可以认为两边都是相同的一个拉力），btn02会居中。</p>
+<p>当btn02特别大的时候，依然是这两个力，那么会发生什么？会造成左侧和右侧超出的距离一样大。</p>
+<p>那么现在大家肯定有些疑问：</p>
+<ul>
+<li>怎么样才能和上面的RL一样，宽度刚好占据剩下的距离呢（btn01右侧到屏幕右侧的距离）？</li>
+</ul>
+<p>这个问题，问得很好，我们刚才所有的尝试都是在控件自身拥有特定的宽度情况下执行的；那么如果希望控件的宽度根据由约束来控件，不妨去掉这个特定的宽度，即设置为0试试？</p>
+<p>对！当我们将btn02的宽度设置为0时，一切又变得很完美。</p>
+<p><img src="http://qiniu.buerya.cn/static/constraint/10005.jpeg" alt=""></p>
+<p>那么这里，你可能会问0值是什么含义，其实在ConstraintLayout中0代表：MATCH_CONSTRAINT，看到这个常量，是不是瞬间觉得好理解了一点。</p>
+<ul>
+<li>最后一个问题，MATCH_PARENT哪去了?</li>
+</ul>
+<p>看官网的解释：</p>
+<blockquote>
+<p>Important: <code>MATCH_PARENT</code> is not supported for widgets contained in a ConstraintLayout, though similar behavior can be defined by using <code>MATCH_CONSTRAINT</code> with the corresponding left/right or top/bottom constraints being set to “parent”.`</p>
+</blockquote>
+<p>所以你可以认为：在ConstraintLayout中已经不支持<code>MATCH_PARENT</code>这个值了，你可以通过<code>MATCH_CONSTRAINT</code>配合约束实现类似的效果。</p>
+<h2 id="三、增加一个banner"><a href="#三、增加一个banner" class="headerlink" title="三、增加一个banner"></a>三、增加一个banner</h2><p>我们现在以往在这个feed item顶部添加一个banner，宽度为占据整个屏幕，宽高比为16：6。</p>
+<p>这里尴尬了，在之前的做法，很难在布局中设置宽高比，一般我们都需要在代码中显示的去操作，那么如果你用了ConstraintLayout，它就支持。</p>
+<p>看一眼如何支持：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">android.support.constraint.ConstraintLayout</span></span></span><br><span class="line"><span class="tag">    <span class="attr">...</span></span></span><br><span class="line"><span class="tag">    <span class="attr">tools:context</span>=<span class="string">"com.zhy.constrantlayout_learn.MainActivity"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/banner"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"0dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"0dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:background</span>=<span class="string">"#765"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:gravity</span>=<span class="string">"center"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">"Banner"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:layout_constraintDimensionRatio</span>=<span class="string">"H,16:6"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:layout_constraintLeft_toLeftOf</span>=<span class="string">"parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:layout_constraintRight_toRightOf</span>=<span class="string">"parent"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/tv1"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:layout_constraintTop_toBottomOf</span>=<span class="string">"@id/banner"</span></span></span><br><span class="line"><span class="tag">        &gt;</span><span class="tag">&lt;/<span class="name">TextView</span>&gt;</span></span><br><span class="line">     ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">...</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>我们添加了一个banner，还记得我们刚才所说的么，不要使用match_parent了，而是设置match_contraint，即0，让约束来控制布局宽高。</p>
+<p>所以我们设置了宽、高都是<code>match_contraint</code>，然后这两个属性：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">app:layout_constraintLeft_toLeftOf=&quot;parent&quot;</span><br><span class="line">app:layout_constraintRight_toRightOf=&quot;parent&quot;</span><br></pre></td></tr></table></figure>
+<p>让我们的宽度充满整个父布局，在添加一个：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app:layout_constraintDimensionRatio=&quot;16:6&quot;</span><br></pre></td></tr></table></figure>
+<p>该属性指的是宽高比，所以16：6就可以完成我们的需求。</p>
+<p>好了看下效果图：</p>
+<p><img src="http://qiniu.buerya.cn/static/constraint/10006.jpeg" alt=""></p>
+<p>这个宽高比属性，还支持这样的写法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">app:layout_constraintDimensionRatio=&quot;W,16:6&quot;</span><br><span class="line">app:layout_constraintDimensionRatio=&quot;H,16:6&quot;</span><br></pre></td></tr></table></figure>
+<p>可以自己试验下。</p>
+<p>好了，到这里，我们又新增了一个属性，还是个非常实用的属性。</p>
+<p>那么，我们继续，再看一个似曾相识的功能。</p>
+<h2 id="四、增加几个Tab"><a href="#四、增加几个Tab" class="headerlink" title="四、增加几个Tab"></a>四、增加几个Tab</h2><p>现在我们希望在底部增加3个tab，均分。是不是想到了LinearLayout和weight。</p>
+<p>没错！ConstraintLayout也支持类似的属性。</p>
+<p>虽然我知道，但是写到这我还是有点小惊喜~~</p>
+<p>看下如何实现：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:id</span>=<span class="string">"@+id/tab1"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"0dp"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"30dp"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:background</span>=<span class="string">"#f67"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:gravity</span>=<span class="string">"center"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:text</span>=<span class="string">"Tab1"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:layout_constraintBottom_toBottomOf</span>=<span class="string">"parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:layout_constraintLeft_toLeftOf</span>=<span class="string">"parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:layout_constraintRight_toLeftOf</span>=<span class="string">"@+id/tab2"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:id</span>=<span class="string">"@+id/tab2"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"0dp"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"30dp"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:background</span>=<span class="string">"#A67"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:gravity</span>=<span class="string">"center"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:text</span>=<span class="string">"Tab2"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:layout_constraintBottom_toBottomOf</span>=<span class="string">"parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:layout_constraintLeft_toRightOf</span>=<span class="string">"@id/tab1"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:layout_constraintRight_toLeftOf</span>=<span class="string">"@+id/tab3"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:id</span>=<span class="string">"@+id/tab3"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"0dp"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"30dp"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:background</span>=<span class="string">"#767"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:gravity</span>=<span class="string">"center"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:text</span>=<span class="string">"Tab3"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:layout_constraintBottom_toBottomOf</span>=<span class="string">"parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:layout_constraintLeft_toRightOf</span>=<span class="string">"@id/tab2"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:layout_constraintRight_toRightOf</span>=<span class="string">"parent"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>我们增加3个textview来冒充tab。我们看横向的依赖，3个tab两两设置了约束（即你在我们的左边，我在你的右边），最外层的设置了parent约束；再加上我们把宽度都设置为了match_constraint，so，这样我们就完成了3个tab等分。</p>
+<p>看一眼效果图：</p>
+<p><img src="http://qiniu.buerya.cn/static/constraint/10007.jpeg" alt=""></p>
+<p>你可能会说，LL配合weight更加灵活，可以单个设置占据的比例。</p>
+<p>对，没错，我们也支持，我不是还没说完么。</p>
+<p>现在我们可以给每个tab设置一个属性：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app:layout_constraintHorizontal_weight</span><br></pre></td></tr></table></figure>
+<p>看到这个名字，应该就明白了吧，假设我们分别设置值为2，1，1。</p>
+<p>效果图为：</p>
+<p><img src="http://qiniu.buerya.cn/static/constraint/10008.jpeg" alt=""></p>
+<p>是不是很惊喜，别急，刚才你说我不如LL，现在我要让你再看一些LL配合weight做不到的。</p>
+<p>这里需要借助几张官网上的图了：</p>
+<p>刚才我们说了，3个tab两两设置了依赖，即类似下图：</p>
+<p><img src="http://qiniu.buerya.cn/static/constraint/10009.jpeg" alt=""></p>
+<p>横向的相当于组成了一个链(Chains)。在这个链的最左侧的元素成为链头，我们可以在其身上设置一些属性，来决定这个链的展示效果：</p>
+<p>该属性为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">layout_constraintHorizontal_chainStyle</span><br></pre></td></tr></table></figure>
+<p>我们已经见过一种效果了，即按照<code>weight</code>等分，可以成为<code>weighted chain</code>。设置条件为：<code>chainStyle=”spread”</code>，所有控件宽度设置为<code>match_constraint</code>，因为默认就是<code>spread</code>，所以我们没有显示设置。</p>
+<p>其取值还可以为：</p>
+<ul>
+<li>packed</li>
+<li>spread_inside</li>
+</ul>
+<p>我还是分别显示一下吧：</p>
+<ol>
+<li><p>spread + 宽度为0，且可以通过weight控制分配比例</p>
+<p><img src="http://qiniu.buerya.cn/static/constraint/10010.jpeg" alt=""></p>
+</li>
+<li><p>spread_inside + 宽度非0</p>
+<p><img src="http://qiniu.buerya.cn/static/constraint/10011.jpeg" alt=""></p>
+</li>
+<li><p>packed + 宽度非0</p>
+<p><img src="http://qiniu.buerya.cn/static/constraint/10012.jpeg" alt=""></p>
+</li>
+</ol>
+<p>好了，差不多了，我们可以在横向或者纵向组成一个Chain，然后在Chain head设置chainStyle来搞一些事情。</p>
+<p>官网有个图：</p>
+<p><img src="http://qiniu.buerya.cn/static/constraint/10013.jpeg" alt=""></p>
+<p>前四个我们都演示了，最后一个设计到一个新的bias属性，别急，咱们慢慢说~~</p>
+<p>好了，到这里，我们再次见证了ConstraintLayout的强大。</p>
+<p>我们最后再看一个例子。</p>
+<h2 id="五、增加浮动按钮"><a href="#五、增加浮动按钮" class="headerlink" title="五、增加浮动按钮"></a>五、增加浮动按钮</h2><p>一个很常见的功能，我们现在希望在右下角增加一个浮动按钮。</p>
+<p>看下如何实现：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">android.support.constraint.ConstraintLayout</span></span></span><br><span class="line"><span class="tag">    <span class="attr">...</span></span></span><br><span class="line"><span class="tag">    <span class="attr">tools:context</span>=<span class="string">"com.zhy.constrantlayout_learn.MainActivity"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"60dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"60dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:background</span>=<span class="string">"#612"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:layout_constraintBottom_toBottomOf</span>=<span class="string">"parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:layout_constraintHorizontal_bias</span>=<span class="string">"0.9"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:layout_constraintLeft_toLeftOf</span>=<span class="string">"parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:layout_constraintRight_toRightOf</span>=<span class="string">"parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:layout_constraintTop_toTopOf</span>=<span class="string">"parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:layout_constraintVertical_bias</span>=<span class="string">"0.9"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">....</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>我们在最后追加一个TextView冒充我们的浮动按钮。可以看到我们设置了固定值，被设置约束为右下角。</p>
+<p>正常情况我们可以通过margin来设置与右侧与底部的距离。</p>
+<p>但是这里我们尝试使用量个新的属性：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">layout_constraintHorizontal_bias</span><br><span class="line">layout_constraintVertical_bias</span><br></pre></td></tr></table></figure>
+<p>即设置上下两侧间隙比例分别为90%与10%。这个很好理解，我们之前说了，再没有bias这个属性的时候，这两侧的拉力大小是一样的，但是你可以通过bias来控制哪一侧的力要大一些~~明白了么~</p>
+<p>所以，该属性可以用于约束之前，控制两侧的“拉力”。</p>
+<p>我们看一下效果图：</p>
+<p><img src="http://qiniu.buerya.cn/static/constraint/10014.jpeg" alt=""></p>
+<p>那么到这里，ConstraintLayout的属性我们基本上介绍完了：</p>
+<p>我们看一下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">layout_constraintLeft_toLeftOf</span><br><span class="line">layout_constraintLeft_toRightOf</span><br><span class="line">layout_constraintRight_toLeftOf</span><br><span class="line">layout_constraintRight_toRightOf</span><br><span class="line">layout_constraintTop_toTopOf</span><br><span class="line">layout_constraintTop_toBottomOf</span><br><span class="line">layout_constraintBottom_toTopOf</span><br><span class="line">layout_constraintBottom_toBottomOf</span><br><span class="line"></span><br><span class="line"># 即文章的baseline对齐</span><br><span class="line">layout_constraintBaseline_toBaselineOf</span><br><span class="line"></span><br><span class="line"># 与left,right类似</span><br><span class="line">layout_constraintStart_toEndOf</span><br><span class="line">layout_constraintStart_toStartOf</span><br><span class="line">layout_constraintEnd_toStartOf</span><br><span class="line">layout_constraintEnd_toEndOf</span><br><span class="line"></span><br><span class="line"># margin不需要解释</span><br><span class="line">android:layout_marginStart</span><br><span class="line">android:layout_marginEnd</span><br><span class="line">android:layout_marginLeft</span><br><span class="line">android:layout_marginTop</span><br><span class="line">android:layout_marginRight</span><br><span class="line">android:layout_marginBottom</span><br><span class="line"></span><br><span class="line">layout_constraintHorizontal_bias  </span><br><span class="line">layout_constraintVertical_bias  </span><br><span class="line"></span><br><span class="line">layout_constraintHorizontal_chainStyle</span><br><span class="line">layout_constraintVertical_chainStyle</span><br><span class="line"></span><br><span class="line">layout_constraintVertical_weight</span><br><span class="line"></span><br><span class="line">Guideline</span><br></pre></td></tr></table></figure>
+<p>好像，还有个比较特殊的，叫Guideline。</p>
+<p>好吧，继续~</p>
+<h2 id="六、尝试使用Guideline"><a href="#六、尝试使用Guideline" class="headerlink" title="六、尝试使用Guideline"></a>六、尝试使用Guideline</h2><p><code>android.support.constraint.Guideline</code>该类比较简单，主要用于辅助布局，即类似为辅助线，横向的、纵向的。该布局是不会显示到界面上的。</p>
+<p>所以其有个属性为：</p>
+<p><code>android:orientation</code>取值为<code>”vertical”</code>和<code>”horizontal”</code>.</p>
+<p>除此以外，还差个属性，决定该辅助线的位置：</p>
+<ul>
+<li><code>layout_constraintGuide_begin</code></li>
+<li><code>layout_constraintGuide_end</code></li>
+<li><code>layout_constraintGuide_percent</code></li>
+</ul>
+<p>可以通过上面3个属性其中之一来确定属性值位置。</p>
+<p>begin=30dp，即可认为距离顶部30dp的地方有个辅助线，根据orientation来决定是横向还是纵向。</p>
+<p>end=30dp，即为距离底部。<br>percent=0.8即为距离顶部80%。</p>
+<p>好了，下面看一个例子，刚才我们的浮点按钮，我决定通过两根辅助线来定位，一根横向距离底部80%，一个纵向距离顶部80%，浮点按钮就定位在他们交叉的地方。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">android.support.constraint.ConstraintLayout</span></span></span><br><span class="line"><span class="tag">    <span class="attr">...</span></span></span><br><span class="line"><span class="tag">    <span class="attr">tools:context</span>=<span class="string">"com.zhy.constrantlayout_learn.MainActivity"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">android.support.constraint.Guideline</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/guideline_h"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:orientation</span>=<span class="string">"horizontal"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:layout_constraintGuide_percent</span>=<span class="string">"0.8"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">android.support.constraint.Guideline</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/guideline_w"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:orientation</span>=<span class="string">"vertical"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:layout_constraintGuide_percent</span>=<span class="string">"0.8"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"60dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"60dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:background</span>=<span class="string">"#612"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:layout_constraintLeft_toRightOf</span>=<span class="string">"@id/guideline_w"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:layout_constraintTop_toBottomOf</span>=<span class="string">"@id/guideline_h"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">....</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>我感觉都不用解释了~~看眼效果图吧：</p>
+<p><img src="http://qiniu.buerya.cn/static/constraint/10015.jpeg" alt=""></p>
+<p>到此，属性基本上讲完啦~</p>
+<p>可以看到，上述相当复杂的一个布局，在ConstraintLayout中完全没有嵌套！</p>
+<h2 id="六、总结"><a href="#六、总结" class="headerlink" title="六、总结"></a>六、总结</h2><p>本文通过实际的按钮，基本上介绍了ConstraintLayout所支持的所有的属性，全文没有提及拖拽，因为当界面复杂之后，想要完美的拖拽实在是太难了，而且谁也不期望，看不懂拖拽完成后的布局属性吧~</p>
+<p>所以，我建议还是尽可能手写，通过本文这样一个流程，虽然支持的属性有20多个，但是分类后并不难记，难记也可以拿出本文翻一翻~</p>
+<p>好了，思考了半天，如何通过一个案例介绍完所有的属性，总体来说还是完成了，给自己点个赞。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-10-07T08:08:59.437Z" itemprop="dateUpdated">2020-10-07 16:08:59</time>
+</span><br>
+
+
+        
+        本文永久地址：<a href="/2018/01/11/android_constraintlayout/" target="_blank" rel="external">http://blog.buerya.cn/2018/01/11/android_constraintlayout/</a>
+        
+    </div>
+    <footer>
+        <a href="http://blog.buerya.cn">
+            <img src="/img/avatar.jpg" alt="Juan">
+            Juan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ConstraintLayout/">ConstraintLayout</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术知识/">技术知识</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/约束布局/">约束布局</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.buerya.cn/2018/01/11/android_constraintlayout/&title=《ConstraintLayout 完全解析》 — 梦想小筑&pic=http://blog.buerya.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.buerya.cn/2018/01/11/android_constraintlayout/&title=《ConstraintLayout 完全解析》 — 梦想小筑&source=初级程序员,Juan`s blogs" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.buerya.cn/2018/01/11/android_constraintlayout/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ConstraintLayout 完全解析》 — 梦想小筑&url=http://blog.buerya.cn/2018/01/11/android_constraintlayout/&via=http://blog.buerya.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.buerya.cn/2018/01/11/android_constraintlayout/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/01/12/funny_machine_learning_2/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">《机器学习有意思！ 02》- 使用机器学习生成超级玛丽关卡</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/01/09/funny_machine_learning_1/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">《机器学习有意思！ 01》- 世界上最简单的机器学习入门</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comment comments vcomment" id="comments"></div>
+    <script src="//cdnjs.cat.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="//cdn1.lncld.net/static/js/3.5.0/av-min.js"></script>
+    <script src="/js/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var notify = 'false';
+        var verify = 'false';
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            av: AV,
+            el: '#comments',
+            notify: notify,
+            verify: verify,
+            appId: "LoojPRMy175IgqwnQtytrgOY-9Nh9j0Va",
+            appKey: "45VXhysB6in2v1IOL1kaC5tQ",
+            avatar: "mm",
+            placeholder: "ヾﾉ≧∀≦)o来啊，快活啊!",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢你给我买糖果吃O(∩_∩)O~~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Juan &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备17077370号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.buerya.cn/2018/01/11/android_constraintlayout/&title=《ConstraintLayout 完全解析》 — 梦想小筑&pic=http://blog.buerya.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.buerya.cn/2018/01/11/android_constraintlayout/&title=《ConstraintLayout 完全解析》 — 梦想小筑&source=初级程序员,Juan`s blogs" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.buerya.cn/2018/01/11/android_constraintlayout/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ConstraintLayout 完全解析》 — 梦想小筑&url=http://blog.buerya.cn/2018/01/11/android_constraintlayout/&via=http://blog.buerya.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.buerya.cn/2018/01/11/android_constraintlayout/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJ0lEQVR42u3aS2rEMBAFwNz/0s42EMZ5r2VDLJdWYZiRVFk06s/XV7yOH+v88+PD+v2r/JTLFgYGxmMZx+lqGZ/2b8/Kv4+BgfEeRnL8+THJJfLImd8NAwMD49N3oiAYhN1zMAYGBsa1jDxM56kyBgYGxiyxnD378gLc7bk4BgbGAxkrieXdf9/S38DAwHgU4yhXEnzXE936VhgYGFszZull/rBrRzeWdsDAwNia0QbNvOjWFs7aIY/Ch4GB8VhG3kqcHbmCyZsTGBgYezPyJuKsWL/S5rygAYCBgbERYyVQttedjZFdHGQxMDAexcgLWwlvpXw2y0YxMDDewMiL9clF28fibIco+GJgYGzESH4wC5ezka+2PIeBgfEexmy7vIWQ/+p8h3ogDAMDY1NGPrratgrawF18goGB8QJGO9ww644e8crv9sfMCAYGxnaMdut2tCIfCLug3IaBgbEdo20MtMX95Hm3lAZjYGBszWgHHdrHYtt4SIJ7ND+CgYGxHWOWrLbtxjyVHZ6IgYHxMsZshKvl5f/E6OGIgYHxAkYb7PIH5UqwXkpfMTAwtmAc5WqHIVZKbwUVAwNja8ZsVCIf6soLdnkBbmnsAwMD47GMNsjm5bn1sloR6DEwMF7AaJuLeSo7eywOU1kMDAyMS9uTbViPfBgYGBij1uOs0NbujIGB8QbGbISivUR+0br8h4GBsTVj9u5aaSgOL3HH8xEDA+O/M74BA6TbGe60g3oAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261704531&web_id=1261704531')
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.0"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.0" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '(つェ⊂) 我藏好了哦~ ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(*´∇｀*) 被你发现啦~ ';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

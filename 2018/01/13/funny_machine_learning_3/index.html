@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65558107"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    <meta name="google-site-verification" content="ar7mIVYsjkAi2k9jIuWk34S9A2aVwBdQqFkfL4AKEBQ" >
+    
+    
+    
+    <title>《机器学习有意思！ 03》- 深度学习与卷积神经网络 | 梦想小筑 | 坚定的走吧，毕竟梦想在远方，未来在远方，终点也在远方。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="技术知识,人工智能,机器学习">
+    <meta name="description" content="《机器学习有意思！ 03》- 深度学习与卷积神经网络  原文：Machine Learning is Fun! Part 3 – Deep Learning and Convolutional Neural Networks 作者：Adam Geitgey   你是否厌倦了每天被深度学习相关的新闻轰炸却不明所以？此诚求变之机。 这一次我们将学习如何用深度学习来写程序识别图像中的物体。也可以说我们">
+<meta name="keywords" content="技术知识,人工智能,机器学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《机器学习有意思！ 03》- 深度学习与卷积神经网络">
+<meta property="og:url" content="http://blog.buerya.cn/2018/01/13/funny_machine_learning_3/index.html">
+<meta property="og:site_name" content="梦想小筑">
+<meta property="og:description" content="《机器学习有意思！ 03》- 深度学习与卷积神经网络  原文：Machine Learning is Fun! Part 3 – Deep Learning and Convolutional Neural Networks 作者：Adam Geitgey   你是否厌倦了每天被深度学习相关的新闻轰炸却不明所以？此诚求变之机。 这一次我们将学习如何用深度学习来写程序识别图像中的物体。也可以说我们">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10030.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10031.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10032.jpeg">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10030.gif">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10032.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10033.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10030.jpeg">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10034.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10035.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10031.gif">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10036.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10037.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10031.jpeg">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10038.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10039.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10040.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10041.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10042.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10043.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10044.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10045.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10046.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10047.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10048.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10049.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10050.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10051.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10052.png">
+<meta property="og:updated_time" content="2020-10-07T08:08:59.453Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《机器学习有意思！ 03》- 深度学习与卷积神经网络">
+<meta name="twitter:description" content="《机器学习有意思！ 03》- 深度学习与卷积神经网络  原文：Machine Learning is Fun! Part 3 – Deep Learning and Convolutional Neural Networks 作者：Adam Geitgey   你是否厌倦了每天被深度学习相关的新闻轰炸却不明所以？此诚求变之机。 这一次我们将学习如何用深度学习来写程序识别图像中的物体。也可以说我们">
+<meta name="twitter:image" content="http://qiniu.buerya.cn/static/funny_machine/10030.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="梦想小筑" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.0">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Juan</h5>
+          <a href="mailto:quewen08@gmail.com" title="quewen08@gmail.com" class="mail">quewen08@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/trover-gaoyou" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/shandingjurenww" target="_blank" >
+                <i class="icon icon-lg icon-twitter"></i>
+                Twitter
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.instagram.com/juan95_cn" target="_blank" >
+                <i class="icon icon-lg icon-instagram"></i>
+                Instagram
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/source"  >
+                <i class="icon icon-lg icon-link"></i>
+                友情链接
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+	<img id="aimg_H2R2r" class="zoom" src="https://apa.me/news/?s=5qKm5oOz5bCP562R" border="0" alt="" width="500" height="210" initialized="true">
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">《机器学习有意思！ 03》- 深度学习与卷积神经网络</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">《机器学习有意思！ 03》- 深度学习与卷积神经网络</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-01-13T04:11:00.000Z" itemprop="datePublished" class="page-time">
+  2018-01-13
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/人工智能/">人工智能</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/人工智能/机器学习/">机器学习</a></li></ul></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#《机器学习有意思！-03》-深度学习与卷积神经网络"><span class="post-toc-number">1.</span> <span class="post-toc-text">《机器学习有意思！ 03》- 深度学习与卷积神经网络</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#深度学习识别物体"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">深度学习识别物体</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#始于足下"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">始于足下</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#管窥"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">管窥</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#暴力方法-1-滑动窗口搜索"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">暴力方法 1. 滑动窗口搜索</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#暴力方法-2-更多数据，更深网络"><span class="post-toc-number">1.3.2.</span> <span class="post-toc-text">暴力方法 2. 更多数据，更深网络</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#答案：卷积"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">答案：卷积</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#卷积的作用机理"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">卷积的作用机理</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#构建鸟分类器"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">构建鸟分类器</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#测试网络"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">测试网络</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-funny_machine_learning_3"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">《机器学习有意思！ 03》- 深度学习与卷积神经网络</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-01-13 12:11:00" datetime="2018-01-13T04:11:00.000Z"  itemprop="datePublished">2018-01-13</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/人工智能/">人工智能</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/人工智能/机器学习/">机器学习</a></li></ul></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <script src="\assets\js\APlayer.min.js"> </script><h1 id="《机器学习有意思！-03》-深度学习与卷积神经网络"><a href="#《机器学习有意思！-03》-深度学习与卷积神经网络" class="headerlink" title="《机器学习有意思！ 03》- 深度学习与卷积神经网络"></a>《机器学习有意思！ 03》- 深度学习与卷积神经网络</h1><blockquote>
+<p> <em>原文：<a href="https://medium.com/@ageitgey/machine-learning-is-fun-part-3-deep-learning-and-convolutional-neural-networks-f40359318721#.8owg5e1ri" target="_blank" rel="noopener">Machine Learning is Fun! Part 3 – Deep Learning and Convolutional Neural Networks</a></em><br> <em>作者：Adam Geitgey</em></p>
+</blockquote>
+<hr>
+<p>你是否厌倦了每天被深度学习相关的新闻轰炸却不明所以？此诚求变之机。</p>
+<p>这一次我们将学习如何用深度学习来写程序识别图像中的物体。也可以说我们是要解释Google图片搜索背后的黑科技：Google可以通过描述搜索图片——即使图片没有事先打上标签！这是如何实现的？</p>
+<p>就像<a href="http://blog.buerya.cn/posts/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/2018-01-09-funny_machine_learning_1.html">Part 1</a>和<a href="http://blog.buerya.cn/posts/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/2018-01-12-funny_machine_learning_2.html">Part 2</a>一样，本指南仍然面向所有对机器学习感兴趣却不知如何开始的朋友们。我们的目标是所有人都读得懂——因而势必无法照顾到每个细节。但那又如何呢？只要能让一位读者对ML感兴趣，那就是功德一件了！</p>
+<hr>
+<h2 id="深度学习识别物体"><a href="#深度学习识别物体" class="headerlink" title="深度学习识别物体"></a>深度学习识别物体</h2><p><img src="http://qiniu.buerya.cn/static/funny_machine/10030.png" alt=""></p>
+<blockquote>
+<p>产品：每当一名用户拍了照片，APP应该检测他们是否在国家公园……</p>
+<p>开发：当然了，不过是简单的GIS查询而已，给我几个小时。</p>
+<p>产品：……以及拍的是不是一只鸟。</p>
+<p>开发：那我需要一个研究小组和五年时间。</p>
+<p>旁白：在计算机科学中，有时很难解释“简单”和“根本不可能”之间的区别。</p>
+</blockquote>
+<p>你可能已经在<a href="https://xkcd.com/1425/" target="_blank" rel="noopener">xkcd</a>系列漫画中看到过了。</p>
+<p>这里的笑点在于，三岁小孩儿都能认出鸟的照片，但是教会计算机识别物体，已经让最优秀的计算机科学家耗费了50年。</p>
+<p>在过去的几年里，我们终于找到了物体识别的好路子，那就是深度卷积神经网络。这听起来像是从威廉·吉布森的科幻小说里捡了几个词拼起来的，不过只要分解开来细看，其原理真的很简单。</p>
+<p>开始吧——现在就写一个能认识鸟的程序！</p>
+<hr>
+<h2 id="始于足下"><a href="#始于足下" class="headerlink" title="始于足下"></a>始于足下</h2><p>在我们学习如何辨别鸟的照片之前，先来学个简单得多的例子——手写数字”8”。</p>
+<p>在Part 2中，我们已经学习了神经网络如何链接大量的神经元来解决复杂问题。我们搭建了一个迷你神经网络来基于房间数、面积、周边环境预测房价：</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10031.png" alt=""></p>
+<p>我们还知道了机器学习的思想就是重复利用相同的普适算法，根据不同的数据，解决不同的问题。下面我们修改这个神经网络来识别手写文本，并且进一步简化任务——只识别数字”8”。</p>
+<p>机器学习只有当你有数据的时候才好使——数据越多越好，所以我们需要大量的手写”8”来开始。所幸，研究者们为了这一目的已经建立了<a href="http://yann.lecun.com/exdb/mnist/" target="_blank" rel="noopener">MNIST手写数字数据集</a>。<code>MNIST</code>提供了60,000张手写数字的图片，每个尺寸都是18x18，以下是数据集里部分的”8”：</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10032.jpeg" alt="MNIST数据集里的一些8"></p>
+<p><strong>其实不过是数字</strong></p>
+<p>Part 2里搭建的神经网络只读取3个输入（”3”间卧室,”2000”平方米等）。但是现在我们要用神经网络处理图片，不是数字怎么传入神经网络呢？</p>
+<p>答案无比的简单。神经网络以数字为输入，对于计算机来说，图片也不过只是代表了像素明暗的数字：</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10030.gif" alt=""></p>
+<p>只要把18x18像素的图片当作324个数字组成的数组，就可以把图片输入给神经网络了。</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10032.png" alt=""></p>
+<p>要处理324个输入，我们只需让神经网络具有324个输入节点：</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10033.png" alt=""></p>
+<p>注意我们的神经网络现在有两个输出（而非之前的一个）。第一个输出是预测此图为”8”的概率，第二个为不是”8”的概率。每种类型的目标物体有了分别的输出，就可以让神经网络对物体进行分类了。</p>
+<p>这次的神经网络比之前要大得多了（从3个输入到324），但是现代的计算机处理几百个节点的神经网络，连眼都不带眨的，甚至连手机都能轻松满足。</p>
+<p>剩下的就是用”8”和非”8”的数字去训练神经网络以使其能够区分两者了，当我们输入一个”8”，我们告诉神经网络，此图为”8”的概率是100%，非”8”的概率是0%，反之亦反。</p>
+<p>这是我们的训练数据：</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10030.jpeg" alt=""></p>
+<p>现在随便一个笔记本电脑，也能在几分钟之内训练完这样一个网络，训练完之后我们就拥有了能够高精度识别数字”8”的神经网络。欢迎来到（1980年代的）图像识别世界！</p>
+<hr>
+<h2 id="管窥"><a href="#管窥" class="headerlink" title="管窥"></a>管窥</h2><p>把像素简单地导入神经网络里一训练，就能识别图像了，感觉无比清爽。机器学习真乃魔法……也？</p>
+<p><em>事情并不简单。</em></p>
+<p>首先，一个好消息是，我们的识8器对于图片正中的数字，效果还是很喜人的：</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10034.png" alt=""></p>
+<p>现在坏消息来了：</p>
+<p>当数字不是恰好居中的时候，识8器完全失效了，哪怕一丁点的位置偏差也不行：</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10035.png" alt=""></p>
+<p>这是因为，神经网络只学到了恰好居中”8”的模式，但是对于离心的”8”却一无所知，它知道且仅知道一种模式。</p>
+<p>在现实中这就实用价值不大了，因为实际问题不可能总是那么干净简约。所以我们必须让神经网络能够处理离心的”8”。</p>
+<h3 id="暴力方法-1-滑动窗口搜索"><a href="#暴力方法-1-滑动窗口搜索" class="headerlink" title="暴力方法 1. 滑动窗口搜索"></a>暴力方法 1. 滑动窗口搜索</h3><p>我们已经有了一个好方法，能够找到图片中心的”8”，那可不可以在图片上扫描寻找子区域里的”8”，直至找到呢？</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10031.gif" alt=""></p>
+<p>这就是滑动窗口法，一种非常暴力的解决方案。在很有限的某些例子中可行，但效率也很低。你必须一遍一遍地寻找不同尺寸的物体，我们可以比这更好。</p>
+<h3 id="暴力方法-2-更多数据，更深网络"><a href="#暴力方法-2-更多数据，更深网络" class="headerlink" title="暴力方法 2. 更多数据，更深网络"></a>暴力方法 2. 更多数据，更深网络</h3><p>当我们在训练网络的时候，只用到了完美居中的”8”。如果我们在训练过程中就引入不同位置、不同大小的”8”，那会怎么样呢？</p>
+<p>不需要收集更多的训练数据，我们可以写个脚本生成新的图片，图中的”8”具有不同的位置和大小：</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10036.png" alt="用已有训练图片的不同视角制成的合成训练数据，这是个挺有用的技术"></p>
+<p>应用这一技术，我们可以轻易创造出无穷多的训练数据。</p>
+<p>更多的数据让问题变得更加复杂了，但是我们可以用更大的神经网络，那样就能学习更复杂的模式。为了扩大网络，我们简单地把节点层堆叠起来：</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10037.png" alt=""></p>
+<p>这就是“深度神经网络”，因为比传统神经网络的层数更多。这个想法在1960年代便有了，不过直至最近，训练这么大的神经网络训练还是慢得无法接受。但是自从我们发现了用3d显卡替代传统CPU来加速矩阵计算，大规模神经网络就变得可行了。你用来玩守望先锋的NVIDIA GeForce GTX 1080显卡，也可以用来训练神经网络。</p>
+<p>然而即便我们可以用显卡很快地训练出大规模神经网络，这仍然不是解决方案的全部，我们还需要在处理图片上更加机智才行。</p>
+<p>在暴力方法2中，把图片顶端的”8”和图片底部的”8”当作完全不同的物体，这其实是没有意义的。应该存在一种方案，让神经网络不经额外训练即知：图片不管哪个位置的”8”都是一个东西。万幸，确实是存在的！</p>
+<hr>
+<h2 id="答案：卷积"><a href="#答案：卷积" class="headerlink" title="答案：卷积"></a>答案：卷积</h2><p>生而为人，你可以直观地看出照片中含有层次或概念结构。考虑这张照片：</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10031.jpeg" alt="作者儿子的照片"></p>
+<p>作为一个人类，你立即就能识别出照片里的层次：</p>
+<ul>
+<li><p>地面覆盖了草坪</p>
+</li>
+<li><p>图里有个小孩儿</p>
+</li>
+<li><p>小孩儿骑在弹跳小马上</p>
+</li>
+<li><p>弹跳小马在草坪上</p>
+</li>
+</ul>
+<p>更重要的是，无论小孩在什么样的表面上，我们都能认出那是个小孩儿。我们并不需要重新学习各种表面上的小孩儿。但是目前，神经网络还做不到这些，它会把不同位置的”8”当作完全不同的东西，而并不知道在图片上移动物体不会改变其实质。这意味着网络必须重新学习每个位置上的物体，太悲催了。</p>
+<p>我们需要让神经网络明白平移不变形——“8”还是”8”，不论出现在图片的哪里。这一过程可由卷积实现，卷积的想法部分来自计算机科学，还有部分是受生物学启发（比如，疯狂科学家们真的在猫脑子里插管，以研究猫是怎么处理图像的人）。</p>
+<hr>
+<h2 id="卷积的作用机理"><a href="#卷积的作用机理" class="headerlink" title="卷积的作用机理"></a>卷积的作用机理</h2><p>这次我们不再把整个图片当成一个数字网格输入到神经网络，而是利用物体与位置的独立性，做得更聪明些。以下就是卷积的作用机理，一步一步来——</p>
+<p><strong>第1步：把图片分解为重叠碎片</strong></p>
+<p>与之前的滑动窗口法类似，这里也用一个窗口在整张原图上滑动截图，并且把截到的每一小部分单独存成一个图片：</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10038.png" alt=""></p>
+<p>如此我们便把一张大图拆成了77张等尺寸的小图。</p>
+<p><strong>第2步：把每张小图输入小神经网络</strong></p>
+<p>曾经我们把单张图片输入神经网络来判断其是否为”8”，这里再重复一样的工作，不过是针对每一个单独的小图片：</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10039.png" alt="对每个小图片重复77次"></p>
+<p>这里还有一大诀窍：我们将相同的<em>神经网络权重</em>应用在每一块小图上。换言之，我们平等地对待所有小图，如果某个小图里出现了我们感兴趣的内容，我们就将其标记为有趣。</p>
+<p><strong>第3步：把每块小图的结果存入新的阵列</strong></p>
+<p>我们并不想丢失原始小图的排列信息，所以我们要把每个小图的结果按照相同的排列重新构建原图，形式如下：</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10040.png" alt=""></p>
+<p>也可以说，我们从一张大图片开始，到小阵列结束，阵列记录了原图当中哪一部分有我们最关心的内容。</p>
+<p><strong>第4步：下采样</strong></p>
+<p>第3步的结果是一个阵列，反映了原图的哪一部分是我们最感兴趣的，不过这个阵列仍然很庞大：</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10041.png" alt=""></p>
+<p>为了减小阵列的尺寸，我们用<a href="https://en.wikipedia.org/wiki/Convolutional_neural_network#Pooling_layer" target="_blank" rel="noopener">最大池化</a>算法进行下采样。听着很稀奇，其实完全不！</p>
+<p>看阵列中的每个2x2方块，并且只留下最大的数字：</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10042.png" alt=""></p>
+<p>这里的主要思路就是，当我们在组成2x2方块的四个输入小图中的任意一个发现了关心的内容，就只保留我们最感兴趣的信息，这可以减小阵列规模并保留最重要的信息。</p>
+<p><strong>最终步：预测</strong></p>
+<p>至此，我们已经把一个巨大的图片消减成了相对较小的阵列，阵列就是一串数，所以我们可以把小阵列输入另一个神经网络，最后的这个神经网络会决定图片是否匹配。为了与卷积层相区分，我们称之为“全连接层”。从头到尾，我们的五步流水线如下图所示：</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10043.png" alt=""></p>
+<p><strong>增加更多步骤</strong></p>
+<p>我们的图像处理流水线有一系列步骤：卷积，最大池化，全连接网络。</p>
+<p>而在解决实际问题的时候，这些步骤可以组合起来并堆叠多次。你可以加两个，三个甚至十个卷积层，也可以在任何时候插入一个最大池化层。总之基本思路就是把一张大图，逐步分解为小图，直至我们能够获得结果。卷积层越多，网络就能学习识别越复杂的特征。</p>
+<p>比如说，第一个卷积层可能学会了辨认锐利边缘，第二个卷积层可能根据锐边的知识学会了识别鸟喙，第三个卷积层又基于鸟喙识别出了整只鸟。以下是更贴近实践的深度卷积网络结构（学术论文里常见）：</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10044.png" alt=""></p>
+<p>在这一实例中，他们从224x224像素的图片开始，应用了：卷积，两次最大池化，三次卷积，又是两次最大池化，最后是两个全连接层。最终的结果可以将图片从1000个分类中识别出来。</p>
+<p><strong>构建正确的网络</strong></p>
+<p>那么我们要怎么知道什么时候该用什么层呢？诚然，你得经过大量的实践和测试才能回答，可能训练100个网络才能找到最佳的结构和参数。机器学习就是包含了大量的尝试和错误！</p>
+<h2 id="构建鸟分类器"><a href="#构建鸟分类器" class="headerlink" title="构建鸟分类器"></a>构建鸟分类器</h2><p>如今我们已经足以写出一个程序来判断一张图上是不是鸟类。一如既往，我们需要训练数据来开始。免费的<a href="https://www.cs.toronto.edu/~kriz/cifar.html" target="_blank" rel="noopener">CIFAR10数据集</a>包括了60,000张鸟类图片和52,000张非鸟图片。如果要更多的数据，我们还需要加入<a href="http://www.vision.caltech.edu/visipedia/CUB-200-2011.html" target="_blank" rel="noopener">Caltech-UCSD Birds-200-2011</a>数据集，内含12,000张鸟类图片。</p>
+<p>这是组合数据集的一部分鸟图：</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10045.png" alt=""></p>
+<p>以及一部分非鸟图：</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10046.png" alt=""></p>
+<p>这一数据集可以很好地满足我们的需求，不过相对于真实世界的应用而言，72,000张低分辨率图片还是太少，如果你想要达到Google级的水平，你需要上百万张高清无码大图。在机器学习中，数据多总是比算法好更重要。现在你就知道Google为什么那么乐意提供无限照片存储了，他们要的是你的数据啊，数据！</p>
+<blockquote>
+<p>原作者使用的是TFLearn，译注者改用了国内更流行的Keras。TFLearn代码可见作者原文。</p>
+</blockquote>
+<p>Keras封装了TensorFlow和Theano两个深度学习库并提供了简单易用的API，这使得开发者可以仅用几行就搭建一个卷积神经网络。</p>
+<p>以下是定义并训练网络的代码：</p>
+<p><strong>导入数据</strong></p>
+<p>Keras内置了CIFAR10数据集，但是需要从网络上下载。</p>
+<p>Keras导入CIFAR10数据集:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入相关库</span></span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot</span><br><span class="line"><span class="keyword">from</span> scipy.misc <span class="keyword">import</span> toimage</span><br><span class="line"><span class="keyword">import</span> numpy</span><br><span class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> Sequential</span><br><span class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Dense</span><br><span class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Dropout</span><br><span class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Flatten</span><br><span class="line"><span class="keyword">from</span> keras.constraints <span class="keyword">import</span> maxnorm</span><br><span class="line"><span class="keyword">from</span> keras.optimizers <span class="keyword">import</span> SGD</span><br><span class="line"><span class="keyword">from</span> keras.layers.convolutional <span class="keyword">import</span> Convolution2D</span><br><span class="line"><span class="keyword">from</span> keras.layers.convolutional <span class="keyword">import</span> MaxPooling2D</span><br><span class="line"><span class="keyword">from</span> keras.utils <span class="keyword">import</span> np_utils</span><br><span class="line"><span class="keyword">from</span> keras <span class="keyword">import</span> backend <span class="keyword">as</span> K</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义训练集、测试集</span></span><br><span class="line">(X_train, y_train), (X_test, y_test) = cifar10.load_data()</span><br><span class="line"></span><br><span class="line">print(<span class="string">"Datasets is ready!"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 预览部分图片</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">9</span>):</span><br><span class="line">    pyplot.subplot(<span class="number">330</span> + <span class="number">1</span> + i)</span><br><span class="line">    pyplot.imshow(toimage(X_train[i]))</span><br><span class="line"></span><br><span class="line">pyplot.show()</span><br></pre></td></tr></table></figure></p>
+<p><strong>搭建神经网络</strong></p>
+<p>下面导入其他将会用到的Keras相关模块并对数据进行预处理。Keras搭建神经网络的过程其实非常简单直观，就像搭积木一样。</p>
+<p>首先确定网络的基本结构，这里就用最基本<code>Sequential()</code>串型拓扑，并建立网络模型对象<code>model</code>。</p>
+<p>之后便是给<code>model</code>中一层层地添加网络，添加的方式也很简单，就是使用<code>model.add()</code>方法，逐个地把卷积层(<code>Convolution2D</code>)、池化层(<code>MaxPooling2D</code>)、全连接层(<code>Dense</code>)等插入到model里，形成整个神经网络。</p>
+<p>Keras搭建神经网络<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 对标签进行独热码编码</span></span><br><span class="line">y_train = np_utils.to_categorical(y_train)</span><br><span class="line">y_test = np_utils.to_categorical(y_test)</span><br><span class="line">num_classes = y_test.shape[<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置神经网络对象model</span></span><br><span class="line">model = Sequential()</span><br><span class="line">model.add(Convolution2D(<span class="number">32</span>,<span class="number">3</span>,<span class="number">3</span>,input_shape=(<span class="number">32</span>,<span class="number">32</span>,<span class="number">3</span>),</span><br><span class="line">                        border_mode=<span class="string">'same'</span>,activation=<span class="string">'relu'</span>,</span><br><span class="line">                        W_constraint=maxnorm(<span class="number">3</span>)))</span><br><span class="line">model.add(Dropout(<span class="number">0.2</span>))</span><br><span class="line">model.add(Convolution2D(<span class="number">32</span>,<span class="number">3</span>,<span class="number">3</span>,activation=<span class="string">'relu'</span>,</span><br><span class="line">                    border_mode=<span class="string">'same'</span>,W_constraint=maxnorm(<span class="number">3</span>)))</span><br><span class="line">model.add(MaxPooling2D(pool_size=(<span class="number">2</span>,<span class="number">2</span>)))</span><br><span class="line">model.add(Flatten())</span><br><span class="line">model.add(Dense(<span class="number">512</span>,activation=<span class="string">'relu'</span>,W_constraint=maxnorm(<span class="number">3</span>)))</span><br><span class="line">model.add(Dropout(<span class="number">0.5</span>))</span><br><span class="line">model.add(Dense(num_classes,activation=<span class="string">'softmax'</span>))</span><br><span class="line"></span><br><span class="line">print(<span class="string">"Neural Network built!"</span>)</span><br></pre></td></tr></table></figure></p>
+<p><strong>编译、训练、预测</strong></p>
+<p>经过以上过程，我们已经有了一个神经网络的外壳，但也仅仅是外壳，你会注意到上面这个代码模块运行的很快，因为这只是根据神经网络的设置形成了一个容器，内部还是空空如也。还要经过“编译”并且导入数据进行“训练”，我们才真正拥有了“有血有肉”的神经网络。最后通过与测试集的对比，衡量神经网络的表现。</p>
+<p>虽然数据量并不大，但是训练神经网络对于普通CPU来说，还是个比较艰巨的任务，因此训练速度可能堪忧。我们的网站后台暂时还未提供GPU接口，所以这里只能先将训练迭代次数设为1，以后我们会争取提供更强大的计算资源。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设定训练过程</span></span><br><span class="line">epoches = <span class="number">1</span>  <span class="comment"># 对训练集的迭代次数（这里设为最小的1）</span></span><br><span class="line">lrate = <span class="number">0.01</span> <span class="comment"># 初始学习率</span></span><br><span class="line">decay = lrate/epoches</span><br><span class="line"></span><br><span class="line"><span class="comment"># 优化器设置与编译</span></span><br><span class="line">sgd = SGD(lr=lrate, momentum=<span class="number">0.9</span>, decay=decay, nesterov=<span class="keyword">False</span>)</span><br><span class="line">model.compile(loss=<span class="string">'categorical_crossentropy'</span>,optimizer=sgd,metrics=[<span class="string">'accuracy'</span>])</span><br><span class="line">print(model.summary())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 用训练集数据训练网络</span></span><br><span class="line">model.fit(X_train, y_train, validation_data=(X_test, y_test), nb_epoch=epoches,</span><br><span class="line">          batch_size=<span class="number">32</span>, verbose=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出神经网络的表现</span></span><br><span class="line">scores = model.evaluate(X_test, y_test, verbose=<span class="number">0</span>)</span><br><span class="line">print(<span class="string">"Accuracy: %.2f%%"</span>) % (scores[<span class="number">1</span>]*<span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+<p>如果你有个不错的显卡和足够的显存（比如Nvidia GeForce GTX 980 Ti或以上），大概一个小时可以训练完，如果用CPU的话可能就要久的多了。</p>
+<p>精度随着训练进程儿上升。第一轮过后，我的精度只有75.4%；经过十轮，精度已经提高到91.7%；在50轮以后，精度攀升到95.5%，再训练已经收效甚微了，因此我就此打住。</p>
+<p>Congrats!现在我们的程序可以识别图片里的鸟了！</p>
+<hr>
+<h2 id="测试网络"><a href="#测试网络" class="headerlink" title="测试网络"></a>测试网络</h2><p>有了训练过的神经网络，是骡子是马该拉出来遛遛。<a href="https://gist.github.com/ageitgey/a40dded08e82e59724c70da23786bbf0" target="_blank" rel="noopener">这一简单的脚本</a>读取一个图片文件并判断是否是鸟。</p>
+<p>为了真正检验我们的神经网络是否有效，需要测试大批的图片。我这里用了15,000张图片作为验证集，当我把这15,000张图传递给神经网络，95%都得到了正确答案。</p>
+<p>听起来很好，对吧？其实这可未必！</p>
+<p><strong>95%是多准确？</strong></p>
+<p>我们的神经网络号称有95%的准确度，但是细微之处见真章，面子上95%，里子可能千差万别。比如说，如果我们的训练图片里5%是鸟，而另外95%不是鸟，然后一个程序只输出“不是鸟”就可以达到95%的精度，但这毫无意义。</p>
+<p>我们需要进一步细究这个数字，而不是满足于一个含糊的95%。为了判断一个分类系统的作用究竟几何，我们需要考察它是如何失效的，而不是失效的百分比。抛掉单纯的“对／错”标准，我们来把问题细分为四种分别的情况——</p>
+<ol>
+<li><p>把鸟正确地识别为鸟：<strong>True Positives</strong></p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10047.png" alt="我们的网络成功地认出了很多不同的鸟类！"></p>
+</li>
+<li><p>把不是鸟的正确地排除出去：<strong>True Negatives</strong></p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10048.png" alt="马和卡车糊弄不了我们"></p>
+</li>
+<li><p>以为是鸟，结果不是：<strong>False Positives</strong>（错杀三千）</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10049.png" alt="有些飞机也被当成鸟了"></p>
+</li>
+<li><p>其实是鸟，以为不是：<strong>False Negative</strong>（放过一个）</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10050.png" alt="这些鸟把我们糊弄了"></p>
+</li>
+</ol>
+<p>根据我们这15,000张图片，以下为各种情况的统计数据：</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10051.png" alt=""></p>
+<p>为什么要这样细分结果呢？因为并非每种错误都是均等的。想象一下，如果我们在写一个根据MRI图像诊断癌症的程序，这时候宁可引入<strong>False Positive</strong>也不要带有<strong>False Negative</strong>。前者只是让患者虚惊一场，后者可就是延误治疗了。</p>
+<p>所以出了宽泛的准确度，我们还计算<a href="https://en.wikipedia.org/wiki/Precision_and_recall" target="_blank" rel="noopener">精确率和召回率</a>。精确率和召回率更加清晰地定义了分类起的效用。</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10052.png" alt=""></p>
+<p>由上表可知，当我们给出“是鸟”的猜测时，其中97%是对的。但是我们却只找出了90%的鸟，这意味着我们可能不是所有鸟都认得，但是认鸟却很准！</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-10-07T08:08:59.453Z" itemprop="dateUpdated">2020-10-07 16:08:59</time>
+</span><br>
+
+
+        
+        本文永久地址：<a href="/2018/01/13/funny_machine_learning_3/" target="_blank" rel="external">http://blog.buerya.cn/2018/01/13/funny_machine_learning_3/</a>
+        
+    </div>
+    <footer>
+        <a href="http://blog.buerya.cn">
+            <img src="/img/avatar.jpg" alt="Juan">
+            Juan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/人工智能/">人工智能</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术知识/">技术知识</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/机器学习/">机器学习</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.buerya.cn/2018/01/13/funny_machine_learning_3/&title=《《机器学习有意思！ 03》- 深度学习与卷积神经网络》 — 梦想小筑&pic=http://blog.buerya.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.buerya.cn/2018/01/13/funny_machine_learning_3/&title=《《机器学习有意思！ 03》- 深度学习与卷积神经网络》 — 梦想小筑&source=初级程序员,Juan`s blogs" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.buerya.cn/2018/01/13/funny_machine_learning_3/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《《机器学习有意思！ 03》- 深度学习与卷积神经网络》 — 梦想小筑&url=http://blog.buerya.cn/2018/01/13/funny_machine_learning_3/&via=http://blog.buerya.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.buerya.cn/2018/01/13/funny_machine_learning_3/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/02/02/learnblockchain/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">如何学习区块链</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/01/12/funny_machine_learning_2/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">《机器学习有意思！ 02》- 使用机器学习生成超级玛丽关卡</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comment comments vcomment" id="comments"></div>
+    <script src="//cdnjs.cat.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="//cdn1.lncld.net/static/js/3.5.0/av-min.js"></script>
+    <script src="/js/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var notify = 'false';
+        var verify = 'false';
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            av: AV,
+            el: '#comments',
+            notify: notify,
+            verify: verify,
+            appId: "LoojPRMy175IgqwnQtytrgOY-9Nh9j0Va",
+            appKey: "45VXhysB6in2v1IOL1kaC5tQ",
+            avatar: "mm",
+            placeholder: "ヾﾉ≧∀≦)o来啊，快活啊!",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢你给我买糖果吃O(∩_∩)O~~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Juan &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备17077370号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.buerya.cn/2018/01/13/funny_machine_learning_3/&title=《《机器学习有意思！ 03》- 深度学习与卷积神经网络》 — 梦想小筑&pic=http://blog.buerya.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.buerya.cn/2018/01/13/funny_machine_learning_3/&title=《《机器学习有意思！ 03》- 深度学习与卷积神经网络》 — 梦想小筑&source=初级程序员,Juan`s blogs" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.buerya.cn/2018/01/13/funny_machine_learning_3/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《《机器学习有意思！ 03》- 深度学习与卷积神经网络》 — 梦想小筑&url=http://blog.buerya.cn/2018/01/13/funny_machine_learning_3/&via=http://blog.buerya.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.buerya.cn/2018/01/13/funny_machine_learning_3/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKElEQVR42u3aS27jMBAFwNz/0p7tAIGl95qaAUQWV4GtUCwvGv3hz0+8Pr/W78+vn/y2W/L5YwsDA+O1jM/lWjnu308mP0fy/Nc3YmBgHMBIXp+Ezlnwnb0XAwMDIw+I1/tc82Z7YmBgYCTbXReiCazlYWBgYCRFbIJvG3Z5O++xWhwDA+OFjPwQ///vfzLfwMDAeBXjU662ofbU8ODmVBgYGFsz2lLz2cK1KFCTHTAwMLZmJO2zvMhcaZwl+9xQMTAwtmO0ydzs6thKkI1afhgYGEcy8hI0Z7eHLlpvGBgYWzOS9C4Pl+uXWds9MTAwTmDkh8tTw1n7rC1iMTAwzmHkL5uFyFmyOBumYmBg7MrIy9T26FGb7KkhKAYGxgGMNmVsr1/k/9Xu0D+KgYGxA6MdSebJ3LPjAQwMjHMYw8sNl9/moba9/lW04TAwMDZitJdH25Sxbe4PRwIYGBhbM9ot2qureWrYjhC+IjEwMDZltIfLG2ft4GGWMmJgYJzGSABtC6xt0s3yQAwMjBMYebhsL37NfqD6CggGBsYBjLYdlqR3bRmcvP2mCsfAwNiO8SnXyjBgvTy+mbtiYGBsymjLxVmIXB9kPjzgxMDAeCEjCbJPjRtXitibBh8GBsYBjFngm40eV9K+m1IWAwMDY3RJYmWEkLf8MDAwMNaD7OznyFNMDAyMExhJqTkLsvnliZVRBAYGxt6MvHRc36g96PpwAgMD4+WMPyWPS6nqIfc8AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261704531&web_id=1261704531')
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.0"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.0" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '(つェ⊂) 我藏好了哦~ ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(*´∇｀*) 被你发现啦~ ';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

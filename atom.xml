@@ -1,0 +1,1367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>梦想小筑</title>
+  <icon>https://www.gravatar.com/avatar/79a942b9f3a439f9805068932d2b363a</icon>
+  <subtitle>坚定的走吧，毕竟梦想在远方，未来在远方，终点也在远方。</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://blog.buerya.cn/"/>
+  <updated>2020-10-07T08:08:59.453Z</updated>
+  <id>http://blog.buerya.cn/</id>
+  
+  <author>
+    <name>Juan</name>
+    <email>quewen08@gmail.com</email>
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>中文 Linear Algebra （线性代数） 笔记</title>
+    <link href="http://blog.buerya.cn/2018/04/28/math/"/>
+    <id>http://blog.buerya.cn/2018/04/28/math/</id>
+    <published>2018-04-28T15:31:00.000Z</published>
+    <updated>2020-10-07T08:08:59.453Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;a href=&quot;https://opensource.org/licenses/mit-license.php&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="线性代数" scheme="http://blog.buerya.cn/categories/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"/>
+    
+    
+      <category term="线性代数" scheme="http://blog.buerya.cn/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>智能合约语言 Solidity 教程系列10 - 完全理解函数修改器</title>
+    <link href="http://blog.buerya.cn/2018/04/09/solidity-modify/"/>
+    <id>http://blog.buerya.cn/2018/04/09/solidity-modify/</id>
+    <published>2018-04-08T16:00:00.000Z</published>
+    <updated>2020-10-07T08:08:59.469Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;智能合约语言 Solidity 教程系列10 - 完全理解函数修改器&lt;br&gt;Solidity 系列完整的文章列表请查看&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="深入浅出区块链" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+      <category term="以太坊" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/"/>
+    
+      <category term="Solidity" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/Solidity/"/>
+    
+    
+      <category term="Solidity手册" scheme="http://blog.buerya.cn/tags/Solidity%E6%89%8B%E5%86%8C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>智能合约语言 Solidity 教程系列9 - 错误处理</title>
+    <link href="http://blog.buerya.cn/2018/04/08/solidity-errorhandler/"/>
+    <id>http://blog.buerya.cn/2018/04/08/solidity-errorhandler/</id>
+    <published>2018-04-08T07:58:00.000Z</published>
+    <updated>2020-10-07T08:08:59.469Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;智能合约语言 Solidity 教程系列9 - 错误处理&lt;br&gt;这是Solidity教程系列文章第9篇介绍Solidity 错误处理。&lt;br&gt;Solidity
+        
+      
+    
+    </summary>
+    
+      <category term="深入浅出区块链" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+      <category term="以太坊" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/"/>
+    
+      <category term="Solidity" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/Solidity/"/>
+    
+    
+      <category term="Solidity手册" scheme="http://blog.buerya.cn/tags/Solidity%E6%89%8B%E5%86%8C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>剖析非同质化代币ERC721-全面解析ERC721标准</title>
+    <link href="http://blog.buerya.cn/2018/03/23/token-erc721/"/>
+    <id>http://blog.buerya.cn/2018/03/23/token-erc721/</id>
+    <published>2018-03-23T04:02:22.000Z</published>
+    <updated>2020-10-07T08:08:59.469Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt;
+        
+      
+    
+    </summary>
+    
+      <category term="深入浅出区块链" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+      <category term="以太坊" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/"/>
+    
+      <category term="智能合约" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/"/>
+    
+    
+      <category term="智能合约" scheme="http://blog.buerya.cn/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/"/>
+    
+      <category term="Token" scheme="http://blog.buerya.cn/tags/Token/"/>
+    
+      <category term="ERC721" scheme="http://blog.buerya.cn/tags/ERC721/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何搭建以太坊私有链</title>
+    <link href="http://blog.buerya.cn/2018/03/18/create_private_blockchain/"/>
+    <id>http://blog.buerya.cn/2018/03/18/create_private_blockchain/</id>
+    <published>2018-03-17T16:00:00.000Z</published>
+    <updated>2020-10-07T08:08:59.447Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;在开发以太坊时，很多时候需要搭建一条以太坊私有链，通过本文一起看看如何在Mac上进行搭建。&lt;/p&gt;
+&lt;h2 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="深入浅出区块链" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+      <category term="以太坊" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/"/>
+    
+      <category term="私有链" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/%E7%A7%81%E6%9C%89%E9%93%BE/"/>
+    
+    
+      <category term="以太坊" scheme="http://blog.buerya.cn/tags/%E4%BB%A5%E5%A4%AA%E5%9D%8A/"/>
+    
+      <category term="私有链" scheme="http://blog.buerya.cn/tags/%E7%A7%81%E6%9C%89%E9%93%BE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>智能合约语言 Solidity 教程系列8 - Solidity API</title>
+    <link href="http://blog.buerya.cn/2018/03/15/solidity-api/"/>
+    <id>http://blog.buerya.cn/2018/03/15/solidity-api/</id>
+    <published>2018-03-15T07:40:22.000Z</published>
+    <updated>2020-10-07T08:08:59.469Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;智能合约语言 Solidity 教程系列8 - Solidity API&lt;br&gt;这是Solidity教程系列文章第8篇介绍Solidity
+        
+      
+    
+    </summary>
+    
+      <category term="深入浅出区块链" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+      <category term="以太坊" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/"/>
+    
+      <category term="Solidity" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/Solidity/"/>
+    
+    
+      <category term="Solidity手册" scheme="http://blog.buerya.cn/tags/Solidity%E6%89%8B%E5%86%8C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>智能合约语言 Solidity 教程系列7 - 以太单位及时间单位</title>
+    <link href="http://blog.buerya.cn/2018/03/15/solidity-unit/"/>
+    <id>http://blog.buerya.cn/2018/03/15/solidity-unit/</id>
+    <published>2018-03-14T16:00:00.000Z</published>
+    <updated>2020-10-07T08:08:59.469Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;智能合约语言 Solidity 教程系列7 -
+        
+      
+    
+    </summary>
+    
+      <category term="深入浅出区块链" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+      <category term="以太坊" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/"/>
+    
+      <category term="Solidity" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/Solidity/"/>
+    
+    
+      <category term="Solidity手册" scheme="http://blog.buerya.cn/tags/Solidity%E6%89%8B%E5%86%8C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何通过以太坊智能合约来进行众筹（ICO）</title>
+    <link href="http://blog.buerya.cn/2018/03/14/ico-crowdsale/"/>
+    <id>http://blog.buerya.cn/2018/03/14/ico-crowdsale/</id>
+    <published>2018-03-14T04:02:22.000Z</published>
+    <updated>2020-10-07T08:08:59.453Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;前面我们有两遍文章写了如何发行代币，今天我们讲一下如何使用代币来公开募资，即编写一个募资合约。&lt;/p&gt;
+&lt;h2 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="深入浅出区块链" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+      <category term="以太坊" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/"/>
+    
+      <category term="智能合约" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/"/>
+    
+    
+      <category term="智能合约" scheme="http://blog.buerya.cn/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/"/>
+    
+      <category term="Token" scheme="http://blog.buerya.cn/tags/Token/"/>
+    
+      <category term="ICO" scheme="http://blog.buerya.cn/tags/ICO/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>智能合约语言 Solidity 教程系列6 - 结构体与映射</title>
+    <link href="http://blog.buerya.cn/2018/03/13/solidity-structs/"/>
+    <id>http://blog.buerya.cn/2018/03/13/solidity-structs/</id>
+    <published>2018-03-13T05:50:23.000Z</published>
+    <updated>2020-10-07T08:08:59.469Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;Solidity 教程系列第6篇 - Solidity 结构体与映射。&lt;br&gt;Solidity 系列完整的文章列表请查看&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="深入浅出区块链" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+      <category term="以太坊" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/"/>
+    
+      <category term="Solidity" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/Solidity/"/>
+    
+    
+      <category term="Solidity手册" scheme="http://blog.buerya.cn/tags/Solidity%E6%89%8B%E5%86%8C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>智能合约语言 Solidity 教程系列5 - 数组介绍</title>
+    <link href="http://blog.buerya.cn/2018/03/13/solidity-arrays/"/>
+    <id>http://blog.buerya.cn/2018/03/13/solidity-arrays/</id>
+    <published>2018-03-12T16:00:00.000Z</published>
+    <updated>2020-10-07T08:08:59.469Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;Solidity 教程系列第5篇 - Solidity 数组介绍。&lt;br&gt;Solidity 系列完整的文章列表请查看&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="深入浅出区块链" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+      <category term="以太坊" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/"/>
+    
+      <category term="Solidity" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/Solidity/"/>
+    
+    
+      <category term="Solidity手册" scheme="http://blog.buerya.cn/tags/Solidity%E6%89%8B%E5%86%8C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>智能合约语言 Solidity 教程系列4 - 数据存储位置分析</title>
+    <link href="http://blog.buerya.cn/2018/03/12/solidity_reftype_datalocation/"/>
+    <id>http://blog.buerya.cn/2018/03/12/solidity_reftype_datalocation/</id>
+    <published>2018-03-11T16:00:00.000Z</published>
+    <updated>2020-10-07T08:08:59.469Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;Solidity教程系列第4篇 - Solidity数据位置分析。&lt;br&gt;Solidity 系列完整的文章列表请查看&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="深入浅出区块链" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+      <category term="以太坊" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/"/>
+    
+      <category term="Solidity" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/Solidity/"/>
+    
+    
+      <category term="Solidity手册" scheme="http://blog.buerya.cn/tags/Solidity%E6%89%8B%E5%86%8C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>实现一个可管理、增发、兑换、冻结等高级功能的代币</title>
+    <link href="http://blog.buerya.cn/2018/03/10/create-token2/"/>
+    <id>http://blog.buerya.cn/2018/03/10/create-token2/</id>
+    <published>2018-03-10T09:02:22.000Z</published>
+    <updated>2020-10-07T08:08:59.446Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;本文主要介绍代币高级功能的实现: 代币管理、代币增发、代币兑换、资产冻结、Gas自动补充。&lt;/p&gt;
+&lt;h2 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="深入浅出区块链" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+      <category term="以太坊" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/"/>
+    
+      <category term="智能合约" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/"/>
+    
+    
+      <category term="智能合约" scheme="http://blog.buerya.cn/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/"/>
+    
+      <category term="Token" scheme="http://blog.buerya.cn/tags/Token/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>智能合约语言 Solidity 教程系列3 - 类型介绍</title>
+    <link href="http://blog.buerya.cn/2018/03/09/solidity_func/"/>
+    <id>http://blog.buerya.cn/2018/03/09/solidity_func/</id>
+    <published>2018-03-08T16:00:00.000Z</published>
+    <updated>2020-10-07T08:08:59.469Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;Solidity 教程系列第三篇 - Solidity 函数类型介绍。&lt;br&gt;Solidity 系列完整的文章列表请查看&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="深入浅出区块链" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+      <category term="以太坊" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/"/>
+    
+      <category term="Solidity" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/Solidity/"/>
+    
+    
+      <category term="Solidity手册" scheme="http://blog.buerya.cn/tags/Solidity%E6%89%8B%E5%86%8C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一步步教你创建自己的数字货币（代币）进行ICO</title>
+    <link href="http://blog.buerya.cn/2018/03/08/create_token/"/>
+    <id>http://blog.buerya.cn/2018/03/08/create_token/</id>
+    <published>2018-03-08T07:02:22.000Z</published>
+    <updated>2020-10-07T08:08:59.448Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;本文从技术角度详细介绍如何基于以太坊ERC20创建代币的流程.&lt;/p&gt;
+&lt;h2 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="深入浅出区块链" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+      <category term="以太坊" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/"/>
+    
+      <category term="智能合约" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/"/>
+    
+    
+      <category term="智能合约" scheme="http://blog.buerya.cn/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/"/>
+    
+      <category term="Token" scheme="http://blog.buerya.cn/tags/Token/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>智能合约语言 Solidity 教程系列2 - 类型介绍</title>
+    <link href="http://blog.buerya.cn/2018/03/05/solidity2/"/>
+    <id>http://blog.buerya.cn/2018/03/05/solidity2/</id>
+    <published>2018-03-04T16:00:00.000Z</published>
+    <updated>2020-10-07T08:08:59.469Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;Solidity教程系列第二篇 - Solidity地址类型介绍.&lt;br&gt;Solidity 系列完整的文章列表请查看&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="深入浅出区块链" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+      <category term="以太坊" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/"/>
+    
+      <category term="Solidity" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/Solidity/"/>
+    
+    
+      <category term="Solidity手册" scheme="http://blog.buerya.cn/tags/Solidity%E6%89%8B%E5%86%8C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>比特币如何达成共识 - 最长链的选择</title>
+    <link href="http://blog.buerya.cn/2018/03/03/bitcoin-sonsensus/"/>
+    <id>http://blog.buerya.cn/2018/03/03/bitcoin-sonsensus/</id>
+    <published>2018-03-02T16:00:00.000Z</published>
+    <updated>2020-10-07T08:08:59.443Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;比特币没有中心机构，几乎所有的完整节点都有一份公共总帐本，那么大家如何达成共识：确认哪一份才是公认权威的总账本呢？&lt;/p&gt;
+&lt;h2 id=&quot;为什么要遵守协议&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="深入浅出区块链" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+      <category term="比特币" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E6%AF%94%E7%89%B9%E5%B8%81/"/>
+    
+    
+      <category term="比特币" scheme="http://blog.buerya.cn/tags/%E6%AF%94%E7%89%B9%E5%B8%81/"/>
+    
+      <category term="共识协议" scheme="http://blog.buerya.cn/tags/%E5%85%B1%E8%AF%86%E5%8D%8F%E8%AE%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>智能合约语言 Solidity 教程系列1 - 类型介绍</title>
+    <link href="http://blog.buerya.cn/2018/03/01/solidity1/"/>
+    <id>http://blog.buerya.cn/2018/03/01/solidity1/</id>
+    <published>2018-02-28T16:00:00.000Z</published>
+    <updated>2020-10-07T08:08:59.469Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h2 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="深入浅出区块链" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+      <category term="以太坊" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/"/>
+    
+      <category term="Solidity" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/Solidity/"/>
+    
+    
+      <category term="Solidity手册" scheme="http://blog.buerya.cn/tags/Solidity%E6%89%8B%E5%86%8C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Geth 控制台使用及 Web3.js 使用实战</title>
+    <link href="http://blog.buerya.cn/2018/02/25/geth_cmd_short/"/>
+    <id>http://blog.buerya.cn/2018/02/25/geth_cmd_short/</id>
+    <published>2018-02-25T05:02:22.000Z</published>
+    <updated>2020-10-07T08:08:59.453Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;在开发以太坊去中心化应用，免不了和以太坊进行交互，那就离不开Web3。&lt;br&gt;Geth 控制台（REPL）实现了所有的&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="深入浅出区块链" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+      <category term="以太坊" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/"/>
+    
+      <category term="geth" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/geth/"/>
+    
+    
+      <category term="Geth使用" scheme="http://blog.buerya.cn/tags/Geth%E4%BD%BF%E7%94%A8/"/>
+    
+      <category term="Web3.js" scheme="http://blog.buerya.cn/tags/Web3-js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一步步教你开发、部署第一个去中心化应用(Dapp) - 宠物商店</title>
+    <link href="http://blog.buerya.cn/2018/02/25/first-dapp/"/>
+    <id>http://blog.buerya.cn/2018/02/25/first-dapp/</id>
+    <published>2018-02-25T05:02:22.000Z</published>
+    <updated>2020-10-07T08:08:59.450Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;今天我们来编写一个完整的去中心化（区块链）应用（Dapps）, 本文可以和编写智能合约结合起来看。&lt;/p&gt;
+&lt;h2 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="深入浅出区块链" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+      <category term="以太坊" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/"/>
+    
+      <category term="Dapp" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/Dapp/"/>
+    
+    
+      <category term="Dapp入门" scheme="http://blog.buerya.cn/tags/Dapp%E5%85%A5%E9%97%A8/"/>
+    
+      <category term="以太坊概念" scheme="http://blog.buerya.cn/tags/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E6%A6%82%E5%BF%B5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>以太坊客户端Geth命令用法-参数详解</title>
+    <link href="http://blog.buerya.cn/2018/02/24/geth_cmd_options/"/>
+    <id>http://blog.buerya.cn/2018/02/24/geth_cmd_options/</id>
+    <published>2018-02-23T16:00:00.000Z</published>
+    <updated>2020-10-07T08:08:59.453Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;Geth在以太坊智能合约开发中最常用的工具（必备开发工具），一个多用途的命令行工具。&lt;br&gt;熟悉Geth可以让我们有更好的效率，大家可收藏起来作为Geth命令用法手册。
+        
+      
+    
+    </summary>
+    
+      <category term="深入浅出区块链" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+      <category term="以太坊" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/"/>
+    
+      <category term="geth" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/geth/"/>
+    
+    
+      <category term="Geth命令用法" scheme="http://blog.buerya.cn/tags/Geth%E5%91%BD%E4%BB%A4%E7%94%A8%E6%B3%95/"/>
+    
+      <category term="Geth命令参数详解" scheme="http://blog.buerya.cn/tags/Geth%E5%91%BD%E4%BB%A4%E5%8F%82%E6%95%B0%E8%AF%A6%E8%A7%A3/"/>
+    
+      <category term="Geth手册" scheme="http://blog.buerya.cn/tags/Geth%E6%89%8B%E5%86%8C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>智能合约开发环境搭建及Hello World合约</title>
+    <link href="http://blog.buerya.cn/2018/02/24/init-env/"/>
+    <id>http://blog.buerya.cn/2018/02/24/init-env/</id>
+    <published>2018-02-23T16:00:00.000Z</published>
+    <updated>2020-10-07T08:08:59.453Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;如果你对于以太坊智能合约开发还没有概念（本文会假设你已经知道这些概念），建议先阅读&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="深入浅出区块链" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+      <category term="以太坊" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/"/>
+    
+    
+      <category term="环境" scheme="http://blog.buerya.cn/tags/%E7%8E%AF%E5%A2%83/"/>
+    
+      <category term="geth安装" scheme="http://blog.buerya.cn/tags/geth%E5%AE%89%E8%A3%85/"/>
+    
+      <category term="第一个智能合约" scheme="http://blog.buerya.cn/tags/%E7%AC%AC%E4%B8%80%E4%B8%AA%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>以太坊是什么 - 以太坊开发入门指南</title>
+    <link href="http://blog.buerya.cn/2018/02/22/whatiseth/"/>
+    <id>http://blog.buerya.cn/2018/02/22/whatiseth/</id>
+    <published>2018-02-22T05:02:22.000Z</published>
+    <updated>2020-10-07T08:08:59.469Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;很多同学已经跃跃欲试投入到区块链开发队伍当中来，可是又感觉无从下手，本文将基于以太坊平台，以通俗的方式介绍以太坊开发中涉及的各晦涩的概念，轻松带大家入门。&lt;/p&gt;
+&lt;h2
+        
+      
+    
+    </summary>
+    
+      <category term="深入浅出区块链" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+      <category term="以太坊" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/"/>
+    
+    
+      <category term="以太坊概念" scheme="http://blog.buerya.cn/tags/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E6%A6%82%E5%BF%B5/"/>
+    
+      <category term="ethereum" scheme="http://blog.buerya.cn/tags/ethereum/"/>
+    
+      <category term="以太坊入门" scheme="http://blog.buerya.cn/tags/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E5%85%A5%E9%97%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>什么是拜占庭将军问题</title>
+    <link href="http://blog.buerya.cn/2018/02/17/bitcoin-byzantine/"/>
+    <id>http://blog.buerya.cn/2018/02/17/bitcoin-byzantine/</id>
+    <published>2018-02-16T16:00:00.000Z</published>
+    <updated>2020-10-07T08:08:59.438Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;接触区块链的同学，多少都听说过拜占庭将军问题，经常看到或听到某某区块链使用某某算法解决了拜占庭将军问题，那么究竟什么是拜占庭将军问题呢?&lt;/p&gt;
+&lt;h2
+        
+      
+    
+    </summary>
+    
+      <category term="深入浅出区块链" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+      <category term="比特币" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E6%AF%94%E7%89%B9%E5%B8%81/"/>
+    
+    
+      <category term="比特币" scheme="http://blog.buerya.cn/tags/%E6%AF%94%E7%89%B9%E5%B8%81/"/>
+    
+      <category term="共识协议" scheme="http://blog.buerya.cn/tags/%E5%85%B1%E8%AF%86%E5%8D%8F%E8%AE%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>非对称加密技术- RSA算法数学原理分析</title>
+    <link href="http://blog.buerya.cn/2018/02/14/asy-encryption/"/>
+    <id>http://blog.buerya.cn/2018/02/14/asy-encryption/</id>
+    <published>2018-02-14T06:22:22.000Z</published>
+    <updated>2020-10-07T08:08:59.437Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt;
+        
+      
+    
+    </summary>
+    
+      <category term="深入浅出区块链" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+      <category term="密码学" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
+    
+    
+      <category term="非对称加密" scheme="http://blog.buerya.cn/tags/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/"/>
+    
+      <category term="数学" scheme="http://blog.buerya.cn/tags/%E6%95%B0%E5%AD%A6/"/>
+    
+      <category term="RSA算法" scheme="http://blog.buerya.cn/tags/RSA%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="密码学" scheme="http://blog.buerya.cn/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>比特币区块结构Merkle树及简单支付验证分析</title>
+    <link href="http://blog.buerya.cn/2018/02/14/merkle/"/>
+    <id>http://blog.buerya.cn/2018/02/14/merkle/</id>
+    <published>2018-02-13T23:13:23.000Z</published>
+    <updated>2020-10-07T08:08:59.453Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;在比特币网络中，不是每个节点都有能力储存完整的区块链数据，受限于存储空间的的限制，很多节点是以SPV（Simplified Payment
+        
+      
+    
+    </summary>
+    
+      <category term="深入浅出区块链" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+    
+      <category term="比特币" scheme="http://blog.buerya.cn/tags/%E6%AF%94%E7%89%B9%E5%B8%81/"/>
+    
+      <category term="区块链" scheme="http://blog.buerya.cn/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+      <category term="区块链技术" scheme="http://blog.buerya.cn/tags/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="SPV简单支付验证" scheme="http://blog.buerya.cn/tags/SPV%E7%AE%80%E5%8D%95%E6%94%AF%E4%BB%98%E9%AA%8C%E8%AF%81/"/>
+    
+      <category term="区块结构" scheme="http://blog.buerya.cn/tags/%E5%8C%BA%E5%9D%97%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>比特币脚本及交易分析 - 智能合约雏形</title>
+    <link href="http://blog.buerya.cn/2018/02/14/bitcoin-script/"/>
+    <id>http://blog.buerya.cn/2018/02/14/bitcoin-script/</id>
+    <published>2018-02-13T22:22:43.000Z</published>
+    <updated>2020-10-07T08:08:59.442Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt;
+        
+      
+    
+    </summary>
+    
+      <category term="深入浅出区块链" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+    
+      <category term="比特币" scheme="http://blog.buerya.cn/tags/%E6%AF%94%E7%89%B9%E5%B8%81/"/>
+    
+      <category term="区块链" scheme="http://blog.buerya.cn/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+      <category term="区块链技术" scheme="http://blog.buerya.cn/tags/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="比特币脚本" scheme="http://blog.buerya.cn/tags/%E6%AF%94%E7%89%B9%E5%B8%81%E8%84%9A%E6%9C%AC/"/>
+    
+      <category term="交易结构" scheme="http://blog.buerya.cn/tags/%E4%BA%A4%E6%98%93%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>分析比特币网络：一种去中心化、点对点的网络架构</title>
+    <link href="http://blog.buerya.cn/2018/02/13/bitcoin-p2p/"/>
+    <id>http://blog.buerya.cn/2018/02/13/bitcoin-p2p/</id>
+    <published>2018-02-13T07:22:43.000Z</published>
+    <updated>2020-10-07T08:08:59.440Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt;
+        
+      
+    
+    </summary>
+    
+      <category term="深入浅出区块链" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+    
+      <category term="比特币" scheme="http://blog.buerya.cn/tags/%E6%AF%94%E7%89%B9%E5%B8%81/"/>
+    
+      <category term="区块链" scheme="http://blog.buerya.cn/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+      <category term="区块链技术" scheme="http://blog.buerya.cn/tags/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>比特币如何挖矿（挖矿原理）-工作量证明</title>
+    <link href="http://blog.buerya.cn/2018/02/13/bitcoin-pow/"/>
+    <id>http://blog.buerya.cn/2018/02/13/bitcoin-pow/</id>
+    <published>2018-02-13T00:25:43.000Z</published>
+    <updated>2020-10-07T08:08:59.441Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;在&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="深入浅出区块链" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+    
+      <category term="比特币" scheme="http://blog.buerya.cn/tags/%E6%AF%94%E7%89%B9%E5%B8%81/"/>
+    
+      <category term="区块链" scheme="http://blog.buerya.cn/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+      <category term="区块链技术" scheme="http://blog.buerya.cn/tags/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="挖矿" scheme="http://blog.buerya.cn/tags/%E6%8C%96%E7%9F%BF/"/>
+    
+      <category term="工作量证明" scheme="http://blog.buerya.cn/tags/%E5%B7%A5%E4%BD%9C%E9%87%8F%E8%AF%81%E6%98%8E/"/>
+    
+      <category term="共识机制" scheme="http://blog.buerya.cn/tags/%E5%85%B1%E8%AF%86%E6%9C%BA%E5%88%B6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>比特币所有权及隐私问题-非对称加密应用</title>
+    <link href="http://blog.buerya.cn/2018/02/12/bitcoin-own/"/>
+    <id>http://blog.buerya.cn/2018/02/12/bitcoin-own/</id>
+    <published>2018-02-12T03:55:43.000Z</published>
+    <updated>2020-10-07T08:08:59.439Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;比特币系统是如何确定某个账户的比特币是属于谁的？谁可以支付这个账户比特币？&lt;br&gt;如果你对这个问题还不是很明白，那就一起来看看吧。&lt;/p&gt;
+&lt;h2 id=&quot;银行系统&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="深入浅出区块链" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+    
+      <category term="比特币" scheme="http://blog.buerya.cn/tags/%E6%AF%94%E7%89%B9%E5%B8%81/"/>
+    
+      <category term="Python" scheme="http://blog.buerya.cn/tags/Python/"/>
+    
+      <category term="区块链" scheme="http://blog.buerya.cn/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+      <category term="区块链技术" scheme="http://blog.buerya.cn/tags/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>用Python从零开始创建区块链</title>
+    <link href="http://blog.buerya.cn/2018/02/09/build_blockchain_by_python/"/>
+    <id>http://blog.buerya.cn/2018/02/09/build_blockchain_by_python/</id>
+    <published>2018-02-09T09:35:23.000Z</published>
+    <updated>2020-10-07T08:08:59.445Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;em&gt;本文主要内容翻译自&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="深入浅出区块链" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+    
+      <category term="比特币" scheme="http://blog.buerya.cn/tags/%E6%AF%94%E7%89%B9%E5%B8%81/"/>
+    
+      <category term="Python" scheme="http://blog.buerya.cn/tags/Python/"/>
+    
+      <category term="区块链" scheme="http://blog.buerya.cn/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+      <category term="区块链技术" scheme="http://blog.buerya.cn/tags/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>区块链记账原理</title>
+    <link href="http://blog.buerya.cn/2018/02/08/whatbc/"/>
+    <id>http://blog.buerya.cn/2018/02/08/whatbc/</id>
+    <published>2018-02-08T07:22:53.000Z</published>
+    <updated>2020-10-07T08:08:59.469Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;区块链(1.0)是一个基于密码学安全的分布式账本，是一个方便验证，不可篡改的账本。&lt;br&gt;通常认为与智能合约相结合的区块链为区块链2.0,
+        
+      
+    
+    </summary>
+    
+      <category term="深入浅出区块链" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+    
+      <category term="比特币" scheme="http://blog.buerya.cn/tags/%E6%AF%94%E7%89%B9%E5%B8%81/"/>
+    
+      <category term="区块链" scheme="http://blog.buerya.cn/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+      <category term="区块链技术" scheme="http://blog.buerya.cn/tags/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>比特币是什么</title>
+    <link href="http://blog.buerya.cn/2018/02/05/whatisbitcoin/"/>
+    <id>http://blog.buerya.cn/2018/02/05/whatisbitcoin/</id>
+    <published>2018-02-05T07:33:53.000Z</published>
+    <updated>2020-10-07T08:08:59.469Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt;
+        
+      
+    
+    </summary>
+    
+      <category term="深入浅出区块链" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+    
+      <category term="比特币" scheme="http://blog.buerya.cn/tags/%E6%AF%94%E7%89%B9%E5%B8%81/"/>
+    
+      <category term="区块链" scheme="http://blog.buerya.cn/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+      <category term="区块链技术" scheme="http://blog.buerya.cn/tags/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何学习区块链</title>
+    <link href="http://blog.buerya.cn/2018/02/02/learnblockchain/"/>
+    <id>http://blog.buerya.cn/2018/02/02/learnblockchain/</id>
+    <published>2018-02-02T04:45:53.000Z</published>
+    <updated>2020-10-07T08:08:59.453Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt;
+        
+      
+    
+    </summary>
+    
+      <category term="深入浅出区块链" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+    
+      <category term="比特币" scheme="http://blog.buerya.cn/tags/%E6%AF%94%E7%89%B9%E5%B8%81/"/>
+    
+      <category term="Python" scheme="http://blog.buerya.cn/tags/Python/"/>
+    
+      <category term="区块链" scheme="http://blog.buerya.cn/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+      <category term="区块链技术" scheme="http://blog.buerya.cn/tags/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《机器学习有意思！ 03》- 深度学习与卷积神经网络</title>
+    <link href="http://blog.buerya.cn/2018/01/13/funny_machine_learning_3/"/>
+    <id>http://blog.buerya.cn/2018/01/13/funny_machine_learning_3/</id>
+    <published>2018-01-13T04:11:00.000Z</published>
+    <updated>2020-10-07T08:08:59.453Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;《机器学习有意思！-03》-深度学习与卷积神经网络&quot;&gt;&lt;a href=&quot;#《机器学习有意思！-03》-深度学习与卷积神经网络&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="人工智能" scheme="http://blog.buerya.cn/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
+    
+      <category term="机器学习" scheme="http://blog.buerya.cn/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="技术知识" scheme="http://blog.buerya.cn/tags/%E6%8A%80%E6%9C%AF%E7%9F%A5%E8%AF%86/"/>
+    
+      <category term="人工智能" scheme="http://blog.buerya.cn/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
+    
+      <category term="机器学习" scheme="http://blog.buerya.cn/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《机器学习有意思！ 02》- 使用机器学习生成超级玛丽关卡</title>
+    <link href="http://blog.buerya.cn/2018/01/12/funny_machine_learning_2/"/>
+    <id>http://blog.buerya.cn/2018/01/12/funny_machine_learning_2/</id>
+    <published>2018-01-12T10:11:00.000Z</published>
+    <updated>2020-10-07T08:08:59.452Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;《机器学习有意思！-02》-使用机器学习生成超级玛丽关卡&quot;&gt;&lt;a href=&quot;#《机器学习有意思！-02》-使用机器学习生成超级玛丽关卡&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="人工智能" scheme="http://blog.buerya.cn/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
+    
+      <category term="机器学习" scheme="http://blog.buerya.cn/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="技术知识" scheme="http://blog.buerya.cn/tags/%E6%8A%80%E6%9C%AF%E7%9F%A5%E8%AF%86/"/>
+    
+      <category term="人工智能" scheme="http://blog.buerya.cn/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
+    
+      <category term="机器学习" scheme="http://blog.buerya.cn/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ConstraintLayout 完全解析</title>
+    <link href="http://blog.buerya.cn/2018/01/11/android_constraintlayout/"/>
+    <id>http://blog.buerya.cn/2018/01/11/android_constraintlayout/</id>
+    <published>2018-01-11T03:21:00.000Z</published>
+    <updated>2020-10-07T08:08:59.437Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;ConstraintLayout-完全解析&quot;&gt;&lt;a href=&quot;#ConstraintLayout-完全解析&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Android" scheme="http://blog.buerya.cn/categories/Android/"/>
+    
+      <category term="ConstraintLayout" scheme="http://blog.buerya.cn/categories/Android/ConstraintLayout/"/>
+    
+    
+      <category term="技术知识" scheme="http://blog.buerya.cn/tags/%E6%8A%80%E6%9C%AF%E7%9F%A5%E8%AF%86/"/>
+    
+      <category term="Android" scheme="http://blog.buerya.cn/tags/Android/"/>
+    
+      <category term="ConstraintLayout" scheme="http://blog.buerya.cn/tags/ConstraintLayout/"/>
+    
+      <category term="约束布局" scheme="http://blog.buerya.cn/tags/%E7%BA%A6%E6%9D%9F%E5%B8%83%E5%B1%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《机器学习有意思！ 01》- 世界上最简单的机器学习入门</title>
+    <link href="http://blog.buerya.cn/2018/01/09/funny_machine_learning_1/"/>
+    <id>http://blog.buerya.cn/2018/01/09/funny_machine_learning_1/</id>
+    <published>2018-01-09T00:31:00.000Z</published>
+    <updated>2020-10-07T08:08:59.451Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;《机器学习有意思！-01》-世界上最简单的机器学习入门&quot;&gt;&lt;a href=&quot;#《机器学习有意思！-01》-世界上最简单的机器学习入门&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="人工智能" scheme="http://blog.buerya.cn/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
+    
+      <category term="机器学习" scheme="http://blog.buerya.cn/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="技术知识" scheme="http://blog.buerya.cn/tags/%E6%8A%80%E6%9C%AF%E7%9F%A5%E8%AF%86/"/>
+    
+      <category term="人工智能" scheme="http://blog.buerya.cn/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
+    
+      <category term="机器学习" scheme="http://blog.buerya.cn/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>区块链技术学习指引</title>
+    <link href="http://blog.buerya.cn/2018/01/01/blockchain_guide/"/>
+    <id>http://blog.buerya.cn/2018/01/01/blockchain_guide/</id>
+    <published>2017-12-31T16:00:00.000Z</published>
+    <updated>2020-10-07T08:08:59.444Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;本文为博客文章索引，小白必看。有新文章时会更新本文，建议大家加入收藏夹中，如果你觉得本站不错，欢迎你转发给朋友。&lt;/p&gt;
+&lt;h2 id=&quot;引言&quot;&gt;&lt;a href=&quot;#引言&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="深入浅出区块链" scheme="http://blog.buerya.cn/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+    
+      <category term="区块链" scheme="http://blog.buerya.cn/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+      <category term="目录" scheme="http://blog.buerya.cn/tags/%E7%9B%AE%E5%BD%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【机器学习】先搞懂这八大基础概念，再谈机器学习入门</title>
+    <link href="http://blog.buerya.cn/2017/11/29/machine_learning_base/"/>
+    <id>http://blog.buerya.cn/2017/11/29/machine_learning_base/</id>
+    <published>2017-11-29T04:31:00.000Z</published>
+    <updated>2020-10-07T08:08:59.453Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h3 id=&quot;【机器学习】先搞懂这八大基础概念，再谈机器学习入门&quot;&gt;&lt;a href=&quot;#【机器学习】先搞懂这八大基础概念，再谈机器学习入门&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="人工智能" scheme="http://blog.buerya.cn/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
+    
+      <category term="机器学习" scheme="http://blog.buerya.cn/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="技术知识" scheme="http://blog.buerya.cn/tags/%E6%8A%80%E6%9C%AF%E7%9F%A5%E8%AF%86/"/>
+    
+      <category term="人工智能" scheme="http://blog.buerya.cn/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
+    
+      <category term="机器学习" scheme="http://blog.buerya.cn/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Windows + Ubuntu 双系统安装图解教程</title>
+    <link href="http://blog.buerya.cn/2017/08/25/ubuntu-install/"/>
+    <id>http://blog.buerya.cn/2017/08/25/ubuntu-install/</id>
+    <published>2017-08-25T04:45:53.000Z</published>
+    <updated>2020-10-07T08:08:59.469Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt;
+        
+      
+    
+    </summary>
+    
+      <category term="Ubuntu" scheme="http://blog.buerya.cn/categories/Ubuntu/"/>
+    
+    
+      <category term="Ubuntu" scheme="http://blog.buerya.cn/tags/Ubuntu/"/>
+    
+      <category term="Ubuntu 16.04" scheme="http://blog.buerya.cn/tags/Ubuntu-16-04/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>各种教程分享</title>
+    <link href="http://blog.buerya.cn/2017/06/26/resources01/"/>
+    <id>http://blog.buerya.cn/2017/06/26/resources01/</id>
+    <published>2017-06-26T14:09:53.000Z</published>
+    <updated>2020-10-07T08:08:59.453Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://pan.baidu.com/share/link?shareid=141723&amp;amp;uk=3054038186&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="资源分享" scheme="http://blog.buerya.cn/categories/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/"/>
+    
+    
+      <category term="资源分享" scheme="http://blog.buerya.cn/tags/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一个孤独的人</title>
+    <link href="http://blog.buerya.cn/2017/06/25/diary06-25/"/>
+    <id>http://blog.buerya.cn/2017/06/25/diary06-25/</id>
+    <published>2017-06-25T13:37:57.000Z</published>
+    <updated>2020-10-07T08:08:59.449Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;div id=&quot;aplayer0&quot; class=&quot;aplayer&quot; style=&quot;margin-bottom: 20px;&quot;&gt;&lt;/div&gt;
+		&lt;script&gt;
+			new
+        
+      
+    
+    </summary>
+    
+      <category term="日记" scheme="http://blog.buerya.cn/categories/%E6%97%A5%E8%AE%B0/"/>
+    
+    
+      <category term="日记" scheme="http://blog.buerya.cn/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Markdown 11种基本语法</title>
+    <link href="http://blog.buerya.cn/2017/06/24/markdown/"/>
+    <id>http://blog.buerya.cn/2017/06/24/markdown/</id>
+    <published>2017-06-24T15:31:00.000Z</published>
+    <updated>2020-10-07T08:08:59.453Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;\assets\js\APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h2 id=&quot;现在是我在学习MARKDOWN时做的笔记。学完这些MARKDOWN的基本使用已经不成问题。&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="Markdown" scheme="http://blog.buerya.cn/categories/Markdown/"/>
+    
+    
+      <category term="Markdown语法" scheme="http://blog.buerya.cn/tags/Markdown%E8%AF%AD%E6%B3%95/"/>
+    
+      <category term="技术知识" scheme="http://blog.buerya.cn/tags/%E6%8A%80%E6%9C%AF%E7%9F%A5%E8%AF%86/"/>
+    
+  </entry>
+  
+</feed>

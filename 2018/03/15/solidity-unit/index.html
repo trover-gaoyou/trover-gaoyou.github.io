@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65558107"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    <meta name="google-site-verification" content="ar7mIVYsjkAi2k9jIuWk34S9A2aVwBdQqFkfL4AKEBQ" >
+    
+    
+    
+    <title>智能合约语言 Solidity 教程系列7 - 以太单位及时间单位 | 梦想小筑 | 坚定的走吧，毕竟梦想在远方，未来在远方，终点也在远方。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Solidity手册">
+    <meta name="description" content="智能合约语言 Solidity 教程系列7 - 以太单位及时间单位这是Solidity教程系列文章第7篇介绍以太单位及时间单位，系列带你全面深入理解Solidity语言。Solidity 系列完整的文章列表请查看分类-Solidity。 写在前面Solidity是以太坊智能合约编程语言，阅读本文前，你应该对以太坊、智能合约有所了解，如果你还不了解，建议你先看以太坊是什么 本文前半部分是参考Sol">
+<meta name="keywords" content="Solidity手册">
+<meta property="og:type" content="article">
+<meta property="og:title" content="智能合约语言 Solidity 教程系列7 - 以太单位及时间单位">
+<meta property="og:url" content="http://blog.buerya.cn/2018/03/15/solidity-unit/index.html">
+<meta property="og:site_name" content="梦想小筑">
+<meta property="og:description" content="智能合约语言 Solidity 教程系列7 - 以太单位及时间单位这是Solidity教程系列文章第7篇介绍以太单位及时间单位，系列带你全面深入理解Solidity语言。Solidity 系列完整的文章列表请查看分类-Solidity。 写在前面Solidity是以太坊智能合约编程语言，阅读本文前，你应该对以太坊、智能合约有所了解，如果你还不了解，建议你先看以太坊是什么 本文前半部分是参考Sol">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-10-07T08:08:59.469Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="智能合约语言 Solidity 教程系列7 - 以太单位及时间单位">
+<meta name="twitter:description" content="智能合约语言 Solidity 教程系列7 - 以太单位及时间单位这是Solidity教程系列文章第7篇介绍以太单位及时间单位，系列带你全面深入理解Solidity语言。Solidity 系列完整的文章列表请查看分类-Solidity。 写在前面Solidity是以太坊智能合约编程语言，阅读本文前，你应该对以太坊、智能合约有所了解，如果你还不了解，建议你先看以太坊是什么 本文前半部分是参考Sol">
+    
+        <link rel="alternate" type="application/atom+xml" title="梦想小筑" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.0">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Juan</h5>
+          <a href="mailto:quewen08@gmail.com" title="quewen08@gmail.com" class="mail">quewen08@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/trover-gaoyou" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/shandingjurenww" target="_blank" >
+                <i class="icon icon-lg icon-twitter"></i>
+                Twitter
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.instagram.com/juan95_cn" target="_blank" >
+                <i class="icon icon-lg icon-instagram"></i>
+                Instagram
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/source"  >
+                <i class="icon icon-lg icon-link"></i>
+                友情链接
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+	<img id="aimg_H2R2r" class="zoom" src="https://apa.me/news/?s=5qKm5oOz5bCP562R" border="0" alt="" width="500" height="210" initialized="true">
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">智能合约语言 Solidity 教程系列7 - 以太单位及时间单位</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">智能合约语言 Solidity 教程系列7 - 以太单位及时间单位</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-03-14T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2018-03-15
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/">深入浅出区块链</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/以太坊/">以太坊</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/以太坊/Solidity/">Solidity</a></li></ul></li></ul></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#写在前面"><span class="post-toc-number">1.</span> <span class="post-toc-text">写在前面</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#货币单位-Ether-Units"><span class="post-toc-number">2.</span> <span class="post-toc-text">货币单位(Ether Units)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#时间单位-Time-Units"><span class="post-toc-number">3.</span> <span class="post-toc-text">时间单位(Time Units)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考文档"><span class="post-toc-number">4.</span> <span class="post-toc-text">参考文档</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-solidity-unit"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">智能合约语言 Solidity 教程系列7 - 以太单位及时间单位</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-03-15 00:00:00" datetime="2018-03-14T16:00:00.000Z"  itemprop="datePublished">2018-03-15</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/">深入浅出区块链</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/以太坊/">以太坊</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/以太坊/Solidity/">Solidity</a></li></ul></li></ul></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <script src="\assets\js\APlayer.min.js"> </script><p>智能合约语言 Solidity 教程系列7 - 以太单位及时间单位<br>这是Solidity教程系列文章第7篇介绍以太单位及时间单位，系列带你全面深入理解Solidity语言。<br>Solidity 系列完整的文章列表请查看<a href="/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/Solidity/">分类-Solidity</a>。</p>
+<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>Solidity是以太坊智能合约编程语言，阅读本文前，你应该对以太坊、智能合约有所了解，<br>如果你还不了解，建议你先看<a href="/posts/深入浅出区块链/以太坊/2018-02-22-whatiseth.html">以太坊是什么</a></p>
+<p>本文前半部分是参考Solidity官方文档（当前最新版本：0.4.20）进行翻译，后半部分是结合实际合约代码实例说明类型的使用（仅针对专栏订阅用户）。</p>
+<h2 id="货币单位-Ether-Units"><a href="#货币单位-Ether-Units" class="headerlink" title="货币单位(Ether Units)"></a>货币单位(Ether Units)</h2><p>一个数字常量（字面量）后面跟随一个后缀wei, finney,szabo或ether，这个后缀就是货币单位。不同的单位可以转换。不含任何后缀的默认单位是wei。<br>不同的以太币单位转换关系如下：</p>
+<ul>
+<li>1 ether == 10^3 finney == 1000 finney</li>
+<li>1 ether == 10^6 szabo</li>
+<li>1 ether == 10^18 wei</li>
+</ul>
+<blockquote>
+<p>插曲：以太币单位其实是密码学家的名字，是以太坊创始人为了纪念他们在数字货币的领域的贡献。他们分别是：<br>wei: Wei Dai 戴伟 密码学家 ，发表 B-money<br>finney: Hal Finney 芬尼 密码学家、工作量证明机制（POW）提出<br>szabo: Nick Szabo 尼克萨博 密码学家、智能合约的提出者</p>
+</blockquote>
+<p>我们可以使用一下代码验证一个转换关系：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.4.16;</span><br><span class="line"></span><br><span class="line">contract testUnit &#123;</span><br><span class="line">    function tf() public pure returns (bool) &#123;</span><br><span class="line">      if (1 ether == 1000 finney)&#123;</span><br><span class="line">          return true;</span><br><span class="line">      &#125;</span><br><span class="line">      return false;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function ts() public pure returns (bool) &#123;</span><br><span class="line">      if (1 ether == 1000000 szabo)&#123;</span><br><span class="line">          return true;</span><br><span class="line">      &#125;</span><br><span class="line">      return false;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function tgw() public pure returns (bool) &#123;</span><br><span class="line">      if (1 ether == 1000000000000000000 wei)&#123;</span><br><span class="line">          return true;</span><br><span class="line">      &#125;</span><br><span class="line">      return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="时间单位-Time-Units"><a href="#时间单位-Time-Units" class="headerlink" title="时间单位(Time Units)"></a>时间单位(Time Units)</h2><p>时间单位: seconds, minutes, hours, days, weeks, years均可做为后缀，并进行相互转换，规则如下：</p>
+<ul>
+<li>1 == 1 seconds (默认是seconds为单位)</li>
+<li>1 minutes == 60 seconds</li>
+<li>1 hours == 60 minutes</li>
+<li>1 days == 24 hours</li>
+<li>1 weeks = 7 days</li>
+<li>1 years = 365 days</li>
+</ul>
+<p>使用这些单位进行日期计算需要特别小心，因为不是每年都是365天，且并不是每天都有24小时，因为还有闰秒。由于无法预测闰秒，必须由外部的预言（oracle）来更新从而得到一个精确的日历库。</p>
+<p>这些后缀不能用于变量。如果想对输入的变量说明其不同的单位，可以使用下面的方式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.4.16;</span><br><span class="line"></span><br><span class="line">contract testTUnit &#123;</span><br><span class="line"></span><br><span class="line">    function currTimeInSeconds() public pure returns (uint256)&#123;</span><br><span class="line">        return now;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function f(uint start, uint daysAfter) public &#123;</span><br><span class="line">        if (now &gt;= start + daysAfter * 1 days) &#123;</span><br><span class="line">        // ...</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p><a href="https://solidity.readthedocs.io/en/develop/units-and-global-variables.html#units-and-globally-available-variables" target="_blank" rel="noopener">units</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-10-07T08:08:59.469Z" itemprop="dateUpdated">2020-10-07 16:08:59</time>
+</span><br>
+
+
+        
+        本文永久地址：<a href="/2018/03/15/solidity-unit/" target="_blank" rel="external">http://blog.buerya.cn/2018/03/15/solidity-unit/</a>
+        
+    </div>
+    <footer>
+        <a href="http://blog.buerya.cn">
+            <img src="/img/avatar.jpg" alt="Juan">
+            Juan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solidity手册/">Solidity手册</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.buerya.cn/2018/03/15/solidity-unit/&title=《智能合约语言 Solidity 教程系列7 - 以太单位及时间单位》 — 梦想小筑&pic=http://blog.buerya.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.buerya.cn/2018/03/15/solidity-unit/&title=《智能合约语言 Solidity 教程系列7 - 以太单位及时间单位》 — 梦想小筑&source=初级程序员,Juan`s blogs" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.buerya.cn/2018/03/15/solidity-unit/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《智能合约语言 Solidity 教程系列7 - 以太单位及时间单位》 — 梦想小筑&url=http://blog.buerya.cn/2018/03/15/solidity-unit/&via=http://blog.buerya.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.buerya.cn/2018/03/15/solidity-unit/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/03/15/solidity-api/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">智能合约语言 Solidity 教程系列8 - Solidity API</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/03/14/ico-crowdsale/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">如何通过以太坊智能合约来进行众筹（ICO）</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comment comments vcomment" id="comments"></div>
+    <script src="//cdnjs.cat.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="//cdn1.lncld.net/static/js/3.5.0/av-min.js"></script>
+    <script src="/js/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var notify = 'false';
+        var verify = 'false';
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            av: AV,
+            el: '#comments',
+            notify: notify,
+            verify: verify,
+            appId: "LoojPRMy175IgqwnQtytrgOY-9Nh9j0Va",
+            appKey: "45VXhysB6in2v1IOL1kaC5tQ",
+            avatar: "mm",
+            placeholder: "ヾﾉ≧∀≦)o来啊，快活啊!",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢你给我买糖果吃O(∩_∩)O~~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Juan &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备17077370号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.buerya.cn/2018/03/15/solidity-unit/&title=《智能合约语言 Solidity 教程系列7 - 以太单位及时间单位》 — 梦想小筑&pic=http://blog.buerya.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.buerya.cn/2018/03/15/solidity-unit/&title=《智能合约语言 Solidity 教程系列7 - 以太单位及时间单位》 — 梦想小筑&source=初级程序员,Juan`s blogs" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.buerya.cn/2018/03/15/solidity-unit/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《智能合约语言 Solidity 教程系列7 - 以太单位及时间单位》 — 梦想小筑&url=http://blog.buerya.cn/2018/03/15/solidity-unit/&via=http://blog.buerya.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.buerya.cn/2018/03/15/solidity-unit/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKElEQVR42u3aS5KDMAxF0ex/0/Qkw2Duk6CrkC+jLooYHwZq6/P54Os4ucgz6yfJ/dsuGTJkvJZBXr++TzZ39gxfc/1pZMiQsQPjLIJ1tnLx4mXk5HuTIUOGjJTBQ/B6fRkyZMh4gsFzTP6MDBkyZKRJbK32RcLov+biMmTIeCGjk1g+/fcj/Q0ZMmS8inGE111Hybv2811ThgwZoxmdFHSNSZNVklRfrCBDhoyhjLSIT5oBncIZby0ES8iQIWMQI21GkuIX31Atuf0RcGXIkLENIw21nVGJfuorQ4aM2QzOS6m1IJ6OgMiQIWM3RnoorCXGtSGM+H+IDBkyBjE6SSm/w8Noety8aAzIkCFjECMt/afIu9oPFy1MGTJkjGaQQtg6LHYGv9JQjqZFZMiQMYiRlrf4pgnykQOoDBkyhjJqL+j8Kh3mQA1OGTJkDGXwsMiHLTpjE+lxU4YMGbsxeEBMh8k6w2co6MuQIWM0g4e8FMbLZLzAF4RvGTJkjGOQsYZ0aX7crB1Mf+xQhgwZGzNI8lk75KUk9HoZMmRsyehsnYfs9DPJkCFjH8YRXmnayUN5pwAnQ4aM2YxOsOPhOF2BfLLW8VGGDBkvZKRBlm+LF9pqybAMGTJ2YxTHGsKElryr9hYZMmTIqB3XCKnfQJUhQ4aMTjrKy3PrLaLGgwwZMjZgkFBIanUkvPLENWhnypAhYzSDp4689FZLdHmprtjUlCFDxvsYf2wdapjXP4JAAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261704531&web_id=1261704531')
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.0"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.0" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '(つェ⊂) 我藏好了哦~ ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(*´∇｀*) 被你发现啦~ ';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

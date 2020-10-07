@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65558107"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    <meta name="google-site-verification" content="ar7mIVYsjkAi2k9jIuWk34S9A2aVwBdQqFkfL4AKEBQ" >
+    
+    
+    
+    <title>Windows + Ubuntu 双系统安装图解教程 | 梦想小筑 | 坚定的走吧，毕竟梦想在远方，未来在远方，终点也在远方。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Ubuntu,Ubuntu 16.04">
+    <meta name="description" content="终于，自己想起来自己也要写点什么了。。。(宛如一个智障=_=)。很早就有个想法，自己写点什么，但是怕是懒吧，一直不想写，或者说一直不知道写点什么。现在这个blog搭建的终于是让我满意了。那么，接下来就需要使劲写，把这个空的框架填起来，就像吹气球一样咯。加油！ps:暂时不打算放图片辣~(≧▽≦)/~  安装Ubuntu U盘一个（请提前备份U盘里面的资料，因为后面操作要格式化U盘）  Ubunt">
+<meta name="keywords" content="Ubuntu,Ubuntu 16.04">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows + Ubuntu 双系统安装图解教程">
+<meta property="og:url" content="http://blog.buerya.cn/2017/08/25/ubuntu-install/index.html">
+<meta property="og:site_name" content="梦想小筑">
+<meta property="og:description" content="终于，自己想起来自己也要写点什么了。。。(宛如一个智障=_=)。很早就有个想法，自己写点什么，但是怕是懒吧，一直不想写，或者说一直不知道写点什么。现在这个blog搭建的终于是让我满意了。那么，接下来就需要使劲写，把这个空的框架填起来，就像吹气球一样咯。加油！ps:暂时不打算放图片辣~(≧▽≦)/~  安装Ubuntu U盘一个（请提前备份U盘里面的资料，因为后面操作要格式化U盘）  Ubunt">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/fenqu.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/UlstraISO.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/UlstraISO1.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/UlstraISO2.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/UlstraISO3.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/Bios.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/Deskop.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/install1.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/install2.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/install3.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/install3.jpg">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/install4.jpg">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/install5.jpg">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/install5.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/install7.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/install8.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/install9.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/install10.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/install11.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/install12.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/install6.jpg">
+<meta property="og:updated_time" content="2020-10-07T08:08:59.469Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Windows + Ubuntu 双系统安装图解教程">
+<meta name="twitter:description" content="终于，自己想起来自己也要写点什么了。。。(宛如一个智障=_=)。很早就有个想法，自己写点什么，但是怕是懒吧，一直不想写，或者说一直不知道写点什么。现在这个blog搭建的终于是让我满意了。那么，接下来就需要使劲写，把这个空的框架填起来，就像吹气球一样咯。加油！ps:暂时不打算放图片辣~(≧▽≦)/~  安装Ubuntu U盘一个（请提前备份U盘里面的资料，因为后面操作要格式化U盘）  Ubunt">
+<meta name="twitter:image" content="http://qiniu.buerya.cn/static/fenqu.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="梦想小筑" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.0">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Juan</h5>
+          <a href="mailto:quewen08@gmail.com" title="quewen08@gmail.com" class="mail">quewen08@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/trover-gaoyou" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/shandingjurenww" target="_blank" >
+                <i class="icon icon-lg icon-twitter"></i>
+                Twitter
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.instagram.com/juan95_cn" target="_blank" >
+                <i class="icon icon-lg icon-instagram"></i>
+                Instagram
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/source"  >
+                <i class="icon icon-lg icon-link"></i>
+                友情链接
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+	<img id="aimg_H2R2r" class="zoom" src="https://apa.me/news/?s=5qKm5oOz5bCP562R" border="0" alt="" width="500" height="210" initialized="true">
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Windows + Ubuntu 双系统安装图解教程</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Windows + Ubuntu 双系统安装图解教程</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-08-25T04:45:53.000Z" itemprop="datePublished" class="page-time">
+  2017-08-25
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Ubuntu/">Ubuntu</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#安装Ubuntu"><span class="post-toc-number">1.</span> <span class="post-toc-text">安装Ubuntu</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#硬盘做好分区，一般40G左右就够了。"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">硬盘做好分区，一般40G左右就够了。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#使用ultraiso做U盘启动-老电脑记得使用MBR-，或者在Windows中用cmd命令制作启动盘。"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">使用ultraiso做U盘启动(老电脑记得使用MBR)，或者在Windows中用cmd命令制作启动盘。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#【BIOS设置】"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">【BIOS设置】</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#【安装Ubuntu-16-04】"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">【安装Ubuntu 16.04】</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-ubuntu-install"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Windows + Ubuntu 双系统安装图解教程</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-08-25 12:45:53" datetime="2017-08-25T04:45:53.000Z"  itemprop="datePublished">2017-08-25</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Ubuntu/">Ubuntu</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <script src="\assets\js\APlayer.min.js"> </script><hr>
+<p>终于，自己想起来自己也要写点什么了。。。(宛如一个智障=_=)。很早就有个想法，自己写点什么，但是怕是懒吧，一直不想写，或者说一直不知道写点什么。现在这个blog搭建的终于是让我满意了。那么，接下来就需要使劲写，把这个空的框架填起来，就像吹气球一样咯。加油！ps:暂时不打算放图片辣~(≧▽≦)/~</p>
+<hr>
+<h4 id="安装Ubuntu"><a href="#安装Ubuntu" class="headerlink" title="安装Ubuntu"></a>安装Ubuntu</h4><hr>
+<p>U盘一个（请提前备份U盘里面的资料，因为后面操作要格式化U盘）</p>
+<ul>
+<li>Ubuntu 16.04LTS（长期支持版） 镜像：</li>
+</ul>
+<p>　　　　- 下载地址：<a href="http://www.ubuntu.com/download/desktop" title="Ubuntu下载地址" target="_blank" rel="noopener">http://www.ubuntu.com/download/desktop</a></p>
+<p>　　　　-Ubuntu中国下载地址：<a href="http://cn.ubuntu.com/download/" title="Ubuntu中国下载地址" target="_blank" rel="noopener">http://cn.ubuntu.com/download/</a></p>
+<ul>
+<li>ultraiso  可以免费试用，地址百度一堆呢</li>
+</ul>
+<h5 id="硬盘做好分区，一般40G左右就够了。"><a href="#硬盘做好分区，一般40G左右就够了。" class="headerlink" title="硬盘做好分区，一般40G左右就够了。"></a>硬盘做好分区，一般40G左右就够了。</h5><p><img src="http://qiniu.buerya.cn/static/fenqu.png" alt="分区"><br><strong> <em>绿色框中是留给Ubuntu的空间</em> </strong></p>
+<blockquote>
+<p>注意：</p>
+<p>（1）如果想学习Linux的话，留给Ubuntu使用的空间建议大于40G。</p>
+<p>（2）这里是一整个未分配空间，这样可以在安装Ubuntu的时候直接选择和Windows共存安装，自动分配空间，不用自己再给系统分区设置大小了。</p>
+</blockquote>
+<h5 id="使用ultraiso做U盘启动-老电脑记得使用MBR-，或者在Windows中用cmd命令制作启动盘。"><a href="#使用ultraiso做U盘启动-老电脑记得使用MBR-，或者在Windows中用cmd命令制作启动盘。" class="headerlink" title="使用ultraiso做U盘启动(老电脑记得使用MBR)，或者在Windows中用cmd命令制作启动盘。"></a>使用ultraiso做U盘启动(老电脑记得使用MBR)，或者在Windows中用cmd命令制作启动盘。</h5><ol>
+<li><p>插入用来制作启动盘的U盘（会被格式化，请备份好重要文件），打开UltraISO刻录软件（免费无限期试用）。<img src="http://qiniu.buerya.cn/static/UlstraISO.png" alt="UltraISO制作启动盘"></p>
+</li>
+<li><p>选择“文件(F)”-&gt;“打开”，找到“Ubuntu-16.04-desktop-amd64.iso”镜像文件，然后点击“打开”。<img src="http://qiniu.buerya.cn/static/UlstraISO1.png" alt="UltraISO制作启动盘"></p>
+</li>
+<li><p>选择“启动(B)”-&gt;“写入硬盘映像”，打开启动盘制作界面。<img src="http://qiniu.buerya.cn/static/UlstraISO2.png" alt="UltraISO制作启动盘"></p>
+</li>
+<li><p>然后点击下方的“写入”，会弹出警告提示，确定后，就会开始制作启动盘。写入完成后关闭UltraISO软件即可。<img src="http://qiniu.buerya.cn/static/UlstraISO3.png" alt="UltraISO制作启动盘"></p>
+<blockquote>
+<p>建议：USB3.0的U盘写入速度大约是USB2.0的10倍，推荐使用USB3.0接口的U盘。</p>
+</blockquote>
+</li>
+</ol>
+<h5 id="【BIOS设置】"><a href="#【BIOS设置】" class="headerlink" title="【BIOS设置】"></a>【BIOS设置】</h5><ol>
+<li>关机，重新打开电脑，进入BIOS，关闭Windows系统的快速启动（Fast Boot）选项，即设置为Disable状态。<img src="http://qiniu.buerya.cn/static/Bios.png" alt="关闭BIOS快速启动"></li>
+<li>在BIOS中设置U盘为第一启动项，关闭电脑。<blockquote>
+<p>这一步也可以省略，有些电脑在开机时可以通过按F12 或者Esc选择启动方式，看个人电脑配置吧。</p>
+</blockquote>
+</li>
+</ol>
+<h5 id="【安装Ubuntu-16-04】"><a href="#【安装Ubuntu-16-04】" class="headerlink" title="【安装Ubuntu 16.04】"></a>【安装Ubuntu 16.04】</h5><ol>
+<li><p>从U盘启动，进入刻录到U盘的Ubuntu系统中。</p>
+<blockquote>
+<p>一般选择Try ubuntu，你不喜欢直接用桌面系统的话也可以直接选择Install Ubuntu.</p>
+</blockquote>
+</li>
+<li><p>选择试用Ubuntu，稍等一会，进入Ubuntu Desktop。<img src="http://qiniu.buerya.cn/static/Deskop.png" alt="Ubuntu 桌面"></p>
+</li>
+<li><p>双击左上角的”Install Ubuntu 16.04LTS“，打开安装界面。（安装过程比较简单，根据提示输入一些信息即可）</p>
+<ul>
+<li>在左侧语言栏选择安装语言，然后点击“继续”。<img src="http://qiniu.buerya.cn/static/install1.png" alt="Ubuntu 安装"></li>
+<li>如果网速比较快，可以勾选“安装Ubuntu时下载更新”。（如果选择的语言是中文，这里在更新的时候会自动安装中文输入法，当然也可以安装完成后安装搜狗拼音输入法Linux版）<img src="http://qiniu.buerya.cn/static/install2.png" alt="Ubuntu 安装"><blockquote>
+<p>点击继续</p>
+</blockquote>
+</li>
+<li>在硬盘中Ubuntu检测到有Windows系统存在，所以会默认使用未分配的那部分空间安装Ubuntu。<img src="http://qiniu.buerya.cn/static/install3.png" alt="Ubuntu 安装"><blockquote>
+<p>注意：千万别选第一个选项，我就被坑过一次，导致Windows系统也要重装T_T</p>
+</blockquote>
+</li>
+<li>选择这一项，然后点击继续<img src="http://qiniu.buerya.cn/static/install3.jpg" alt="Ubuntu 安装"></li>
+<li>进入分区界面后，可以看到/dev/sda这块磁盘已安装好windows10系统，而我们将要安装的/dev/sdb还处于空闲状态。<img src="http://qiniu.buerya.cn/static/install4.jpg" alt="Ubuntu 安装"></li>
+<li><p>下面我们将进行分区，网上很多教程都说要单独将<em>/boot</em>挂载，其实也可以不用这样。一般情况下只用挂载<em>/根目录 ,/home用户目录, swap交换分区</em>三个目录就行了，我这里因为在使用中有部分数据需要存在/var目录下，所以就将/var也进行了单独的挂载。 <img src="http://qiniu.buerya.cn/static/install5.jpg" alt="Ubuntu 安装"></p>
+<blockquote>
+<p>注意，要将安装的启动引导器(grub2)设备选择在efi分区上也就是我们安装windows时设置的分区。</p>
+</blockquote>
+<p>接下来会有提示信息。<img src="http://qiniu.buerya.cn/static/install5.png" alt="Ubuntu 安装"></p>
+</li>
+<li>输入自己的位置以配置时区。<img src="http://qiniu.buerya.cn/static/install7.png" alt="Ubuntu 安装"></li>
+<li>键盘布局默认就可以。<img src="http://qiniu.buerya.cn/static/install8.png" alt="Ubuntu 安装"></li>
+<li>输入账户信息和密码。<img src="http://qiniu.buerya.cn/static/install9.png" alt="Ubuntu 安装"></li>
+<li>接下来下载更新，自动安装。<br><img src="http://qiniu.buerya.cn/static/install10.png" alt="Ubuntu 安装"><br><img src="http://qiniu.buerya.cn/static/install11.png" alt="Ubuntu 安装"></li>
+<li>安装完成之后重启。<img src="http://qiniu.buerya.cn/static/install12.png" alt="Ubuntu 安装"></li>
+<li>下面就是正常的复制文件开始安装了，安装好重启系统，就会出现grub2引导器的选择界面了。从图中可以看到第一个是ubuntu系统，第三个就是window10系统。<img src="http://qiniu.buerya.cn/static/install6.jpg" alt="Ubuntu 安装"></li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>安装后的配置请见下一篇</p>
+</blockquote>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-10-07T08:08:59.469Z" itemprop="dateUpdated">2020-10-07 16:08:59</time>
+</span><br>
+
+
+        
+        本文永久地址：<a href="/2017/08/25/ubuntu-install/" target="_blank" rel="external">http://blog.buerya.cn/2017/08/25/ubuntu-install/</a>
+        
+    </div>
+    <footer>
+        <a href="http://blog.buerya.cn">
+            <img src="/img/avatar.jpg" alt="Juan">
+            Juan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu/">Ubuntu</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu-16-04/">Ubuntu 16.04</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.buerya.cn/2017/08/25/ubuntu-install/&title=《Windows + Ubuntu 双系统安装图解教程》 — 梦想小筑&pic=http://blog.buerya.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.buerya.cn/2017/08/25/ubuntu-install/&title=《Windows + Ubuntu 双系统安装图解教程》 — 梦想小筑&source=初级程序员,Juan`s blogs" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.buerya.cn/2017/08/25/ubuntu-install/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Windows + Ubuntu 双系统安装图解教程》 — 梦想小筑&url=http://blog.buerya.cn/2017/08/25/ubuntu-install/&via=http://blog.buerya.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.buerya.cn/2017/08/25/ubuntu-install/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/11/29/machine_learning_base/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">【机器学习】先搞懂这八大基础概念，再谈机器学习入门</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/06/26/resources01/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">各种教程分享</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comment comments vcomment" id="comments"></div>
+    <script src="//cdnjs.cat.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="//cdn1.lncld.net/static/js/3.5.0/av-min.js"></script>
+    <script src="/js/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var notify = 'false';
+        var verify = 'false';
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            av: AV,
+            el: '#comments',
+            notify: notify,
+            verify: verify,
+            appId: "LoojPRMy175IgqwnQtytrgOY-9Nh9j0Va",
+            appKey: "45VXhysB6in2v1IOL1kaC5tQ",
+            avatar: "mm",
+            placeholder: "ヾﾉ≧∀≦)o来啊，快活啊!",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢你给我买糖果吃O(∩_∩)O~~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Juan &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备17077370号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.buerya.cn/2017/08/25/ubuntu-install/&title=《Windows + Ubuntu 双系统安装图解教程》 — 梦想小筑&pic=http://blog.buerya.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.buerya.cn/2017/08/25/ubuntu-install/&title=《Windows + Ubuntu 双系统安装图解教程》 — 梦想小筑&source=初级程序员,Juan`s blogs" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.buerya.cn/2017/08/25/ubuntu-install/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Windows + Ubuntu 双系统安装图解教程》 — 梦想小筑&url=http://blog.buerya.cn/2017/08/25/ubuntu-install/&via=http://blog.buerya.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.buerya.cn/2017/08/25/ubuntu-install/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACIUlEQVR42u3aQXLDMAgF0Nz/0u4BMlE/YC8sPa06GSfS84IC4vOJ1/W1vj9fP/n9a+tdPk8sDAyM1zKu5VpvsN4y4f36JD8bBgbGOYzkEPNv5ZEz3wUDAwMjZyRBM38eAwMDY8JIkrk1tffLGBgYGEkRu34+74b1XtlttTgGBsYLGZPC8um/H7nfwMDAeBXjKq68iK2Gy2uwMDAw9mbkAa6X2FWHNkbnwcDA2JqRNLaq21eDbP5JIYfFwMDYgpEfsZrAzRv9+XkwMDD2ZiTpWt6OT9jVplv5PwYGBsZ2jBuGseIXsX6ymlBiYGCcxuj93ByZj4UVilgMDIwDGHcNRuQXCb2O2c9aHAMDYztGvmUegvND5DVp0ozDwMDYlTEJc+VSc9L0X6eYGBgYWzOqFwb3ht1q4pi/JgwMjP0YeYE6CbXVEbHyBScGBsYxjCfa/ZNJicLZMDAwNmU0rwxb94a9y4AoBGNgYGzN6F03ThK+BJ+MkRWGwzAwMDZiVLfPByySQ89DPAYGxjmMXnB8IuBWLx4wMDDOZEzSwZsHJvLJEQwMjO0YV3HdNZZRDbv/vGIMDIytGb0wVy1082GO/PlmyMbAwHgtIw+R64RvfZRJ+I5eAQYGxgGMPPDlA2STMD2qxTEwMI5nVJtok1K2nL1iYGBgtEJtb/yiGsoxMDBOYPRa+flBe4Vr3v7DwMDYm9HLu6ohuHqIvCTGwMDYmvEHRCgD8aVMQM4AAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261704531&web_id=1261704531')
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.0"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.0" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '(つェ⊂) 我藏好了哦~ ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(*´∇｀*) 被你发现啦~ ';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

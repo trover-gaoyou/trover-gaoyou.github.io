@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65558107"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    <meta name="google-site-verification" content="ar7mIVYsjkAi2k9jIuWk34S9A2aVwBdQqFkfL4AKEBQ" >
+    
+    
+    
+    <title>《机器学习有意思！ 02》- 使用机器学习生成超级玛丽关卡 | 梦想小筑 | 坚定的走吧，毕竟梦想在远方，未来在远方，终点也在远方。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="技术知识,人工智能,机器学习">
+    <meta name="description" content="《机器学习有意思！ 02》- 使用机器学习生成超级玛丽关卡  原文：Machine Learning is Fun! Part 2 – Using Machine Learning to generate Super Mario Maker levels 作者：Adam Geitgey   在系列的Part 1中我们已经讲过，机器学习是用普适的算法从数据中挖掘出有趣的东西，而无需针对具体问题写代">
+<meta name="keywords" content="技术知识,人工智能,机器学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《机器学习有意思！ 02》- 使用机器学习生成超级玛丽关卡">
+<meta property="og:url" content="http://blog.buerya.cn/2018/01/12/funny_machine_learning_2/index.html">
+<meta property="og:site_name" content="梦想小筑">
+<meta property="og:description" content="《机器学习有意思！ 02》- 使用机器学习生成超级玛丽关卡  原文：Machine Learning is Fun! Part 2 – Using Machine Learning to generate Super Mario Maker levels 作者：Adam Geitgey   在系列的Part 1中我们已经讲过，机器学习是用普适的算法从数据中挖掘出有趣的东西，而无需针对具体问题写代">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10002.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/100011.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/100012.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/100013.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/100014.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/100015.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/100016.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/100017.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/100018.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/100019.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10020.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10021.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10022.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10023.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10024.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/10025.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/funny_machine/100020.jpeg">
+<meta property="og:updated_time" content="2020-10-07T08:08:59.452Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《机器学习有意思！ 02》- 使用机器学习生成超级玛丽关卡">
+<meta name="twitter:description" content="《机器学习有意思！ 02》- 使用机器学习生成超级玛丽关卡  原文：Machine Learning is Fun! Part 2 – Using Machine Learning to generate Super Mario Maker levels 作者：Adam Geitgey   在系列的Part 1中我们已经讲过，机器学习是用普适的算法从数据中挖掘出有趣的东西，而无需针对具体问题写代">
+<meta name="twitter:image" content="http://qiniu.buerya.cn/static/funny_machine/10002.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="梦想小筑" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.0">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Juan</h5>
+          <a href="mailto:quewen08@gmail.com" title="quewen08@gmail.com" class="mail">quewen08@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/trover-gaoyou" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/shandingjurenww" target="_blank" >
+                <i class="icon icon-lg icon-twitter"></i>
+                Twitter
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.instagram.com/juan95_cn" target="_blank" >
+                <i class="icon icon-lg icon-instagram"></i>
+                Instagram
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/source"  >
+                <i class="icon icon-lg icon-link"></i>
+                友情链接
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+	<img id="aimg_H2R2r" class="zoom" src="https://apa.me/news/?s=5qKm5oOz5bCP562R" border="0" alt="" width="500" height="210" initialized="true">
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">《机器学习有意思！ 02》- 使用机器学习生成超级玛丽关卡</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">《机器学习有意思！ 02》- 使用机器学习生成超级玛丽关卡</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-01-12T10:11:00.000Z" itemprop="datePublished" class="page-time">
+  2018-01-12
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/人工智能/">人工智能</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/人工智能/机器学习/">机器学习</a></li></ul></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#《机器学习有意思！-02》-使用机器学习生成超级玛丽关卡"><span class="post-toc-number">1.</span> <span class="post-toc-text">《机器学习有意思！ 02》- 使用机器学习生成超级玛丽关卡</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#猜得更机智"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">猜得更机智</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是神经网络？"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">什么是神经网络？</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#让神经网络有记忆"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">让神经网络有记忆</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一个字母好干什么？"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">一个字母好干什么？</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#生产故事"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">生产故事</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#你可能玩了假的马里奥"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">你可能玩了假的马里奥</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#训练模型"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">训练模型</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#玩具和真货"><span class="post-toc-number">1.8.</span> <span class="post-toc-text">玩具和真货</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-funny_machine_learning_2"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">《机器学习有意思！ 02》- 使用机器学习生成超级玛丽关卡</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-01-12 18:11:00" datetime="2018-01-12T10:11:00.000Z"  itemprop="datePublished">2018-01-12</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/人工智能/">人工智能</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/人工智能/机器学习/">机器学习</a></li></ul></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <script src="\assets\js\APlayer.min.js"> </script><h1 id="《机器学习有意思！-02》-使用机器学习生成超级玛丽关卡"><a href="#《机器学习有意思！-02》-使用机器学习生成超级玛丽关卡" class="headerlink" title="《机器学习有意思！ 02》- 使用机器学习生成超级玛丽关卡"></a>《机器学习有意思！ 02》- 使用机器学习生成超级玛丽关卡</h1><blockquote>
+<p> <em>原文：<a href="https://medium.com/@ageitgey/machine-learning-is-fun-part-2-a26a10b68df3#.rtiibwykm" target="_blank" rel="noopener">Machine Learning is Fun! Part 2 – Using Machine Learning to generate Super Mario Maker levels</a></em><br> <em>作者：Adam Geitgey</em></p>
+</blockquote>
+<hr>
+<p>在系列的<em><a href="http://blog.trover.cf/posts/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/2018-01-09-funny_machine_learning_1.html" target="_blank" rel="noopener">Part 1</a></em>中我们已经讲过，机器学习是用普适的算法从数据中挖掘出有趣的东西，而无需针对具体问题写代码。</p>
+<p>这次我们将见识一种普适算法的炫酷表现——创造乱真的游戏关卡。我们将建立一个神经网络，导入已有的超级马里奥数据，然后创造新的关卡。</p>
+<p>正如Part 1一样，本系列教程适合所有对机器学习感兴趣、但却不知从何开始的读者。希望所有人都能读懂——所以难免会有些粗疏。不过但凡能把一个人带进ML的坑里，也就算没白写。</p>
+<hr>
+<h2 id="猜得更机智"><a href="#猜得更机智" class="headerlink" title="猜得更机智"></a>猜得更机智</h2><p>在Part 1中，我们写了一个简单的算法来根据房产的属性预测价格，数据如下表所示：</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10002.png" alt=""></p>
+<p>预测函数是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">def estimate_house_sales_price(num_of_bedrooms, sqft, neighborhood):</span><br><span class="line">    price = 0</span><br><span class="line"></span><br><span class="line">    # 加少量配方1</span><br><span class="line">    price += num_of_bedrooms * 0.123</span><br><span class="line"></span><br><span class="line">    # 加大把配方2</span><br><span class="line">    price += sqft * 0.41</span><br><span class="line"></span><br><span class="line">    # 适量的配方3</span><br><span class="line">    price += neighborhood * 0.57</span><br><span class="line"></span><br><span class="line">    return price</span><br></pre></td></tr></table></figure>
+<p>也就是说，房价的预测值是由每种属性乘以权重再相加得到的。用图形来表示：</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/100011.png" alt=""></p>
+<blockquote>
+<p>箭头代表函数权重</p>
+</blockquote>
+<p>但是这个算法只对很简单的线性问题有效，如果房价背后的真实规律没有那么简单呢？比如周边环境可能对特别大或特别小的房子影响显著，但对于中间房型则没有什么影响。如何才能捕捉到这些复杂细节呢？</p>
+<p>为了更加的机智，我们可以用不同的权重多次执行算法，每一组权重对应不同的边界情况。</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/100012.png" alt=""></p>
+<blockquote>
+<p>尝试用4种方法解决问题</p>
+</blockquote>
+<p>现在我们有四个价格预测了，然后再把这4个组合成最终结果，并且也是通过加权（只是权重值变了）。</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/100013.png" alt=""></p>
+<p>新的<strong><em>超级答案</em></strong>结合了四次求解尝试，所以相比于初始的简单模型，能够模拟更多的情况。</p>
+<hr>
+<h2 id="什么是神经网络？"><a href="#什么是神经网络？" class="headerlink" title="什么是神经网络？"></a>什么是神经网络？</h2><p>把我的四次求解尝试整合到一张大图里：</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/100014.png" alt=""></p>
+<p>这就是一个神经网络！那个节点都有一组输入，执行加权计算，产生一个输出值。把这些节点串起来就能够对复杂函数进行建模了。</p>
+<p>为了节省篇幅，这里我跳过了很多内容（比如<a href="https://en.wikipedia.org/wiki/Feature_scaling" target="_blank" rel="noopener">特征缩放</a>和<a href="https://en.wikipedia.org/wiki/Activation_function" target="_blank" rel="noopener">激励函数</a>），但是最重要的部分还是以下几点基本思想：</p>
+<ul>
+<li>我们用简单的函数，对输入进行加权获得输出，这个简单函数就叫<strong>神经元</strong>。</li>
+<li>把许多简单的神经元链在一起，就可以对单个神经元描述不了的复杂问题进行建模。</li>
+</ul>
+<p>就像乐高一样，单个积木块或许做不出什么，但只要有足够多的积木，就什么都能搭建。</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/100015.png" alt=""></p>
+<blockquote>
+<p>我们的未来会如同塑料玩具一样吗？只有时间知道答案。</p>
+</blockquote>
+<hr>
+<h2 id="让神经网络有记忆"><a href="#让神经网络有记忆" class="headerlink" title="让神经网络有记忆"></a>让神经网络有记忆</h2><p>给定相同的输入，此前的神经网络也会给出相同的输出，用编程术语叫<a href="https://en.wikipedia.org/wiki/State_%28computer_science%29" target="_blank" rel="noopener">无状态算法(stateless algorithm)</a>。</p>
+<p>在很多实例（比如房价预测）中，这正是我们想要的。但是这类模型无法应对数据中的时变模式。</p>
+<p>想象一下，我给了你一个键盘，让写个故事。在开始之前，我要猜你会写哪个字母，那么我该怎么猜呢？</p>
+<p>我可以利用我的英语知识来增加命中率，比如你写的第一个字母往往是一个单词的首字母。如果我看过你的过往文章，还可以进一步根据你的文风收缩范围。如果我有全部数据，我就可以搭建一个神经网络，来计算你写下一个字母的概率。</p>
+<p>模型可能是这样：</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/100016.png" alt=""></p>
+<p>再来看一个更有挑战的问题，随便在故事里定个位，然后我要猜你的下一个字母，这就更有意思了。</p>
+<p>用海明威的《太阳照常升起》作为例子：</p>
+<blockquote>
+<p>Robert Cohn was once middleweight boxi</p>
+</blockquote>
+<p>下一个字母是什么？</p>
+<p>你大概会猜’n’——这个词应该是boxing。这样的猜测是基于我们已知的常用英语单词积累。同时，’middleweight’ 也给出了额外的线索指向boxing。</p>
+<p>下一个字母好猜，是因为我们纳入了其之前的句子，并结合已有的语言知识。</p>
+<p>如果要用神经网络来解决这个问题，我们需要在模型中添加一个状态(state)，每次我们向神经网络询问答案的时候，还会获得一个中间计算，并在下次当作输入的一部分重复利用。如此一来，我们的模型就会根据之前的输入调整预测结果。</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/100017.png" alt=""></p>
+<p>跟着状态走，虽然不能猜第一个字母，但却可以根据前面的字母猜下一个。</p>
+<p>这就是<em>循环神经网络(Recurrent Neural Network)</em>的基本思路。每次使用，我们都是在更新网络，这就可以基于之前最常见的输入，去更新预测。只要“记忆力”足够，这就可以对数据的时变模式进行建模。</p>
+<hr>
+<h2 id="一个字母好干什么？"><a href="#一个字母好干什么？" class="headerlink" title="一个字母好干什么？"></a>一个字母好干什么？</h2><p>猜测故事里的下一个字母挺起来没有什么卵用，那还提这茬干嘛？</p>
+<p>手机输入法的自动补全就是一个应用：</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/100018.png" alt=""></p>
+<blockquote>
+<p>下一个字母是”t”</p>
+</blockquote>
+<p>往计算情况再想想，如果我们让模型猜完一个再猜一个，如此循环往复——我们就可以让计算机自己来写个故事了！</p>
+<h2 id="生产故事"><a href="#生产故事" class="headerlink" title="生产故事"></a>生产故事</h2><p>知道了如何猜海明威句子里的下一个字母，让我们试着产生一个完整的海明威风格故事。</p>
+<p>我们将使用<a href="http://karpathy.github.io/about/" target="_blank" rel="noopener">Andrej Karpathy</a>开发的<a href="https://github.com/karpathy/char-rnn" target="_blank" rel="noopener">循环神经网络</a>。Andrej是斯坦福大学的深度学习研究者，并且他写了一个<a href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/" target="_blank" rel="noopener">极好的循环神经网络文本生成入门</a>，你可以在<a href="https://github.com/karpathy/char-rnn" target="_blank" rel="noopener">GitHub</a>查看完整代码。</p>
+<p>模型建立在《太阳照常升起》的文本数据基础上——362,239个字，84个字符（包括标点符号）。相比于实际应用，这一数据量其实小的很。为了真正搭建一个好的海明威文风的模型，至少需要若干倍的样本文字量，不过对于一个入门实例来讲，现在的就足够了。</p>
+<p>刚开始训练RNN的时候，预测能力还不太行，这是100次训练迭代后的成果：</p>
+<blockquote>
+<p>hjCTCnhoofeoxelif edElobe negnk e iohehasenoldndAmdaI ayio pe e h’e btentmuhgehi bcgdltt. gey heho grpiahe.</p>
+<p>Ddelnss.eelaishaner” cot AAfhB ht ltny</p>
+<p>ehbih a”on bhnte ectrsnae abeahngy</p>
+<p>amo k ns aeo?cdse nh a taei.rairrhelardr er deffijha</p>
+</blockquote>
+<p>可以看见词与词之间已经有空格了。</p>
+<p>1000次迭代之后，明显看起来更上道了：</p>
+<blockquote>
+<p>hing soor ither. And the caraos, and the crowebel for figttier and ale the room of me? Streat was not to him Bill-stook of the momansbed mig out ust on the bull, out here. I been soms inick stalling that aid.</p>
+<p>“Hon’t me and acrained on .Hw’s don’t you for the roed,” In’s pair.”</p>
+<p>“Alough marith him.”</p>
+</blockquote>
+<p>模型已经识别出了基本句型模式，并且知道在句末加句号，给对话加引号，个别单词已经能读懂了，但整篇仍是一派胡言。</p>
+<p>又经过几千次迭代之后，现在已经看起来非常好了：</p>
+<blockquote>
+<p>He went over to the gate of the café. It was like a country bed.</p>
+<p>“Do you know it’s been me.”</p>
+<p>“Damned us,” Bill said.</p>
+<p>“I was dangerous,” I said. “You were she did it and think I would a fine cape you,” I said.</p>
+<p>“I can’t look strange in the cab.”</p>
+<p>“You know I was this is though,” Brett said.</p>
+<p>“It’s a fights no matter?”</p>
+<p>“It makes to do it.”</p>
+<p>“You make it?”</p>
+<p>“Sit down,” I said. “I wish I wasn’t do a little with the man.”</p>
+<p>“You found it.”</p>
+<p>“I don’t know.”</p>
+<p>“You see, I’m sorry of chatches,” Bill said. “You think it’s a friend off back and make you really drunk.”</p>
+</blockquote>
+<p>至此，算法已经捕捉到了海明威对话短小精悍的特征，有些句子甚至已经能够达意了。</p>
+<p>跟书中的真实文本对照一下：</p>
+<blockquote>
+<p>There were a few people inside at the bar, and outside, alone, sat Harvey Stone. He had a pile of saucers in front of him, and he needed a shave.</p>
+<p>“Sit down,” said Harvey, “I’ve been looking for you.”</p>
+<p>“What’s the matter?”</p>
+<p>“Nothing. Just looking for you.”</p>
+<p>“Been out to the races?”</p>
+<p>“No. Not since Sunday.”</p>
+<p>“What do you hear from the States?”</p>
+<p>“Nothing. Absolutely nothing.”</p>
+<p>“What’s the matter?”</p>
+</blockquote>
+<p>即便是循着单个字母的模式，我们的算法已经模仿得有鼻子有眼了，这好的很呐！</p>
+<p>无需从零开始生成文本，我们可以提供前几个字母作为“种子”，然后让算法自己寻找后面的。</p>
+<p>出于娱乐目的，我们来做一本假书，用”Er”,”He”,”The S”作为种子生成新的作者名字和新标题：</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/100019.png" alt=""></p>
+<blockquote>
+<p>左：真书；右：计算机生成的假书</p>
+</blockquote>
+<p>还不赖！</p>
+<p>真正令人振奋的是，这一算法可以从任意数据中识别模式，能够轻易地生成以假乱真的<a href="https://gist.github.com/nylki/1efbaa36635956d35bcc" target="_blank" rel="noopener">菜谱</a>和<a href="https://medium.com/@samim/obama-rnn-machine-generated-political-speeches-c8abd18a2ea0#.b4clxzrgf" target="_blank" rel="noopener">假的奥巴马讲话</a>。为什么要局限在人类语言当中呢？我们大可以应用在任何内含模式的数据之中。</p>
+<hr>
+<h2 id="你可能玩了假的马里奥"><a href="#你可能玩了假的马里奥" class="headerlink" title="你可能玩了假的马里奥"></a>你可能玩了假的马里奥</h2><p>2015年，任天堂推出了用于Wii U游戏机的<a href="http://supermariomaker.nintendo.com/" target="_blank" rel="noopener">超级马里奥编辑器</a>。</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10020.png" alt=""></p>
+<p>这个游戏让你可以自由设计超级马里奥的关卡，并且上传到网上和朋友们分享。你可以加入老游戏中的所有经典机关和敌人，简直是马里奥时代生人的虚拟乐高。</p>
+<p>能不能用生成假海明威文字的模型，来生成假马里奥关卡呢？</p>
+<p>首先需要准备训练数据，从1985年原版超级马里奥兄弟里提取出所有的室外关卡。游戏中共有32关，其中约70%是在室外，所以就从这下手。</p>
+<p>为了获取每个关卡的设计，我写了一个程序从游戏中提取出关卡设计，超级马里奥已有三十多年历史，所以网上关于游戏设计的资源非常多。从老游戏中提取数据也是个很有意思的编程练习，你也可以试一试。</p>
+<p>凑近了看，游戏关卡其实是由一组物体网格构成的：</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10021.png" alt=""></p>
+<p>我们可以用一组字符来代表这个网格，每个字符就是一个物体：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">--------------------------</span><br><span class="line">--------------------------</span><br><span class="line">--------------------------</span><br><span class="line">#??#----------------------</span><br><span class="line">--------------------------</span><br><span class="line">--------------------------</span><br><span class="line">--------------------------</span><br><span class="line">-##------=--=----------==-</span><br><span class="line">--------==--==--------===-</span><br><span class="line">-------===--===------====-</span><br><span class="line">------====--====----=====-</span><br><span class="line">=========================-</span><br></pre></td></tr></table></figure>
+<p>每个物体是一个字符：</p>
+<ul>
+<li>‘-‘是空白</li>
+<li>‘=’是实心砖</li>
+<li>‘#’是可以打破的砖</li>
+<li>‘?’是硬币砖</li>
+</ul>
+<p>字符替换后的效果就是这样：</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10022.png" alt=""></p>
+<p>观察文本文件可以发现，马里奥的关卡如果逐行来看，并没有什么模式：</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10023.png" alt=""></p>
+<p>但是如果逐列来看，模式就很明显了：</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10024.png" alt=""></p>
+<blockquote>
+<p>逐列看，模式很明显，比如每列都是以’=’结束的</p>
+</blockquote>
+<p>为了让算法能够识别模式，需要逐列输入数据。从输入数据中找出最有效的表征方式（即<a href="https://en.wikipedia.org/wiki/Feature_selection" target="_blank" rel="noopener">特征选择</a>）是用好机器学习算法关键。</p>
+<p>为了训练模型，我们把文本文件反转90度，这让特征更加显而易见：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">-----------=</span><br><span class="line">-------#---=</span><br><span class="line">-------#---=</span><br><span class="line">-------?---=</span><br><span class="line">-------#---=</span><br><span class="line">-----------=</span><br><span class="line">-----------=</span><br><span class="line">----------@=</span><br><span class="line">----------@=</span><br><span class="line">-----------=</span><br><span class="line">-----------=</span><br><span class="line">-----------=</span><br><span class="line">---------PP=</span><br><span class="line">---------PP=</span><br><span class="line">----------==</span><br><span class="line">---------===</span><br><span class="line">--------====</span><br><span class="line">-------=====</span><br><span class="line">------======</span><br><span class="line">-----=======</span><br><span class="line">---=========</span><br><span class="line">---=========</span><br></pre></td></tr></table></figure>
+<h2 id="训练模型"><a href="#训练模型" class="headerlink" title="训练模型"></a>训练模型</h2><p>就像模仿海明威文风的例子一样，模型是越训练越好的。只经过很少量训练的结果，看起来真垃圾：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">--------------------------</span><br><span class="line">LL+&lt;&amp;=------P-------------</span><br><span class="line">--------</span><br><span class="line">---------------------T--#--</span><br><span class="line">-----</span><br><span class="line">-=--=-=------------=-&amp;--T--------------</span><br><span class="line">--------------------</span><br><span class="line">--=------$-=#-=-_</span><br><span class="line">--------------=----=&lt;----</span><br><span class="line">-------b</span><br><span class="line">-</span><br></pre></td></tr></table></figure>
+<p>大概摸索出了’-‘和’=’出现的比较多，但仅仅如此，没有真正发现什么模式。</p>
+<p>经过几千次迭代，开始有点样子了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">--</span><br><span class="line">-----------=</span><br><span class="line">----------=</span><br><span class="line">--------PP=</span><br><span class="line">--------PP=</span><br><span class="line">-----------=</span><br><span class="line">-----------=</span><br><span class="line">-----------=</span><br><span class="line">-------?---=</span><br><span class="line">-----------=</span><br><span class="line">-----------=</span><br></pre></td></tr></table></figure>
+<p>模型已经基本知道了每行的长度应该一致，并且也开始发现了游戏中的一些特点：管子总是两块宽、至少两块长，所以”P”以2X2的小组出现，这很不错！</p>
+<p>在更多的训练之后，模型已经生成了很多有效的数据：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">--------PP=</span><br><span class="line">--------PP=</span><br><span class="line">----------=</span><br><span class="line">----------=</span><br><span class="line">----------=</span><br><span class="line">---PPP=---=</span><br><span class="line">---PPP=---=</span><br><span class="line">----------=</span><br></pre></td></tr></table></figure>
+<p>来看看模型生成的完整关卡（转回横版）：</p>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/10025.png" alt=""></p>
+<p>看起来相当好！有几个亮点值得注意：</p>
+<ul>
+<li><p>开始有一个<a href="http://www.mariowiki.com/lakitu" target="_blank" rel="noopener">Lakitu</a>（空中浮游怪）在天上——就像真实的马里奥关卡一样。</p>
+</li>
+<li><p>空中的管子必须底部有砖块，而不能孤立地飘在半空。</p>
+</li>
+<li><p>怪物的分布比较合理。</p>
+</li>
+<li><p>不会出现组织玩家前进的死路。</p>
+</li>
+<li><p>感觉上确实很像一个真实的关卡。</p>
+</li>
+</ul>
+<p><img src="http://qiniu.buerya.cn/static/funny_machine/100020.jpeg" alt=""></p>
+<p>如果你有超级马里奥编辑器的话，你可以通过<a href="https://supermariomakerbookmark.nintendo.net/courses/4AC9-0000-0157-F3C3" target="_blank" rel="noopener">bookmarking it online</a>或者查找代码<a href="https://supermariomakerbookmark.nintendo.net/courses/4AC9-0000-0157-F3C3" target="_blank" rel="noopener">4AC9-0000-0157-F3C3</a>来玩这一关卡。</p>
+<hr>
+<h2 id="玩具和真货"><a href="#玩具和真货" class="headerlink" title="玩具和真货"></a>玩具和真货</h2><p>我们用来训练模型的循环神经网络算法，跟现实世界里很多公司用来解决难题（如语音识别，机器翻译）的算法是一样的。但我们的模型只建立在很少的数据量之上，所以只能算是一种“玩具”而不能动真格的。原版超级马里奥游戏里的关卡数不足以训练出一个真正好的模型。</p>
+<p>如果我们能像任天堂一样，拿到数以十万计的玩家自制关卡数据，我们就可以做个更强的模型了。不过任天堂不会坐视其发生的，大公司都不会免费开放数据。</p>
+<p>随着机器学习在很多行业里越来越重要，好程序和坏程序的差别越来越多地体现在，训练模型的数据量。这就是为什么Google和Facebook等公司如此需要你的数据。</p>
+<p>比如Google最近开源了用于搭建大规模机器学习应用的软件包<a href="https://www.tensorflow.org/" target="_blank" rel="noopener">TensorFlow</a>，Google免费开放了如此重要而强力的技术，引起了巨大反响，而TensorFlow正是支撑Google Translate的后台。</p>
+<p>但如如果没有Google在每种语言上留下的海量数据宝藏，你也不可能做出Google Translate的对手，数据才是Google真正的杀手锏。下次当你打开<a href="https://maps.google.com/locationhistory/b/0" target="_blank" rel="noopener">Google Maps Location History</a>或<a href="https://www.facebook.com/help/1026190460827516" target="_blank" rel="noopener">Facebook Location History</a>的时候，留意它们记录了你的一切所到之处。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-10-07T08:08:59.452Z" itemprop="dateUpdated">2020-10-07 16:08:59</time>
+</span><br>
+
+
+        
+        本文永久地址：<a href="/2018/01/12/funny_machine_learning_2/" target="_blank" rel="external">http://blog.buerya.cn/2018/01/12/funny_machine_learning_2/</a>
+        
+    </div>
+    <footer>
+        <a href="http://blog.buerya.cn">
+            <img src="/img/avatar.jpg" alt="Juan">
+            Juan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/人工智能/">人工智能</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术知识/">技术知识</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/机器学习/">机器学习</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.buerya.cn/2018/01/12/funny_machine_learning_2/&title=《《机器学习有意思！ 02》- 使用机器学习生成超级玛丽关卡》 — 梦想小筑&pic=http://blog.buerya.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.buerya.cn/2018/01/12/funny_machine_learning_2/&title=《《机器学习有意思！ 02》- 使用机器学习生成超级玛丽关卡》 — 梦想小筑&source=初级程序员,Juan`s blogs" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.buerya.cn/2018/01/12/funny_machine_learning_2/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《《机器学习有意思！ 02》- 使用机器学习生成超级玛丽关卡》 — 梦想小筑&url=http://blog.buerya.cn/2018/01/12/funny_machine_learning_2/&via=http://blog.buerya.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.buerya.cn/2018/01/12/funny_machine_learning_2/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/01/13/funny_machine_learning_3/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">《机器学习有意思！ 03》- 深度学习与卷积神经网络</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/01/11/android_constraintlayout/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">ConstraintLayout 完全解析</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comment comments vcomment" id="comments"></div>
+    <script src="//cdnjs.cat.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="//cdn1.lncld.net/static/js/3.5.0/av-min.js"></script>
+    <script src="/js/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var notify = 'false';
+        var verify = 'false';
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            av: AV,
+            el: '#comments',
+            notify: notify,
+            verify: verify,
+            appId: "LoojPRMy175IgqwnQtytrgOY-9Nh9j0Va",
+            appKey: "45VXhysB6in2v1IOL1kaC5tQ",
+            avatar: "mm",
+            placeholder: "ヾﾉ≧∀≦)o来啊，快活啊!",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢你给我买糖果吃O(∩_∩)O~~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Juan &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备17077370号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.buerya.cn/2018/01/12/funny_machine_learning_2/&title=《《机器学习有意思！ 02》- 使用机器学习生成超级玛丽关卡》 — 梦想小筑&pic=http://blog.buerya.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.buerya.cn/2018/01/12/funny_machine_learning_2/&title=《《机器学习有意思！ 02》- 使用机器学习生成超级玛丽关卡》 — 梦想小筑&source=初级程序员,Juan`s blogs" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.buerya.cn/2018/01/12/funny_machine_learning_2/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《《机器学习有意思！ 02》- 使用机器学习生成超级玛丽关卡》 — 梦想小筑&url=http://blog.buerya.cn/2018/01/12/funny_machine_learning_2/&via=http://blog.buerya.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.buerya.cn/2018/01/12/funny_machine_learning_2/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLklEQVR42u3ay47CMAwFUP7/p5ktEtBex+1IOCerEY8mh4Unfjwe8Xq+rNdX8nePv/W+HncsDAyMn2Ukj0u2f39mAr6MioGBsQHjWwSrMo4/ebzL8b4nZ8bAwMD4slmykl2SqyQGBgZGwkjSy+QQ+S4YGBgY1SQ2TynzAH18ibwlF8fAwPhBRl51//+/b+lvYGBg/BTjWVxrl7xrmwEfnomBgTGa0WlhVtPO4xLb2icxMDB2YHQeVA3N+chFgvzwfwMDA2M0Iw+XSaitDoT126gYGBizGfkYRLVYn6SvSTthsSKIgYExiNG5nF2Vsq4lzCc3XAwMjHGM/GtJlMtbkpcFYgwMjNGMtXmG6pxD9aD5M1tjGRgYGD/C6JTMkt8mvxR2BjUwMDB2YFSL+OWSfaNJGYV+DAyMbRj9Qlg1DV5rlBaalxgYGCMY+WbJ4apthrXmaJRnY2BgDGIkB7pqtKvTWjjZCwMDYwPGWhK7VtavpsFREMfAwBjNyMv91fZA9ZW1YhwGBsZujLyt2LkyVluVeaDHwMDYgbFWLKu2MzujY4XGAAYGxjhGZ9iiWrCrHrc65IGBgTGP8SyuJKTeEZSjIIuBgTGUUQ1zSbLabzb0m6kYGBjzGHmQverd/MpYCLgYGBgbMKojFJ1Pdq59J8MWGBgYGDGmeqHMr5JRSwADA2N7xqO9krZlcioMDIzdGGtpaj+5zc9w0v7EwMAYzeiEyDt6iP2gjIGBMYjxB1YEHfNzIX7BAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261704531&web_id=1261704531')
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.0"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.0" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '(つェ⊂) 我藏好了哦~ ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(*´∇｀*) 被你发现啦~ ';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

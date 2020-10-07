@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65558107"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    <meta name="google-site-verification" content="ar7mIVYsjkAi2k9jIuWk34S9A2aVwBdQqFkfL4AKEBQ" >
+    
+    
+    
+    <title>一步步教你开发、部署第一个去中心化应用(Dapp) - 宠物商店 | 梦想小筑 | 坚定的走吧，毕竟梦想在远方，未来在远方，终点也在远方。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Dapp入门,以太坊概念">
+    <meta name="description" content="今天我们来编写一个完整的去中心化（区块链）应用（Dapps）, 本文可以和编写智能合约结合起来看。 写在前面阅读本文前，你应该对以太坊、智能合约有所了解，如果你还不了解，建议你先看以太坊是什么除此之外，你最好还了解一些HTML及JavaScript知识。 本文通过实例教大家来开发去中心化应用，应用效果如图：  从本文，你可以学习到：  搭建智能合约开发环境 创建Truffle项目 编写智能合约">
+<meta name="keywords" content="Dapp入门,以太坊概念">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一步步教你开发、部署第一个去中心化应用(Dapp) - 宠物商店">
+<meta property="og:url" content="http://blog.buerya.cn/2018/02/25/first-dapp/index.html">
+<meta property="og:site_name" content="梦想小筑">
+<meta property="og:description" content="今天我们来编写一个完整的去中心化（区块链）应用（Dapps）, 本文可以和编写智能合约结合起来看。 写在前面阅读本文前，你应该对以太坊、智能合约有所了解，如果你还不了解，建议你先看以太坊是什么除此之外，你最好还了解一些HTML及JavaScript知识。 本文通过实例教大家来开发去中心化应用，应用效果如图：  从本文，你可以学习到：  搭建智能合约开发环境 创建Truffle项目 编写智能合约">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/Petshop.jpg">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/ganache-initial.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/ganache-migrated.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/metamask-initial.png">
+<meta property="og:image" content="http://blog.buerya.cn/qiniu.buerya.cn/static/metamask-seed.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/metamask-account1.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/metamask-transactionconfirm.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/metamask-transactionsuccess.png">
+<meta property="og:updated_time" content="2020-10-07T08:08:59.450Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一步步教你开发、部署第一个去中心化应用(Dapp) - 宠物商店">
+<meta name="twitter:description" content="今天我们来编写一个完整的去中心化（区块链）应用（Dapps）, 本文可以和编写智能合约结合起来看。 写在前面阅读本文前，你应该对以太坊、智能合约有所了解，如果你还不了解，建议你先看以太坊是什么除此之外，你最好还了解一些HTML及JavaScript知识。 本文通过实例教大家来开发去中心化应用，应用效果如图：  从本文，你可以学习到：  搭建智能合约开发环境 创建Truffle项目 编写智能合约">
+<meta name="twitter:image" content="http://qiniu.buerya.cn/static/Petshop.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="梦想小筑" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.0">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Juan</h5>
+          <a href="mailto:quewen08@gmail.com" title="quewen08@gmail.com" class="mail">quewen08@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/trover-gaoyou" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/shandingjurenww" target="_blank" >
+                <i class="icon icon-lg icon-twitter"></i>
+                Twitter
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.instagram.com/juan95_cn" target="_blank" >
+                <i class="icon icon-lg icon-instagram"></i>
+                Instagram
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/source"  >
+                <i class="icon icon-lg icon-link"></i>
+                友情链接
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+	<img id="aimg_H2R2r" class="zoom" src="https://apa.me/news/?s=5qKm5oOz5bCP562R" border="0" alt="" width="500" height="210" initialized="true">
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">一步步教你开发、部署第一个去中心化应用(Dapp) - 宠物商店</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">一步步教你开发、部署第一个去中心化应用(Dapp) - 宠物商店</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-02-25T05:02:22.000Z" itemprop="datePublished" class="page-time">
+  2018-02-25
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/">深入浅出区块链</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/以太坊/">以太坊</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/以太坊/Dapp/">Dapp</a></li></ul></li></ul></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#写在前面"><span class="post-toc-number">1.</span> <span class="post-toc-text">写在前面</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#项目背景"><span class="post-toc-number">2.</span> <span class="post-toc-text">项目背景</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#环境搭建"><span class="post-toc-number">3.</span> <span class="post-toc-text">环境搭建</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#创建项目"><span class="post-toc-number">4.</span> <span class="post-toc-text">创建项目</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#项目目录结构"><span class="post-toc-number">5.</span> <span class="post-toc-text">项目目录结构</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#编写智能合约"><span class="post-toc-number">6.</span> <span class="post-toc-text">编写智能合约</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#编译部署智能合约"><span class="post-toc-number">7.</span> <span class="post-toc-text">编译部署智能合约</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#编译"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">编译</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#部署"><span class="post-toc-number">7.2.</span> <span class="post-toc-text">部署</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#测试"><span class="post-toc-number">8.</span> <span class="post-toc-text">测试</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#运行测试用例"><span class="post-toc-number">8.1.</span> <span class="post-toc-text">运行测试用例</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#创建用户接口和智能合约交互"><span class="post-toc-number">9.</span> <span class="post-toc-text">创建用户接口和智能合约交互</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#初始化web3"><span class="post-toc-number">9.1.</span> <span class="post-toc-text">初始化web3</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实例化合约"><span class="post-toc-number">9.2.</span> <span class="post-toc-text">实例化合约</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#处理领养"><span class="post-toc-number">9.3.</span> <span class="post-toc-text">处理领养</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#在浏览器里运行"><span class="post-toc-number">10.</span> <span class="post-toc-text">在浏览器里运行</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装-MetaMask"><span class="post-toc-number">10.1.</span> <span class="post-toc-text">安装 MetaMask</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#配置钱包"><span class="post-toc-number">10.2.</span> <span class="post-toc-text">配置钱包</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#链接开发区块链网络"><span class="post-toc-number">10.3.</span> <span class="post-toc-text">链接开发区块链网络</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装和配置lite-server"><span class="post-toc-number">10.4.</span> <span class="post-toc-text">安装和配置lite-server</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#启动服务"><span class="post-toc-number">10.5.</span> <span class="post-toc-text">启动服务</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考文档"><span class="post-toc-number">11.</span> <span class="post-toc-text">参考文档</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-first-dapp"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">一步步教你开发、部署第一个去中心化应用(Dapp) - 宠物商店</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-02-25 13:02:22" datetime="2018-02-25T05:02:22.000Z"  itemprop="datePublished">2018-02-25</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/">深入浅出区块链</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/以太坊/">以太坊</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/以太坊/Dapp/">Dapp</a></li></ul></li></ul></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <script src="\assets\js\APlayer.min.js"> </script><p>今天我们来编写一个完整的去中心化（区块链）应用（Dapps）, 本文可以和编写智能合约结合起来看。</p>
+<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>阅读本文前，你应该对以太坊、智能合约有所了解，如果你还不了解，建议你先看以太坊是什么<br>除此之外，你最好还了解一些HTML及JavaScript知识。</p>
+<p>本文通过实例教大家来开发去中心化应用，应用效果如图：</p>
+<p><img src="http://qiniu.buerya.cn/static/Petshop.jpg" alt=""></p>
+<p>从本文，你可以学习到：</p>
+<ul>
+<li>搭建智能合约开发环境</li>
+<li>创建Truffle项目</li>
+<li>编写智能合约</li>
+<li>编译和部署智能合约到区块链</li>
+<li>如何通过Web3和智能合约交互</li>
+<li>MetaMask的使用</li>
+</ul>
+<h2 id="项目背景"><a href="#项目背景" class="headerlink" title="项目背景"></a>项目背景</h2><p>Pete有一个宠物店，有16只宠物，他想开发一个去中心化应用，让大家来领养宠物。<br>在truffle box中，已经提供了pet-shop的网站部分代码，我们只需要编写合约及交互部分。</p>
+<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><ol>
+<li>安装<a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">Node</a></li>
+<li>安装Truffle: <code>npm install -g truffle</code></li>
+<li>安装<a href="http://truffleframework.com/ganache/" target="_blank" rel="noopener">Ganache</a></li>
+</ol>
+<blockquote>
+<p>Ganache(或Ganache CLI) 已经取代了testrpc</p>
+</blockquote>
+<h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><ol>
+<li>创建项目目录并进入</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; mkdir pet-shop-tutorial</span><br><span class="line">&gt; cd pet-shop-tutorial</span><br></pre></td></tr></table></figure>
+<ol>
+<li>使用truffle unbox 创建项目</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> &gt; truffle unbox pet-shop</span><br><span class="line"> Downloading...</span><br><span class="line"> Unpacking...</span><br><span class="line"> Setting up...</span><br><span class="line"> Unbox successful. Sweet!</span><br><span class="line"></span><br><span class="line">Commands:</span><br><span class="line"></span><br><span class="line">  Compile:        truffle compile</span><br><span class="line">  Migrate:        truffle migrate</span><br><span class="line">  Test contracts: truffle test</span><br><span class="line">  Run dev server: npm run dev</span><br></pre></td></tr></table></figure>
+<p>这一步需要等待一会</p>
+<blockquote>
+<p>也可以使用truffle init 来创建一个全新的项目。</p>
+</blockquote>
+<h2 id="项目目录结构"><a href="#项目目录结构" class="headerlink" title="项目目录结构"></a>项目目录结构</h2><p><em>contracts/</em> 智能合约的文件夹，所有的智能合约文件都放置在这里，里面包含一个重要的合约Migrations.sol（稍后再讲）<br><em>migrations/</em> 用来处理部署（迁移）智能合约 ，迁移是一个额外特别的合约用来保存合约的变化。<br><em>test/</em> 智能合约测试用例文件夹<br><em>truffle.js/</em> 配置文件</p>
+<p>其他代码可以暂时不用管</p>
+<h2 id="编写智能合约"><a href="#编写智能合约" class="headerlink" title="编写智能合约"></a>编写智能合约</h2><p>智能合约承担着分布式应用的后台逻辑和存储。智能合约使用solidity编写，可阅读<br><a href="/categories/深入浅出区块链/以太坊/Solidity/">solidity系列文章</a></p>
+<p>在contracts目录下，添加合约文件Adoption.sol</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.4.17;</span><br><span class="line"></span><br><span class="line">contract Adoption &#123;</span><br><span class="line"></span><br><span class="line">  address[16] public adopters;  // 保存领养者的地址</span><br><span class="line"></span><br><span class="line">    // 领养宠物</span><br><span class="line">  function adopt(uint petId) public returns (uint) &#123;</span><br><span class="line">    require(petId &gt;= 0 &amp;&amp; petId &lt;= 15);  // 确保id在数组长度内</span><br><span class="line"></span><br><span class="line">    adopters[petId] = msg.sender;        // 保存调用这地址</span><br><span class="line">    return petId;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // 返回领养者</span><br><span class="line">  function getAdopters() public view returns (address[16]) &#123;</span><br><span class="line">    return adopters;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="编译部署智能合约"><a href="#编译部署智能合约" class="headerlink" title="编译部署智能合约"></a>编译部署智能合约</h2><p>Truffle集成了一个开发者控制台，可用来生成一个开发链用来测试和部署智能合约。</p>
+<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><p>Solidity是编译型语言，需要把可读的Solidity代码编译为EVM字节码才能运行。<br>dapp的根目录pet-shop-tutorial下，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; truffle compile</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Compiling ./contracts/Adoption.sol...</span><br><span class="line">Writing artifacts to ./build/contracts</span><br></pre></td></tr></table></figure>
+<h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><p>编译之后，就可以部署到区块链上。<br>在migrations文件夹下已经有一个1_initial_migration.js部署脚本，用来部署Migrations.sol合约。<br>Migrations.sol 用来确保不会部署相同的合约。</p>
+<p>现在我们来创建一个自己的部署脚本<code>2_deploy_contracts.js</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var Adoption = artifacts.require(&quot;Adoption&quot;);</span><br><span class="line"></span><br><span class="line">module.exports = function(deployer) &#123;</span><br><span class="line">  deployer.deploy(Adoption);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>在执行部署之前，需要确保有一个区块链运行, 可以使用<br><a href="http://truffleframework.com/ganache/" target="_blank" rel="noopener">Ganache</a>来开启一个私链来进行开发测试，默认会在7545端口上运行一个开发链。<br>Ganache 启动之后是这样：</p>
+<p><img src="http://qiniu.buerya.cn/static/ganache-initial.png" alt=""></p>
+<p>接下来执行部署命令:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; truffle  migrate</span><br></pre></td></tr></table></figure>
+<p>执行后，有以下类似输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Using network &apos;develop&apos;.</span><br><span class="line"></span><br><span class="line">Running migration: 1_initial_migration.js</span><br><span class="line">  Deploying Migrations...</span><br><span class="line">  ... 0x3076b7dac65afc44ec51508bf6f2b6894f833f0f9560ecad2d6d41ed98a4679f</span><br><span class="line">  Migrations: 0x8cdaf0cd259887258bc13a92c0a6da92698644c0</span><br><span class="line">Saving successful migration to network...</span><br><span class="line">  ... 0xd7bc86d31bee32fa3988f1c1eabce403a1b5d570340a3a9cdba53a472ee8c956</span><br><span class="line">Saving artifacts...</span><br><span class="line">Running migration: 2_deploy_contracts.js</span><br><span class="line">  Deploying Adoption...</span><br><span class="line">  ... 0x2c6ab4471c225b5473f2079ee42ca1356007e51d5bb57eb80bfeb406acc35cd4</span><br><span class="line">  Adoption: 0x345ca3e014aaf5dca488057592ee47305d9b3e10</span><br><span class="line">Saving successful migration to network...</span><br><span class="line">  ... 0xf36163615f41ef7ed8f4a8f192149a0bf633fe1a2398ce001bf44c43dc7bdda0</span><br><span class="line">Saving artifacts...</span><br></pre></td></tr></table></figure>
+<p>在打开的Ganache里可以看到区块链状态的变化，现在产生了4个区块。</p>
+<p><img src="http://qiniu.buerya.cn/static/ganache-migrated.png" alt=""></p>
+<p>这时说明已经智能合约已经部署好了。</p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>现在我们来测试一下智能合约，测试用例可以用 JavaScript or Solidity来编写，这里使用Solidity。</p>
+<p>在<code>test</code>目录下新建一个<code>TestAdoption.sol</code>，编写测试合约</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">pragma solidity ^0.4.17;</span><br><span class="line"></span><br><span class="line">import &quot;truffle/Assert.sol&quot;;   // 引入的断言</span><br><span class="line">import &quot;truffle/DeployedAddresses.sol&quot;;  // 用来获取被测试合约的地址</span><br><span class="line">import &quot;../contracts/Adoption.sol&quot;;      // 被测试合约</span><br><span class="line"></span><br><span class="line">contract TestAdoption &#123;</span><br><span class="line">  Adoption adoption = Adoption(DeployedAddresses.Adoption());</span><br><span class="line"></span><br><span class="line">  // 领养测试用例</span><br><span class="line">  function testUserCanAdoptPet() public &#123;</span><br><span class="line">    uint returnedId = adoption.adopt(8);</span><br><span class="line"></span><br><span class="line">    uint expected = 8;</span><br><span class="line">    Assert.equal(returnedId, expected, &quot;Adoption of pet ID 8 should be recorded.&quot;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // 宠物所有者测试用例</span><br><span class="line">  function testGetAdopterAddressByPetId() public &#123;</span><br><span class="line">    // 期望领养者的地址就是本合约地址，因为交易是由测试合约发起交易，</span><br><span class="line">    address expected = this;</span><br><span class="line">    address adopter = adoption.adopters(8);</span><br><span class="line">    Assert.equal(adopter, expected, &quot;Owner of pet ID 8 should be recorded.&quot;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">    // 测试所有领养者</span><br><span class="line">  function testGetAdopterAddressByPetIdInArray() public &#123;</span><br><span class="line">  // 领养者的地址就是本合约地址</span><br><span class="line">    address expected = this;</span><br><span class="line">    address[16] memory adopters = adoption.getAdopters();</span><br><span class="line">    Assert.equal(adopters[8], expected, &quot;Owner of pet ID 8 should be recorded.&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Assert.sol 及 DeployedAddresses.sol是Truffle框架提供，在test目录下并不提供truffle目录。</p>
+<p>TestAdoption合约中添加adopt的测试用例</p>
+<h3 id="运行测试用例"><a href="#运行测试用例" class="headerlink" title="运行测试用例"></a>运行测试用例</h3><p>在终端中，执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truffle test</span><br></pre></td></tr></table></figure>
+<p>如果测试通过，则终端输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Using network &apos;develop&apos;.</span><br><span class="line"></span><br><span class="line">Compiling ./contracts/Adoption.sol...</span><br><span class="line">Compiling ./test/TestAdoption.sol...</span><br><span class="line">Compiling truffle/Assert.sol...</span><br><span class="line">Compiling truffle/DeployedAddresses.sol...</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  TestAdoption</span><br><span class="line">    ✓ testUserCanAdoptPet (62ms)</span><br><span class="line">    ✓ testGetAdopterAddressByPetId (53ms)</span><br><span class="line">    ✓ testGetAdopterAddressByPetIdInArray (73ms)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  3 passing (554ms)</span><br></pre></td></tr></table></figure>
+<h2 id="创建用户接口和智能合约交互"><a href="#创建用户接口和智能合约交互" class="headerlink" title="创建用户接口和智能合约交互"></a>创建用户接口和智能合约交互</h2><p>我们已经编写和部署及测试好了我们的合约，接下我们为合约编写UI，让合约真正可以用起来。</p>
+<p>在Truffle Box <code>pet-shop</code>里，已经包含了应用的前端代码，代码在<code>src/</code>文件夹下。</p>
+<p>在编辑器中打开<code>src/js/app.js</code><br>可以看到用来管理整个应用的App对象，init函数加载宠物信息，就初始化<a href="https://github.com/ethereum/web3.js/" target="_blank" rel="noopener">web3</a>.<br>web3是一个实现了与以太坊节点通信的库，我们利用web3来和合约进行交互。</p>
+<h3 id="初始化web3"><a href="#初始化web3" class="headerlink" title="初始化web3"></a>初始化web3</h3><p>接下来，我们来编辑app.js修改initWeb3():<br>删除注释，修改为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">initWeb3: function() &#123;</span><br><span class="line">  // Is there an injected web3 instance?</span><br><span class="line">  if (typeof web3 !== &apos;undefined&apos;) &#123;</span><br><span class="line">    App.web3Provider = web3.currentProvider;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    // If no injected web3 instance is detected, fall back to Ganache</span><br><span class="line">    App.web3Provider = new Web3.providers.HttpProvider(&apos;http://localhost:7545&apos;);</span><br><span class="line">  &#125;</span><br><span class="line">  web3 = new Web3(App.web3Provider);</span><br><span class="line"></span><br><span class="line">  return App.initContract();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>代码中优先使用<a href="https://github.com/ethereum/mist" target="_blank" rel="noopener">Mist</a>或<a href="https://metamask.io/" target="_blank" rel="noopener">MetaMask</a>提供的web3实例，如果没有则从本地环境创建一个。</p>
+<h3 id="实例化合约"><a href="#实例化合约" class="headerlink" title="实例化合约"></a>实例化合约</h3><p>使用truffle-contract会帮我们保存合约部署的信息，就不需要我们手动修改合约地址，修改initContract()代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">initContract: function() &#123;</span><br><span class="line">  // 加载Adoption.json，保存了Adoption的ABI（接口说明）信息及部署后的网络(地址)信息，它在编译合约的时候生成ABI，在部署的时候追加网络信息</span><br><span class="line">  $.getJSON(&apos;Adoption.json&apos;, function(data) &#123;</span><br><span class="line">    // 用Adoption.json数据创建一个可交互的TruffleContract合约实例。</span><br><span class="line">    var AdoptionArtifact = data;</span><br><span class="line">    App.contracts.Adoption = TruffleContract(AdoptionArtifact);</span><br><span class="line"></span><br><span class="line">    // Set the provider for our contract</span><br><span class="line">    App.contracts.Adoption.setProvider(App.web3Provider);</span><br><span class="line"></span><br><span class="line">    // Use our contract to retrieve and mark the adopted pets</span><br><span class="line">    return App.markAdopted();</span><br><span class="line">  &#125;);</span><br><span class="line">  return App.bindEvents();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="处理领养"><a href="#处理领养" class="headerlink" title="处理领养"></a>处理领养</h3><p>修改markAdopted()代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">markAdopted: function(adopters, account) &#123;</span><br><span class="line">  var adoptionInstance;</span><br><span class="line"></span><br><span class="line">  App.contracts.Adoption.deployed().then(function(instance) &#123;</span><br><span class="line">    adoptionInstance = instance;</span><br><span class="line"></span><br><span class="line">    // 调用合约的getAdopters(), 用call读取信息不用消耗gas</span><br><span class="line">    return adoptionInstance.getAdopters.call();</span><br><span class="line">  &#125;).then(function(adopters) &#123;</span><br><span class="line">    for (i = 0; i &lt; adopters.length; i++) &#123;</span><br><span class="line">      if (adopters[i] !== &apos;0x0000000000000000000000000000000000000000&apos;) &#123;</span><br><span class="line">        $(&apos;.panel-pet&apos;).eq(i).find(&apos;button&apos;).text(&apos;Success&apos;).attr(&apos;disabled&apos;, true);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;).catch(function(err) &#123;</span><br><span class="line">    console.log(err.message);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>修改handleAdopt()代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">handleAdopt: function(event) &#123;</span><br><span class="line">  event.preventDefault();</span><br><span class="line"></span><br><span class="line">  var petId = parseInt($(event.target).data(&apos;id&apos;));</span><br><span class="line"></span><br><span class="line">  var adoptionInstance;</span><br><span class="line"></span><br><span class="line">  // 获取用户账号</span><br><span class="line">  web3.eth.getAccounts(function(error, accounts) &#123;</span><br><span class="line">    if (error) &#123;</span><br><span class="line">      console.log(error);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    var account = accounts[0];</span><br><span class="line"></span><br><span class="line">    App.contracts.Adoption.deployed().then(function(instance) &#123;</span><br><span class="line">      adoptionInstance = instance;</span><br><span class="line"></span><br><span class="line">      // 发送交易领养宠物</span><br><span class="line">      return adoptionInstance.adopt(petId, &#123;from: account&#125;);</span><br><span class="line">    &#125;).then(function(result) &#123;</span><br><span class="line">      return App.markAdopted();</span><br><span class="line">    &#125;).catch(function(err) &#123;</span><br><span class="line">      console.log(err.message);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="在浏览器里运行"><a href="#在浏览器里运行" class="headerlink" title="在浏览器里运行"></a>在浏览器里运行</h2><h3 id="安装-MetaMask"><a href="#安装-MetaMask" class="headerlink" title="安装 MetaMask"></a>安装 MetaMask</h3><p>MetaMask 是一款插件形式的以太坊轻客户端，开发过程中使用MetaMask和我们的dapp进行交互是个很好的选择，通过此链接安装，安装完成后，浏览器工具条会显示一个小狐狸图标。</p>
+<h3 id="配置钱包"><a href="#配置钱包" class="headerlink" title="配置钱包"></a>配置钱包</h3><p>在接受隐私说明后，会出现页面如下：</p>
+<p><img src="http://qiniu.buerya.cn/static/metamask-initial.png" alt=""></p>
+<p>这里我们通过还原一个Ganache为我们创建好的钱包，作为我们的开发测试钱包。点击页面的<em>Import Existing DEN</em> ，输入Ganache显示的助记词。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">candy maple cake sugar pudding cream honey rich smooth crumble sweet treat</span><br></pre></td></tr></table></figure>
+<p>然后自己想要的密码，点击OK。<br>如图：</p>
+<p><img src="http:/qiniu.buerya.cn/static/metamask-seed.png" alt=""></p>
+<h3 id="链接开发区块链网络"><a href="#链接开发区块链网络" class="headerlink" title="链接开发区块链网络"></a>链接开发区块链网络</h3><p>默认连接的是以太坊主网（左上角显示），选择Custom RPC，添加一个网络：<a href="http://127.0.0.1:7545" target="_blank" rel="noopener">http://127.0.0.1:7545</a> ，点返回后，显示如下：</p>
+<p><img src="http://qiniu.buerya.cn/static/metamask-account1.png" alt=""></p>
+<p>这是左上角显示为<em>Private Network</em> ，账号是Ganache中默认的第一个账号。</p>
+<p>至此MetaMask的安装，配置已经完成。</p>
+<h3 id="安装和配置lite-server"><a href="#安装和配置lite-server" class="headerlink" title="安装和配置lite-server"></a>安装和配置lite-server</h3><p>接下来需要本地的web 服务器提供服务的访问， Truffle Box pet-shop里提供了一个lite-server可以直接使用，我们看看它是如何工作的。<br>bs-config.json指示了lite-server的工作目录。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"server"</span>: &#123;</span><br><span class="line">    <span class="attr">"baseDir"</span>: [<span class="string">"./src"</span>, <span class="string">"./build/contracts"</span>]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>./src 是网站文件目录<br>./build/contracts 是合约输出目录</p>
+<p>以此同时，在package.json文件的scripts中添加了dev命令：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">  <span class="string">"dev"</span>: <span class="string">"lite-server"</span>,</span><br><span class="line">  <span class="string">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>当运行npm run dev的时候，就会启动lite-server</p>
+<h3 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; npm run dev</span><br></pre></td></tr></table></figure>
+<p>会自动打开浏览器显示我们的dapp，如本文的第一张图。<br>现在领养一直宠物看看，当我们点击<em>Adopt时，MetaMask</em> 会提示我们交易的确认，如图：</p>
+<p><img src="http://qiniu.buerya.cn/static/metamask-transactionconfirm.png" alt=""></p>
+<p>点击Submit确认后，就可以看到成功领养了这次宠物。</p>
+<p>在MetaMask中，也可以看到交易的清单：</p>
+<p><img src="http://qiniu.buerya.cn/static/metamask-transactionsuccess.png" alt=""></p>
+<p>好了，恭喜你，即将成为一名去中心化式应用开发者的你已经成为迈出了坚实的一步。</p>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p><a href="http://truffleframework.com/tutorials/pet-shop" target="_blank" rel="noopener">Truffle手册</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-10-07T08:08:59.450Z" itemprop="dateUpdated">2020-10-07 16:08:59</time>
+</span><br>
+
+
+        
+        本文永久地址：<a href="/2018/02/25/first-dapp/" target="_blank" rel="external">http://blog.buerya.cn/2018/02/25/first-dapp/</a>
+        
+    </div>
+    <footer>
+        <a href="http://blog.buerya.cn">
+            <img src="/img/avatar.jpg" alt="Juan">
+            Juan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Dapp入门/">Dapp入门</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/以太坊概念/">以太坊概念</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.buerya.cn/2018/02/25/first-dapp/&title=《一步步教你开发、部署第一个去中心化应用(Dapp) - 宠物商店》 — 梦想小筑&pic=http://blog.buerya.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.buerya.cn/2018/02/25/first-dapp/&title=《一步步教你开发、部署第一个去中心化应用(Dapp) - 宠物商店》 — 梦想小筑&source=初级程序员,Juan`s blogs" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.buerya.cn/2018/02/25/first-dapp/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《一步步教你开发、部署第一个去中心化应用(Dapp) - 宠物商店》 — 梦想小筑&url=http://blog.buerya.cn/2018/02/25/first-dapp/&via=http://blog.buerya.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.buerya.cn/2018/02/25/first-dapp/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/02/25/geth_cmd_short/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Geth 控制台使用及 Web3.js 使用实战</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/02/24/geth_cmd_options/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">以太坊客户端Geth命令用法-参数详解</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comment comments vcomment" id="comments"></div>
+    <script src="//cdnjs.cat.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="//cdn1.lncld.net/static/js/3.5.0/av-min.js"></script>
+    <script src="/js/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var notify = 'false';
+        var verify = 'false';
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            av: AV,
+            el: '#comments',
+            notify: notify,
+            verify: verify,
+            appId: "LoojPRMy175IgqwnQtytrgOY-9Nh9j0Va",
+            appKey: "45VXhysB6in2v1IOL1kaC5tQ",
+            avatar: "mm",
+            placeholder: "ヾﾉ≧∀≦)o来啊，快活啊!",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢你给我买糖果吃O(∩_∩)O~~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Juan &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备17077370号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.buerya.cn/2018/02/25/first-dapp/&title=《一步步教你开发、部署第一个去中心化应用(Dapp) - 宠物商店》 — 梦想小筑&pic=http://blog.buerya.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.buerya.cn/2018/02/25/first-dapp/&title=《一步步教你开发、部署第一个去中心化应用(Dapp) - 宠物商店》 — 梦想小筑&source=初级程序员,Juan`s blogs" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.buerya.cn/2018/02/25/first-dapp/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《一步步教你开发、部署第一个去中心化应用(Dapp) - 宠物商店》 — 梦想小筑&url=http://blog.buerya.cn/2018/02/25/first-dapp/&via=http://blog.buerya.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.buerya.cn/2018/02/25/first-dapp/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACPUlEQVR42u3aS27jMBAFQN//0sp2gIk17zXtAUgVV0EMUywF6LA/r1e8rj/W/e+vv9bKbh9eGBgY2zKu23V/uPtH3u/wbp/kW788FwMD4wGM5BD3+DzgJmE3PxsGBgZGEliTfdrQjIGBgbHCeBde2zA92wEDA+PJjDzJnJXG8gLc13NxDAyMDRn5If7/z1/pb2BgYGzFuMqVX+9m4fIaLQwMjLMZbSltpZTfjmLUF00MDIxDGSshMimTtYduQ/kr769iYGBsy6iL77eftkX/vAx3/10MDIznMNr2QHvEtjFZNwAwMDCOZuTpZd5uXAnBK/8GMDAwzmO04TI/xOwFRVfA2f0RAwNjW0absrbtgTxo5mH6Hy8RAwPjUMZ6Q3GWsiahP29LYGBgPIHRtifrFmO8f1u8w8DAOJvRXviSoYqVg7YkDAyM5zDaon8+8pWnwe2LqAdYMTAwtmXM0sjhA+ILYttMxcDAeAJj5p4F6xkpartiYGAczWgLbUkZ7lPBengZxcDAOI6RNwDay1++z6yB+rbohoGB8RhG3hhow+tKkhwNW2BgYBzKSBqZ7WhFm+i24bvoPGBgYGzLuMqVl72ShuVsgKP4O2BgYBzByNcs1ZwNh30jkcbAwNidkQTZenZjoTuRnKG+IGJgYBzByAv67ahEW1zLQ//bqiEGBgbGQubYprLFeTAwMDDKZsCsVJe3JT4WcDEwMLZiJEnsbMA0v/zNEl0MDIwnMGYjDu0gV3uIr1xYMTAw9mP8AG8gvCp3c9goAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261704531&web_id=1261704531')
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.0"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.0" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '(つェ⊂) 我藏好了哦~ ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(*´∇｀*) 被你发现啦~ ';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

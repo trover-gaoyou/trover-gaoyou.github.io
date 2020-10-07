@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65558107"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    <meta name="google-site-verification" content="ar7mIVYsjkAi2k9jIuWk34S9A2aVwBdQqFkfL4AKEBQ" >
+    
+    
+    
+    <title>如何搭建以太坊私有链 | 梦想小筑 | 坚定的走吧，毕竟梦想在远方，未来在远方，终点也在远方。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="以太坊,私有链">
+    <meta name="description" content="在开发以太坊时，很多时候需要搭建一条以太坊私有链，通过本文一起看看如何在Mac上进行搭建。 写在前面阅读本文前，你应该对以太坊语言有所了解，如果你还不了解，建议你先看以太坊是什么 go-ethereum客户端安装Go-ethereum客户端通常被称为Geth，它是个命令行界面，执行在Go上实现的完整以太坊节点。Geth得益于Go语言的多平台特性，支持在多个平台上使用(比如Windows、Linu">
+<meta name="keywords" content="以太坊,私有链">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何搭建以太坊私有链">
+<meta property="og:url" content="http://blog.buerya.cn/2018/03/18/create_private_blockchain/index.html">
+<meta property="og:site_name" content="梦想小筑">
+<meta property="og:description" content="在开发以太坊时，很多时候需要搭建一条以太坊私有链，通过本文一起看看如何在Mac上进行搭建。 写在前面阅读本文前，你应该对以太坊语言有所了解，如果你还不了解，建议你先看以太坊是什么 go-ethereum客户端安装Go-ethereum客户端通常被称为Geth，它是个命令行界面，执行在Go上实现的完整以太坊节点。Geth得益于Go语言的多平台特性，支持在多个平台上使用(比如Windows、Linu">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/create_private_blockchain_1.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/create_private_blockchain_2.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/create_private_blockchain_3.png">
+<meta property="og:image" content="http://qiniu.buerya.cn/static/create_private_blockchain_4.png">
+<meta property="og:updated_time" content="2020-10-07T08:08:59.447Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何搭建以太坊私有链">
+<meta name="twitter:description" content="在开发以太坊时，很多时候需要搭建一条以太坊私有链，通过本文一起看看如何在Mac上进行搭建。 写在前面阅读本文前，你应该对以太坊语言有所了解，如果你还不了解，建议你先看以太坊是什么 go-ethereum客户端安装Go-ethereum客户端通常被称为Geth，它是个命令行界面，执行在Go上实现的完整以太坊节点。Geth得益于Go语言的多平台特性，支持在多个平台上使用(比如Windows、Linu">
+<meta name="twitter:image" content="http://qiniu.buerya.cn/static/create_private_blockchain_1.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="梦想小筑" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.0">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Juan</h5>
+          <a href="mailto:quewen08@gmail.com" title="quewen08@gmail.com" class="mail">quewen08@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/trover-gaoyou" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/shandingjurenww" target="_blank" >
+                <i class="icon icon-lg icon-twitter"></i>
+                Twitter
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.instagram.com/juan95_cn" target="_blank" >
+                <i class="icon icon-lg icon-instagram"></i>
+                Instagram
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/source"  >
+                <i class="icon icon-lg icon-link"></i>
+                友情链接
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+	<img id="aimg_H2R2r" class="zoom" src="https://apa.me/news/?s=5qKm5oOz5bCP562R" border="0" alt="" width="500" height="210" initialized="true">
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">如何搭建以太坊私有链</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">如何搭建以太坊私有链</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-03-17T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2018-03-18
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/">深入浅出区块链</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/以太坊/">以太坊</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/以太坊/私有链/">私有链</a></li></ul></li></ul></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#写在前面"><span class="post-toc-number">1.</span> <span class="post-toc-text">写在前面</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#go-ethereum客户端安装"><span class="post-toc-number">2.</span> <span class="post-toc-text">go-ethereum客户端安装</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#搭建私有链"><span class="post-toc-number">3.</span> <span class="post-toc-text">搭建私有链</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#初始化-写入创世区块"><span class="post-toc-number">4.</span> <span class="post-toc-text">初始化:写入创世区块</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#启动私有链节点"><span class="post-toc-number">5.</span> <span class="post-toc-text">启动私有链节点</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#玩转Javascript-Console"><span class="post-toc-number">6.</span> <span class="post-toc-text">玩转Javascript Console</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#创建账户"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">创建账户</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#查看账户余额"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">查看账户余额</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#启动＆停止挖矿"><span class="post-toc-number">6.3.</span> <span class="post-toc-text">启动＆停止挖矿</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#发送交易"><span class="post-toc-number">6.4.</span> <span class="post-toc-text">发送交易</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#查看交易和区块"><span class="post-toc-number">6.5.</span> <span class="post-toc-text">查看交易和区块</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-create_private_blockchain"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">如何搭建以太坊私有链</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-03-18 00:00:00" datetime="2018-03-17T16:00:00.000Z"  itemprop="datePublished">2018-03-18</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/">深入浅出区块链</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/以太坊/">以太坊</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/深入浅出区块链/以太坊/私有链/">私有链</a></li></ul></li></ul></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <script src="\assets\js\APlayer.min.js"> </script><p>在开发以太坊时，很多时候需要搭建一条以太坊私有链，通过本文一起看看如何在Mac上进行搭建。</p>
+<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>阅读本文前，你应该对以太坊语言有所了解，如果你还不了解，建议你先看<a href="/posts/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E5%8C%BA%E5%9D%97%E9%93%BE/%E4%BB%A5%E5%A4%AA%E5%9D%8A/2018-02-22-whatiseth.html">以太坊是什么</a></p>
+<h2 id="go-ethereum客户端安装"><a href="#go-ethereum客户端安装" class="headerlink" title="go-ethereum客户端安装"></a>go-ethereum客户端安装</h2><p>Go-ethereum客户端通常被称为Geth，它是个命令行界面，执行在Go上实现的完整以太坊节点。Geth得益于Go语言的多平台特性，支持在多个平台上使用(比如Windows、Linux、Mac)。Geth是以太坊协议的具体落地实现，通过Geth，你可以实现以太坊的各种功能，如账户的新建编辑删除，开启挖矿，ether币的转移，智能合约的部署和执行等等。所以，我们选择geth工具来进行开发。由于本人是mac，所以优先使用mac进行开发啦。mac中geth安装如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew tap ethereum/ethereum</span><br><span class="line">brew install ethereum</span><br></pre></td></tr></table></figure>
+<p>检查是否安装成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">geth --help</span><br></pre></td></tr></table></figure>
+<p>如果输出一些帮助提示命令，则说明安装成功。<br>其他平台可参考<a href="https://github.com/ethereum/go-ethereum/wiki/Building-Ethereum" target="_blank" rel="noopener">Geth 安装</a></p>
+<h2 id="搭建私有链"><a href="#搭建私有链" class="headerlink" title="搭建私有链"></a>搭建私有链</h2><p>以太坊支持自定义创世区块，要运行私有链，我们就需要定义自己的创世区块，创世区块信息写在一个json格式的配置文件中。首先将下面的内容保存到一个json文件中，例如genesis.json。<br>json文件内容如下:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"config"</span>: &#123;</span><br><span class="line">        <span class="attr">"chainId"</span>: <span class="number">10</span>,</span><br><span class="line">        <span class="attr">"homesteadBlock"</span>: <span class="number">0</span>,</span><br><span class="line">        <span class="attr">"eip155Block"</span>: <span class="number">0</span>,</span><br><span class="line">        <span class="attr">"eip158Block"</span>: <span class="number">0</span></span><br><span class="line">    &#125;,</span><br><span class="line">  <span class="attr">"alloc"</span>      : &#123;&#125;,</span><br><span class="line">  <span class="attr">"coinbase"</span>   : <span class="string">"0x0000000000000000000000000000000000000000"</span>,</span><br><span class="line">  <span class="attr">"difficulty"</span> : <span class="string">"0x20000"</span>,</span><br><span class="line">  <span class="attr">"extraData"</span>  : <span class="string">""</span>,</span><br><span class="line">  <span class="attr">"gasLimit"</span>   : <span class="string">"0x2fefd8"</span>,</span><br><span class="line">  <span class="attr">"nonce"</span>      : <span class="string">"0x0000000000000042"</span>,</span><br><span class="line">  <span class="attr">"mixhash"</span>    : <span class="string">"0x0000000000000000000000000000000000000000000000000000000000000000"</span>,</span><br><span class="line">  <span class="attr">"parentHash"</span> : <span class="string">"0x0000000000000000000000000000000000000000000000000000000000000000"</span>,</span><br><span class="line">  <span class="attr">"timestamp"</span>  : <span class="string">"0x00"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="初始化-写入创世区块"><a href="#初始化-写入创世区块" class="headerlink" title="初始化:写入创世区块"></a>初始化:写入创世区块</h2><p>准备好创世区块json配置文件后，需要初始化区块链，将上面的创世区块信息写入到区块链中。首先要新建一个目录data0用来存放区块链数据(其实，这个目录data0就相当于一个根节点。当我们基于genesis.json生成根节点后，其他人就可以来连接此根节点，从而能进行交易)。data0目录结构如图所示：</p>
+<p><img src="http://qiniu.buerya.cn/static/create_private_blockchain_1.png" alt=""></p>
+<p>接下来进入privatechain目录中，执行初始化命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd privatechain</span><br><span class="line">geth --datadir data0 init genesis.json</span><br></pre></td></tr></table></figure>
+<p>上面的命令的主体是 geth init，表示初始化区块链，命令可以带有选项和参数，其中–datadir选项后面跟一个目录名，这里为 data0，表示指定数据存放目录为 data0， genesis.json是init命令的参数。</p>
+<p>运行上面的命令，会读取genesis.json文件，根据其中的内容，将创世区块写入到区块链中。如果看到log信息中含有<em>Successfully wrote genesis state</em> 字样，说明初始化成功。</p>
+<p>初始化成功后的目录如下：</p>
+<p><img src="http://qiniu.buerya.cn/static/create_private_blockchain_2.png" alt=""></p>
+<p>其中geth/chaindata中存放的是区块数据，keystore中存放的是账户数据。</p>
+<h2 id="启动私有链节点"><a href="#启动私有链节点" class="headerlink" title="启动私有链节点"></a>启动私有链节点</h2><p>初始化完成后，就有了一条自己的私有链，之后就可以启动自己的私有链节点并做一些操作，在终端中输入以下命令即可启动节点：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">geth --datadir data0 --networkid 1108 console</span><br></pre></td></tr></table></figure>
+<p>上面命令的主体是geth console，表示启动节点并进入交互式控制台，–datadir选项指定使用data0作为数据目录，–networkid选项后面跟一个数字，这里是1108，表示指定这个私有链的网络id为1108。网络id在连接到其他节点的时候会用到，以太坊公网的网络id是1，为了不与公有链网络冲突，运行私有链节点的时候要指定自己的网络id(上面命令可能会运行失败，我直接重启mac，再进入到privateChain目录中，简单粗暴)。</p>
+<p>运行上面的命令后，就启动了区块链节点并进入了Javascript Console：</p>
+<p><img src="http://qiniu.buerya.cn/static/create_private_blockchain_3.png" alt=""></p>
+<p>这是一个交互式的Javascript执行环境，在这里面可以执行Javascript代码，其中&gt;是命令提示符。在这个环境里也内置了一些用来操作以太坊的Javascript对象，可以直接使用这些对象。这些对象主要包括：</p>
+<p><strong>eth</strong> ：包含一些跟操作区块链相关的方法<br><strong>net</strong> ：包含以下查看p2p网络状态的方法<br><strong>admin</strong> ：包含一些与管理节点相关的方法<br><strong>miner</strong> ：包含启动&amp;停止挖矿的一些方法<br><strong>personal</strong> ：主要包含一些管理账户的方法<br><strong>txpool</strong> ：包含一些查看交易内存池的方法<br><strong>web3</strong> ：包含了以上对象，还包含一些单位换算的方法</p>
+<h2 id="玩转Javascript-Console"><a href="#玩转Javascript-Console" class="headerlink" title="玩转Javascript Console"></a>玩转Javascript Console</h2><p>进入以太坊Javascript Console后，就可以使用里面的内置对象做一些操作，这些内置对象提供的功能很丰富，比如查看区块和交易、创建账户、挖矿、发送交易、部署智能合约等。接下来介绍几个常用功能，下面的操作中，前面带&gt;的表示在Javascript Console中执行的命令。</p>
+<h3 id="创建账户"><a href="#创建账户" class="headerlink" title="创建账户"></a>创建账户</h3><p>前面只是搭建了私有链，并没有自己的账户，可以在js console中输入eth.accounts来验证：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; eth.accounts</span><br><span class="line">[]</span><br></pre></td></tr></table></figure>
+<p>此时没有账户，接下来使用personal对象来创建一个账户：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; personal.newAccount()</span><br><span class="line">&gt; Passphrase:</span><br><span class="line">&gt; Repeat passphrase:</span><br><span class="line">&quot;0x4a3b0216e1644c1bbabda527a6da7fc5d178b58f&quot;</span><br></pre></td></tr></table></figure>
+<p>Passphrase其实就是密码的意思，输入两次密码后，就创建了一个账户。再次执行命令:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; personal.newAccount()</span><br><span class="line">&gt; Passphrase:</span><br><span class="line">&gt; Repeat passphrase:</span><br><span class="line">&quot;0x46b24d04105551498587e3c6ce2c3341d5988938&quot;</span><br></pre></td></tr></table></figure>
+<p>这时候再去看账户，就有两个了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; eth.accounts</span><br><span class="line">[&quot;0x4a3b0216e1644c1bbabda527a6da7fc5d178b58f&quot;, &quot;0x46b24d04105551498587e3c6ce2c3341d5988938&quot;]</span><br></pre></td></tr></table></figure>
+<p>账户默认会保存在数据目录的keystore文件夹中。查看目录结构，发现data0/keystore中多了两个文件，这两个文件就对应刚才创建的两个账户，这是json格式的文本文件，可以打开查看，里面存的是私钥经过密码加密后的信息。</p>
+<p><img src="http://qiniu.buerya.cn/static/create_private_blockchain_4.png" alt=""></p>
+<p>json文件中信息格式如下：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"address"</span>: <span class="string">"4a3b0216e1644c1bbabda527a6da7fc5d178b58f"</span>,</span><br><span class="line">  <span class="attr">"crypto"</span>: &#123;</span><br><span class="line">    <span class="attr">"cipher"</span>: <span class="string">"aes-128-ctr"</span>,</span><br><span class="line">    <span class="attr">"ciphertext"</span>: <span class="string">"238d6d48126b762c8f13e84622b1bbb7713f7244c2f24555c99b76396fae8355"</span>,</span><br><span class="line">    <span class="attr">"cipherparams"</span>: &#123;</span><br><span class="line">      <span class="attr">"iv"</span>: <span class="string">"d0f5a3d3e6c1eeec77bf631bc938725d"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"kdf"</span>: <span class="string">"scrypt"</span>,</span><br><span class="line">    <span class="attr">"kdfparams"</span>: &#123;</span><br><span class="line">      <span class="attr">"dklen"</span>: <span class="number">32</span>,</span><br><span class="line">      <span class="attr">"n"</span>: <span class="number">262144</span>,</span><br><span class="line">      <span class="attr">"p"</span>: <span class="number">1</span>,</span><br><span class="line">      <span class="attr">"r"</span>: <span class="number">8</span>,</span><br><span class="line">      <span class="attr">"salt"</span>: <span class="string">"70dc72c4eb63bea50f7637d9ff85bb53f6ca8ace17f4245feae9c0bc9abaad82"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"mac"</span>: <span class="string">"bd7fc0c937c39f1cbbf1ca654c33b53d7f9c644c6dacfeefe1641d2f3decea04"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"id"</span>: <span class="string">"57803d82-0cd4-4a78-9c29-9f9252fdcf60"</span>,</span><br><span class="line">  <span class="attr">"version"</span>: <span class="number">3</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="查看账户余额"><a href="#查看账户余额" class="headerlink" title="查看账户余额"></a>查看账户余额</h3><p>eth对象提供了查看账户余额的方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; eth.getBalance(eth.accounts[0])</span><br><span class="line">0</span><br><span class="line">&gt; eth.getBalance(eth.accounts[1])</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+<p>目前两个账户的以太币余额都是0，要使账户有余额，可以从其他账户转账过来，或者通过挖矿来获得以太币奖励。</p>
+<h3 id="启动＆停止挖矿"><a href="#启动＆停止挖矿" class="headerlink" title="启动＆停止挖矿"></a>启动＆停止挖矿</h3><p>通过miner.start()来启动挖矿：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; miner.start(10)</span><br></pre></td></tr></table></figure>
+<p>其中start的参数表示挖矿使用的线程数。第一次启动挖矿会先生成挖矿所需的DAG文件，这个过程有点慢，等进度达到100%后，就会开始挖矿，此时屏幕会被挖矿信息刷屏。</p>
+<p>如果想停止挖矿，并且进度已经达到100%之后，可以在js console中输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">miner.stop()：</span><br></pre></td></tr></table></figure>
+<p>注意：输入的字符会被挖矿刷屏信息冲掉，没有关系，只要输入完整的miner.stop()之后回车，即可停止挖矿。</p>
+<p>挖到一个区块会奖励5个以太币，挖矿所得的奖励会进入矿工的账户，这个账户叫做coinbase，默认情况下coinbase是本地账户中的第一个账户：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; eth.coinbase</span><br><span class="line">&quot;0x4a3b0216e1644c1bbabda527a6da7fc5d178b58f&quot;</span><br></pre></td></tr></table></figure>
+<p>现在的coinbase是账户0，要想使挖矿奖励进入其他账户，通过miner.setEtherbase()将其他账户设置成coinbase即可：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; miner.setEtherbase(eth.accounts[1])</span><br><span class="line">true</span><br><span class="line">&gt; eth.coinbase</span><br><span class="line">&quot;0x46b24d04105551498587e3c6ce2c3341d5988938&quot;</span><br></pre></td></tr></table></figure>
+<p>挖到区块以后，账户0里面应该就有余额了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; eth.getBalance(eth.accounts[0])</span><br><span class="line">2.31e+21</span><br></pre></td></tr></table></figure>
+<p>getBalance()返回值的单位是wei，wei是以太币的最小单位，1个以太币=10的18次方个wei。要查看有多少个以太币，可以用web3.fromWei()将返回值换算成以太币：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; web3.fromWei(eth.getBalance(eth.accounts[0]),&apos;ether&apos;)</span><br><span class="line">2310</span><br></pre></td></tr></table></figure>
+<h3 id="发送交易"><a href="#发送交易" class="headerlink" title="发送交易"></a>发送交易</h3><p>截止目前，账户一的余额还是0：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; eth.getBalance(eth.accounts[1])</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+<p>可以通过发送一笔交易，从账户0转移10个以太币到账户1：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; amount = web3.toWei(10,&apos;ether&apos;)</span><br><span class="line">&quot;10000000000000000000&quot;</span><br><span class="line">&gt; eth.sendTransaction(&#123;from:eth.accounts[0],to:eth.accounts[1],value:amount&#125;)</span><br><span class="line">Error: authentication needed: password or unlock</span><br><span class="line">    at web3.js:3143:20</span><br><span class="line">    at web3.js:6347:15</span><br><span class="line">    at web3.js:5081:36</span><br><span class="line">    at &lt;anonymous&gt;:1:1</span><br></pre></td></tr></table></figure>
+<p>这里报错了，原因是账户每隔一段时间就会被锁住，要发送交易，必须先解锁账户，由于我们要从账户0发送交易，所以要解锁账户0：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; personal.unlockAccount(eth.accounts[0])</span><br><span class="line">Unlock account 0x4a3b0216e1644c1bbabda527a6da7fc5d178b58f</span><br><span class="line">Passphrase:</span><br><span class="line">true</span><br></pre></td></tr></table></figure>
+<p>输入创建账户时设置的密码，就可以成功解锁账户。然后再发送交易：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; amount = web3.toWei(10,&apos;ether&apos;)</span><br><span class="line">&quot;10000000000000000000&quot;</span><br><span class="line">&gt; eth.sendTransaction(&#123;from:eth.accounts[0],to:eth.accounts[1],value:amount&#125;)</span><br><span class="line">INFO [03-07|11:13:11] Submitted transaction                    fullhash=0x1b21bba16dd79b659c83594b0c41de42debb2738b447f6b24e133d51149ae2a6 recipient=0x46B24d04105551498587e3C6CE2c3341d5988938</span><br><span class="line">&quot;0x1b21bba16dd79b659c83594b0c41de42debb2738b447f6b24e133d51149ae2a6&quot;</span><br></pre></td></tr></table></figure>
+<p>我们去查看账户1中的余额：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; eth.getBalance(eth.accounts[1])</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+<p>发现还没转过去，此时交易已经提交到区块链，但还未被处理，这可以通过查看txpool来验证：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; txpool.status</span><br><span class="line">&#123;</span><br><span class="line">  pending: 1,</span><br><span class="line">  queued: 0</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中有一条pending的交易，pending表示已提交但还未被处理的交易。</p>
+<p>要使交易被处理，必须要挖矿。这里我们启动挖矿，然后等待挖到一个区块之后就停止挖矿：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; miner.start(1);admin.sleepBlocks(1);miner.stop();</span><br></pre></td></tr></table></figure>
+<p>当miner.stop()返回true后，txpool中pending的交易数量应该为0了，说明交易已经被处理了，而账户1应该收到币了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; web3.fromWei(eth.getBalance(eth.accounts[1]),&apos;ether&apos;)</span><br><span class="line">10</span><br></pre></td></tr></table></figure>
+<h3 id="查看交易和区块"><a href="#查看交易和区块" class="headerlink" title="查看交易和区块"></a>查看交易和区块</h3><p>eth对象封装了查看交易和区块信息的方法。</p>
+<p>查看当前区块总数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; eth.blockNumber</span><br><span class="line">463</span><br></pre></td></tr></table></figure>
+<p>通过区块号查看区块：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&gt; eth.getBlock(66)</span><br><span class="line">&#123;</span><br><span class="line">  difficulty: 135266,</span><br><span class="line">  extraData: &quot;0xd783010802846765746886676f312e31308664617277696e&quot;,</span><br><span class="line">  gasLimit: 3350537,</span><br><span class="line">  gasUsed: 0,</span><br><span class="line">  hash: &quot;0x265dfcc0649bf6240812256b2b9b4e3ae48d51fd8e43e25329ac111556eacdc8&quot;,</span><br><span class="line">  logsBloom: &quot;0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000&quot;,</span><br><span class="line">  miner: &quot;0x4a3b0216e1644c1bbabda527a6da7fc5d178b58f&quot;,</span><br><span class="line">  mixHash: &quot;0xaf755722f62cac9b483d3437dbc795f2d3a02e28ec03d39d8ecbb6012906263c&quot;,</span><br><span class="line">  nonce: &quot;0x3cd80f6ec5c2f3e9&quot;,</span><br><span class="line">  number: 66,</span><br><span class="line">  parentHash: &quot;0x099776a52223b892d13266bb3aec3cc04c455dc797185f0b3300d39f9fc0a8ec&quot;,</span><br><span class="line">  receiptsRoot: &quot;0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421&quot;,</span><br><span class="line">  sha3Uncles: &quot;0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347&quot;,</span><br><span class="line">  size: 535,</span><br><span class="line">  stateRoot: &quot;0x0c9feec5a201c8c98618331aecbfd2d4d93da1c6064abd0c41ae649fc08d8d06&quot;,</span><br><span class="line">  timestamp: 1520391527,</span><br><span class="line">  totalDifficulty: 8919666,</span><br><span class="line">  transactions: [],</span><br><span class="line">  transactionsRoot: &quot;0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421&quot;,</span><br><span class="line">  uncles: []</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过交易hash查看交易：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&gt; eth.getTransaction(&quot;0x1b21bba16dd79b659c83594b0c41de42debb2738b447f6b24e133d51149ae2a6&quot;)</span><br><span class="line">&#123;</span><br><span class="line">  blockHash: &quot;0x1cb368a27cc23c786ff5cdf7cd4351d48f4c8e8aea2e084a5e9d7c480449c79a&quot;,</span><br><span class="line">  blockNumber: 463,</span><br><span class="line">  from: &quot;0x4a3b0216e1644c1bbabda527a6da7fc5d178b58f&quot;,</span><br><span class="line">  gas: 90000,</span><br><span class="line">  gasPrice: 18000000000,</span><br><span class="line">  hash: &quot;0x1b21bba16dd79b659c83594b0c41de42debb2738b447f6b24e133d51149ae2a6&quot;,</span><br><span class="line">  input: &quot;0x&quot;,</span><br><span class="line">  nonce: 0,</span><br><span class="line">  r: &quot;0x31d22686e0d408a16497becf6d47fbfdffe6692d91727e5b7ed3d73ede9e66ea&quot;,</span><br><span class="line">  s: &quot;0x7ff7c14a20991e2dfdb813c2237b08a5611c8c8cb3c2dcb03a55ed282ce4d9c3&quot;,</span><br><span class="line">  to: &quot;0x46b24d04105551498587e3c6ce2c3341d5988938&quot;,</span><br><span class="line">  transactionIndex: 0,</span><br><span class="line">  v: &quot;0x38&quot;,</span><br><span class="line">  value: 10000000000000000000</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-10-07T08:08:59.447Z" itemprop="dateUpdated">2020-10-07 16:08:59</time>
+</span><br>
+
+
+        
+        本文永久地址：<a href="/2018/03/18/create_private_blockchain/" target="_blank" rel="external">http://blog.buerya.cn/2018/03/18/create_private_blockchain/</a>
+        
+    </div>
+    <footer>
+        <a href="http://blog.buerya.cn">
+            <img src="/img/avatar.jpg" alt="Juan">
+            Juan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/以太坊/">以太坊</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/私有链/">私有链</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.buerya.cn/2018/03/18/create_private_blockchain/&title=《如何搭建以太坊私有链》 — 梦想小筑&pic=http://blog.buerya.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.buerya.cn/2018/03/18/create_private_blockchain/&title=《如何搭建以太坊私有链》 — 梦想小筑&source=初级程序员,Juan`s blogs" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.buerya.cn/2018/03/18/create_private_blockchain/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《如何搭建以太坊私有链》 — 梦想小筑&url=http://blog.buerya.cn/2018/03/18/create_private_blockchain/&via=http://blog.buerya.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.buerya.cn/2018/03/18/create_private_blockchain/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/03/23/token-erc721/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">剖析非同质化代币ERC721-全面解析ERC721标准</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/03/15/solidity-api/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">智能合约语言 Solidity 教程系列8 - Solidity API</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comment comments vcomment" id="comments"></div>
+    <script src="//cdnjs.cat.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="//cdn1.lncld.net/static/js/3.5.0/av-min.js"></script>
+    <script src="/js/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var notify = 'false';
+        var verify = 'false';
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            av: AV,
+            el: '#comments',
+            notify: notify,
+            verify: verify,
+            appId: "LoojPRMy175IgqwnQtytrgOY-9Nh9j0Va",
+            appKey: "45VXhysB6in2v1IOL1kaC5tQ",
+            avatar: "mm",
+            placeholder: "ヾﾉ≧∀≦)o来啊，快活啊!",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢你给我买糖果吃O(∩_∩)O~~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Juan &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备17077370号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.buerya.cn/2018/03/18/create_private_blockchain/&title=《如何搭建以太坊私有链》 — 梦想小筑&pic=http://blog.buerya.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.buerya.cn/2018/03/18/create_private_blockchain/&title=《如何搭建以太坊私有链》 — 梦想小筑&source=初级程序员,Juan`s blogs" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.buerya.cn/2018/03/18/create_private_blockchain/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《如何搭建以太坊私有链》 — 梦想小筑&url=http://blog.buerya.cn/2018/03/18/create_private_blockchain/&via=http://blog.buerya.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.buerya.cn/2018/03/18/create_private_blockchain/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJElEQVR42u3a0WrDMAwF0P7/T2evhdLkXjsdxD5+GsPMPhkIydLrFa/jbb3/5tuez/2fO5NTbl4YGBiPZRynK9mTXP38c3z7QMUpGBgYGzDOw2K7p+XNnIuBgYGRXDEPnWM7MTAwMO4KuP9TKmNgYOzMSIrY84DbFqszKSYGBsZujJnC8tc//6S/gYGB8SjG2HP/2M95wlffCgMDY2lGHuDaQYr8omMBFwMDYx9GO9p1vn+G3Za+F/8HDAyMpRltGZlfsT0x/4gYGBhrM9oH/fZPz5fBUw0ADAyMhRh5e7ItXNuR1qnxDgwMjKUZeRwbS+bOD27HLG7owWJgYDyKkSSC9w5GtM3L6HQMDIylGe0T/13thLGwGz3zYWBgLMfIk7Y8+cvTwfb0wWkRDAyMhzOSkJoXmW2Ybj/fBRIDA2NRRtsGOE5X29Qcay18TQ0xMDA2YCRPYGMXvTfUYmBg7MzIu53J/jzdzAvmi1ocAwNjUcbY81ab6s0H3CKIY2BgLMrIA+g8MimDB5ujGBgYWzJmxibuTQqjkI2BgbEBIye1g2ItdbB4xsDAWJRxlCtpLubsdozjov7GwMBYlJGvsWe1Nk0cG0rDwMDYgXHvsNfM49rMkAcGBsYOjDbwzaSDM2nfRSmLgYGBET+W5SlgmzgWkxoYGBgbM9q0b+yhrW1zYmBg7MCYecrPqXkIzgtdDAyMHRht3pXwZi461mbAwMBYlPEHX3QD8cKdls0AAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1261704531&web_id=1261704531')
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.0"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.0" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '(つェ⊂) 我藏好了哦~ ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(*´∇｀*) 被你发现啦~ ';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
